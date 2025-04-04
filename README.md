@@ -4,4 +4,4 @@ An AI agent that uses NEAR chain signatures to interact with Bitcoin L1 | Powere
 
 ## Agent Links
 
-- - [Previoius Deployment](https://bitcoin-bitte-agent.vercel.app/)
+- [Previous Deployment](https://bitcoin-bitte-agent.vercel.app/)

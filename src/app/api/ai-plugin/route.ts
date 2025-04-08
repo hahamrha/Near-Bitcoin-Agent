@@ -29,6 +29,49 @@ export async function GET() {
     },
     paths: {
       // TEST path
+      "/api/tools/coinflip": {
+        get: {
+          summary: "Coin flip",
+          description: "Flip a coin and return the result (heads or tails)",
+          operationId: "coinFlip",
+          responses: {
+            "200": {
+              description: "Successful response",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      result: {
+                        type: "string",
+                        description:
+                          "The result of the coin flip (heads or tails)",
+                        enum: ["heads", "tails"],
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            "500": {
+              description: "Error response",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      error: {
+                        type: "string",
+                        description: "Error message",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     },
   };
 

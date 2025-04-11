@@ -30,12 +30,8 @@ export async function GET() {
   const { accountId } = mbMetadata || {};
   console.log("accountId", accountId);
 
-  // const { searchParams } = new URL(request.url);
-  // const accountId = searchParams.get("accountId");
-
   const { address } = await Bitcoin.deriveAddressAndPublicKey(
     accountId as string,
-    // "0xmht.near",
     "bitcoin-1"
   );
 

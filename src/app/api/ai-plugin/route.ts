@@ -102,6 +102,68 @@ export async function GET() {
           },
         },
       },
+      // DONE
+      "/api/tools/get-btc-balance": {
+        get: {
+          operationId: "get-btc-balance",
+          summary: "Get BTC balance",
+          description: "Respond with BTC address and balance",
+          responses: {
+            "200": {
+              description: "Successful response",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      btcBalance: {
+                        type: "string",
+                        description: "The current BTC balance of the user",
+                      },
+                      btcAddress: {
+                        type: "string",
+                        description: "The user's BTC address",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            "400": {
+              description: "Bad request",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      error: {
+                        type: "string",
+                        description: "Error message",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            "500": {
+              description: "Error response",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      error: {
+                        type: "string",
+                        description: "Error message",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     },
   };
 

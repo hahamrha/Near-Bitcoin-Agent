@@ -164,6 +164,95 @@ export async function GET() {
           },
         },
       },
+      // DONE
+      "/api/tools/send-btc-txn": {
+        get: {
+          operationId: "send-btc-txn",
+          summary: "Relay/Send the signed BTC mainnet transaction",
+          description:
+            "Send signed transaction to BTC mainnet. The signature is received form the txHash of the signed NEAR transaction. Other parameters are the BTC receiver address, BTC amount in satoshi.",
+          parameters: [
+            {
+              name: "btcReceiver",
+              in: "query",
+              required: true,
+              schema: {
+                type: "string",
+              },
+              description: "The BTC address of the receiver",
+            },
+            {
+              name: "btcAmountInSatoshi",
+              in: "query",
+              required: true,
+              schema: {
+                type: "string",
+              },
+              description: "The amount of BTC to transfer in satoshi",
+            },
+            {
+              name: "txHash",
+              in: "query",
+              required: true,
+              schema: {
+                type: "string",
+              },
+              description: "The txHash of the signed txn from near",
+            },
+          ],
+          responses: {
+            "200": {
+              description: "Successful response",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      txHash: {
+                        type: "string",
+                        description:
+                          "The txHash of the txn relayed to BTC chain :",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            "400": {
+              description: "Bad request",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      error: {
+                        type: "string",
+                        description: "Error message",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            "500": {
+              description: "Server error",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      error: {
+                        type: "string",
+                        description: "Error message",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     },
   };
 

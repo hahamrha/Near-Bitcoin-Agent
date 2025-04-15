@@ -1,9 +1,11 @@
 "use client";
 
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Bitcoin, Bot, Wallet } from "lucide-react";
-
+import { Badge } from "@/components/ui/badge"
+import { ArrowRight, Bitcoin, Bot, Wallet, Twitter, Github, CheckCircle2, Clock } from "lucide-react";
+import Link from "next/link"
 
 export default function Home() {
 
@@ -91,10 +93,37 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Social Links */}
+      <section className="px-4 py-10 border-t border-emerald-900/50 bg-black">
+        <div className="max-w-3xl mx-auto">
+          <h3 className="text-xl font-bold text-center mb-6">Connect With Us</h3>
+          <div className="flex justify-center gap-6">
+            <Link
+              href="https://x.com/btc_near"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-2 text-gray-400 hover:text-emerald-500 transition-colors"
+            >
+              <Twitter className="h-5 w-5" />
+              <span>Twitter</span>
+            </Link>
+            <Link
+              href="https://github.com/0xAlphaDevs/Near-Bitcoin-Agent/blob/main/README.md"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-2 text-gray-400 hover:text-emerald-500 transition-colors"
+            >
+              <Github className="h-5 w-5" />
+              <span>GitHub</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className="border-t border-gray-100 py-4">
-        <div className="px-4 text-center text-gray-600">
-          <a href="https://www.alphadevs.dev/" target="_blank" rel="noreferrer">
+      <footer className="border-t border-emerald-900/50 py-6 bg-black">
+        <div className="px-4 text-center text-white">
+          <a href="https://www.alphadevs.dev/" target="_blank" rel="noreferrer" className="hover:text-emerald-500 transition-colors">
             <p> © Team AlphaDevs</p>
           </a>
         </div>

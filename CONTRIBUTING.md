@@ -1,4 +1,4 @@
-# Contributing to Bitcoin Bitte Agent 🧠⚡
+# Contributing to Bitcoin Agent 🧠⚡
 
 Thanks for your interest in contributing! We welcome community contributions and are excited to collaborate with developers to improve the project.
 

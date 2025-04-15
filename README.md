@@ -1,4 +1,4 @@
-## Bitcoin Bitte Agent
+## Bitcoin Agent
 
 An AI agent that uses NEAR chain signatures to interact with Bitcoin L1 | Powered by Bitte.ai
 
@@ -20,7 +20,7 @@ We are now evolving the agent to support Bitcoin Mainnet, enabling secure creati
 
 ## Agent Links
 
-- [Deployment](https://bitcoin-bitte-agent.vercel.app/)
+- [Deployment](https://bitcoin-agent.xyz)
 
 ## Features
 

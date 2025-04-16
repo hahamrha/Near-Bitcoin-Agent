@@ -318,7 +318,7 @@ export default function Home() {
                   <Image src="/x.png" alt="X" width={26} height={26} />
                 </Link>
                 <Link
-                  href="https://www.alphadevs.dev/"
+                  href="https://github.com/0xAlphaDevs/Near-Bitcoin-Agent"
                   target="_blank"
                   rel="noreferrer"
                   className="text-gray-400 hover:text-emerald-500 transition-colors"

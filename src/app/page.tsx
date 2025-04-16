@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge"
@@ -9,37 +9,102 @@ import Link from "next/link"
 import Image from "next/image";
 
 export default function Home() {
+  const heroRef = useRef<HTMLDivElement>(null)
 
+  // Parallax effect for hero section
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!heroRef.current) return
+      const scrollY = window.scrollY
+      const heroElement = heroRef.current
+      const heroHeight = heroElement.offsetHeight
+      const parallaxElements = heroElement.querySelectorAll(".parallax")
+
+      parallaxElements.forEach((el, index) => {
+        const element = el as HTMLElement
+        const speed = index * 0.2 + 0.5
+        const yPos = (-(scrollY * speed) / heroHeight) * 100
+        element.style.transform = `translate3d(0, ${yPos}px, 0)`
+      })
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
   return (
     <div className="bg-black text-white min-h-screen">
 
       {/* Hero Section */}
-      <section className="px-4 pt-16 pb-24 md:pt-32 md:pb-32 relative overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-20">
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-emerald-900/30 to-transparent" />
-          <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-emerald-600/20 blur-3xl" />
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-emerald-600/20 blur-3xl" />
+
+      <section ref={heroRef} className="px-4 pt-16 pb-24 md:pt-32 md:pb-32 relative overflow-hidden lg:h-screen">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-emerald-900/30 to-transparent parallax" />
+          <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-emerald-600/20 blur-3xl parallax" />
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-emerald-600/20 blur-3xl parallax" />
+
+          {/* Grid pattern */}
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMxMGI5ODEiIGZpbGwtb3BhY2l0eT0iMC4wNCI+PHBhdGggZD0iTTM2IDM0djI2aDI0di0yNkgzNnpNMCAzNHYyNmgyNHYtMjZIMHoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-30 parallax" />
+
+          {/* Animated dots */}
+          <div className="absolute inset-0">
+            {Array.from({ length: 20 }).map((_, i) => (
+              <div
+                key={i}
+                className="absolute rounded-full bg-emerald-500/30"
+                style={{
+                  width: `${Math.random() * 6 + 2}px`,
+                  height: `${Math.random() * 6 + 2}px`,
+                  top: `${Math.random() * 100}%`,
+                  left: `${Math.random() * 100}%`,
+                  animation: `float ${Math.random() * 10 + 10}s linear infinite`,
+                  animationDelay: `${Math.random() * 5}s`,
+                }}
+              />
+            ))}
+          </div>
         </div>
 
-        <div className="max-w-3xl mx-auto text-center space-y-8 relative z-10">
-          <Badge className="bg-emerald-900/50 text-emerald-400 hover:bg-emerald-900/70 px-4 py-1 text-sm">
-            Version 1.0
-          </Badge>
+        <div className="max-w-3xl mx-auto text-center space-y-8 relative z-10 md:pt-16">
+          <div className="inline-block">
+            <Badge className="bg-emerald-900/50 text-emerald-400 hover:bg-emerald-900/70 px-4 py-1.5 text-sm backdrop-blur-sm">
+              v1.0
+            </Badge>
+          </div>
 
-          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
-            Bitcoin <span className="text-emerald-500">Agent</span>
-          </h1>
+          <div className="space-y-4">
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
+              Bitcoin{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">
+                Agent
+              </span>
+            </h1>
 
-          <p className="text-lg text-gray-300 md:text-xl max-w-2xl mx-auto">
-            An AI agent that uses NEAR chain signatures to interact with Bitcoin L1
+            <div className="h-1 w-20 bg-gradient-to-r from-emerald-500 to-emerald-700 mx-auto rounded-full"></div>
+          </div>
+
+          <p className="text-lg text-gray-300 md:text-xl max-w-2xl mx-auto leading-relaxed">
+            An AI agent that uses NEAR chain signatures to interact with Bitcoin L1.
           </p>
 
-          <div className="flex flex-col gap-4 sm:flex-row justify-center">
-            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-xl font-bold">
-              Launch Agent
-              <ArrowRight className="ml-2 h-5 w-5" />
+          <div className="flex flex-col gap-4 sm:flex-row justify-center pt-4">
+            <Button
+              size="lg"
+              className="bg-emerald-600 hover:bg-emerald-700 text-xl font-bold group relative overflow-hidden"
+            >
+              <span className="relative z-10 flex items-center">
+                Launch Agent
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </span>
+              <span className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-emerald-700 group-hover:opacity-0 transition-opacity"></span>
+              <span className="absolute inset-0 bg-gradient-to-r from-emerald-700 to-emerald-800 opacity-0 group-hover:opacity-100 transition-opacity"></span>
             </Button>
           </div>
+        </div>
+
+        {/* Floating Bitcoin icon */}
+        <div className="absolute bottom-10 right-10 md:bottom-20 md:right-20 opacity-20 hidden md:block">
+          <Bitcoin className="w-24 h-24 text-emerald-500" />
         </div>
       </section>
 
@@ -158,7 +223,7 @@ export default function Home() {
 
               {/* Item 4: Custom BTC Transactions */}
               <div className="relative order-7 md:pr-8">
-                <div className="absolute md:left-10/10 top-6 w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
+                <div className="absolute left-4 md:left-10/10 top-6 w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
                   <Clock className="h-5 w-5 text-black" />
                 </div>
               </div>
@@ -190,7 +255,7 @@ export default function Home() {
 
               {/* Item 6: Complete Bitcoin Operations */}
               <div className="relative order-11 md:pr-8">
-                <div className="absolute left-4 md:left-10/10 top-6 w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center transform -translate-x-1/2 z-20">
+                <div className="absolute left-7 md:left-10/10 top-6 w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center transform -translate-x-1/2 z-20">
                   <Clock className="h-5 w-5 text-black" />
                 </div>
               </div>

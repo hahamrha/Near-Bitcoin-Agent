@@ -23,7 +23,7 @@ export default function Home() {
 
         <div className="max-w-3xl mx-auto text-center space-y-8 relative z-10">
           <Badge className="bg-emerald-900/50 text-emerald-400 hover:bg-emerald-900/70 px-4 py-1 text-sm">
-            Beta Version
+            Version 1.0
           </Badge>
 
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
@@ -31,8 +31,7 @@ export default function Home() {
           </h1>
 
           <p className="text-lg text-gray-300 md:text-xl max-w-2xl mx-auto">
-            An AI agent that uses NEAR chain signatures to interact with Bitcoin L1, revolutionizing how you manage
-            Bitcoin transactions.
+            An AI agent that uses NEAR chain signatures to interact with Bitcoin L1
           </p>
 
           <div className="flex flex-col gap-4 sm:flex-row justify-center">
@@ -60,7 +59,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold mb-2 text-white">NEAR Integration</h3>
                 <p className="text-gray-400">
-                  Create and sign Bitcoin transactions using one NEAR account, simplifying your crypto experience.
+                  Create and sign Bitcoin transactions using one NEAR account.
                 </p>
               </CardContent>
             </Card>
@@ -72,7 +71,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold mb-2 text-white">Create BTC Transaction</h3>
                 <p className="text-gray-400">
-                  Generate BTC transactions with this agent and send them directly to Bitcoin mainnet with ease.
+                  Generate BTC transactions with this agent and send them directly to Bitcoin mainnet.
                 </p>
               </CardContent>
             </Card>
@@ -84,7 +83,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold mb-2 text-white">Bitte AI Agent</h3>
                 <p className="text-gray-400">
-                  An advanced AI agent running on NEAR mainnet powered by Bitte.ai runtime for intelligent operations.
+                  An advanced AI agent running on NEAR mainnet powered by Bitte.ai runtime.
                 </p>
               </CardContent>
             </Card>
@@ -98,7 +97,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-4">Roadmap</h2>
           <p className="text-emerald-400 text-center mb-12 max-w-2xl mx-auto">
-            Our journey from development to full Bitcoin operations
+            Journey of Bitcoin Agent
           </p>
 
           <div className="relative">
@@ -111,9 +110,12 @@ export default function Home() {
                 <div className="bg-black/60 border border-emerald-900/50 p-6 rounded-lg w-full hover:border-emerald-500 transition-all duration-300">
                   <Badge className="mb-2 bg-emerald-500 text-black">Completed</Badge>
                   <h4 className="text-xl font-bold mb-2 flex items-center md:justify-end gap-2">
-                    <span>Generate BTC L1 Transactions</span>
+                    <span>One Trillion Agents Hackathon</span>
                   </h4>
-                  <p className="text-gray-400">Tool: generate-btc-txn</p>
+                  <p className="text-gray-400">
+                    🏆 Hackathon winner.
+                    <br />Enabled Bitcoin testnet transactions using NEAR account.
+                  </p>
                 </div>
               </div>
               <div className="relative order-1 md:order-2 md:pl-8">
@@ -132,9 +134,9 @@ export default function Home() {
                 <div className="bg-black/60 border border-emerald-900/50 p-6 rounded-lg hover:border-emerald-500 transition-all duration-300">
                   <Badge className="mb-2 bg-emerald-500 text-black">Completed</Badge>
                   <h4 className="text-xl font-bold mb-2 flex items-center gap-2">
-                    <span>Sign & Relay to Mainnet</span>
+                    <span>v1.0 launch on mainnet</span>
                   </h4>
-                  <p className="text-gray-400">Tools: sign-btc-txn & send-btc-txn</p>
+                  <p className="text-gray-400">Moved agent to Bitcoin mainnet.</p>
                 </div>
               </div>
 
@@ -143,9 +145,9 @@ export default function Home() {
                 <div className="bg-black/60 border border-emerald-900/50 p-6 rounded-lg w-full hover:border-emerald-500 transition-all duration-300">
                   <Badge className="mb-2 bg-yellow-500 text-black">In Progress</Badge>
                   <h4 className="text-xl font-bold mb-2 flex items-center md:justify-end gap-2">
-                    <span>Move Agent to BTC Mainnet and register with Bitte.ai</span>
+                    <span>Initial review & user feedback</span>
                   </h4>
-                  <p className="text-gray-400">Currently in development</p>
+                  <p className="text-gray-400">Getting agent verified with Bitte.ai and gathering feedback from early users.</p>
                 </div>
               </div>
               <div className="relative order-5 md:order-6 md:pl-8">
@@ -157,14 +159,15 @@ export default function Home() {
               {/* Item 4: Custom BTC Transactions */}
               <div className="relative order-7 md:pr-8">
                 <div className="absolute md:left-10/10 top-6 w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
+                  <Clock className="h-5 w-5 text-black" />
                 </div>
               </div>
               <div className="order-8 md:pl-8">
                 <div className="bg-black/60 border border-emerald-900/50 p-6 rounded-lg hover:border-emerald-500 transition-all duration-300">
                   <Badge className="mb-2 bg-emerald-900/50 text-emerald-400">Phase 1</Badge>
-                  <h4 className="text-xl font-bold mb-2">Custom BTC Transactions</h4>
+                  <h4 className="text-xl font-bold mb-2">Transact</h4>
                   <p className="text-gray-400">
-                    Add support for custom BTC transactions and develop more tools for the agent.
+                    Seamlessly execute Bitcoin transactions  with the agent.
                   </p>
                 </div>
               </div>
@@ -173,28 +176,30 @@ export default function Home() {
               <div className="md:text-right flex flex-col items-start md:items-end order-10 md:order-9 md:pr-8">
                 <div className="bg-black/60 border border-emerald-900/50 p-6 rounded-lg w-full hover:border-emerald-500 transition-all duration-300">
                   <Badge className="mb-2 bg-emerald-900/50 text-emerald-400">Phase 2</Badge>
-                  <h4 className="text-xl font-bold mb-2">Bitcoin DeFi Integration</h4>
+                  <h4 className="text-xl font-bold mb-2">Lend & Borrow</h4>
                   <p className="text-gray-400">
-                    Develop tools to support Bitcoin DeFi with agent and integrate Bitcoin lending.
+                    Earn. Leverage. Repeat. Banking with your BTC.
                   </p>
                 </div>
               </div>
               <div className="relative order-9 md:order-10 md:pl-8">
                 <div className="absolute left-4 md:left-0 top-6 w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
+                  <Clock className="h-5 w-5 text-black" />
                 </div>
               </div>
 
               {/* Item 6: Complete Bitcoin Operations */}
               <div className="relative order-11 md:pr-8">
                 <div className="absolute left-4 md:left-10/10 top-6 w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center transform -translate-x-1/2 z-20">
+                  <Clock className="h-5 w-5 text-black" />
                 </div>
               </div>
               <div className="order-12 md:pl-8">
                 <div className="bg-black/60 border border-emerald-900/50 p-6 rounded-lg hover:border-emerald-500 transition-all duration-300">
                   <Badge className="mb-2 bg-emerald-900/50 text-emerald-400">Phase 3</Badge>
-                  <h4 className="text-xl font-bold mb-2">Complete Bitcoin Operations</h4>
+                  <h4 className="text-xl font-bold mb-2">Trade</h4>
                   <p className="text-gray-400">
-                    Bitcoin agent to handle all operations on BTC by leveraging NEAR AI and chain signatures.
+                    Buy, sell, and swap your BTC.
                   </p>
                 </div>
               </div>
@@ -213,7 +218,10 @@ export default function Home() {
               <h3 className="text-xl font-bold mb-4">
                 Bitcoin <span className="text-emerald-500">Agent</span>
               </h3>
-              <p className="text-gray-400 text-sm">© Team AlphaDevs</p>
+              <a href="https://www.alphadevs.dev/" target="_blank" rel="noreferrer" className="text-gray-400 text-sm">
+                © Team AlphaDevs
+              </a>
+
             </div>
 
             {/* Social Links */}

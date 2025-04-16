@@ -1,12 +1,19 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Bitcoin, Bot, Wallet, Github, CheckCircle2, Clock } from "lucide-react";
 import Link from "next/link"
 import Image from "next/image";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -88,17 +95,26 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col gap-4 sm:flex-row justify-center pt-4">
-            <Button
-              size="lg"
-              className="bg-emerald-600 hover:bg-emerald-700 text-xl font-bold group relative overflow-hidden"
-            >
-              <span className="relative z-10 flex items-center">
-                Launch Agent
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </span>
-              <span className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-emerald-700 group-hover:opacity-0 transition-opacity"></span>
-              <span className="absolute inset-0 bg-gradient-to-r from-emerald-700 to-emerald-800 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-            </Button>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    size="lg"
+                    className="bg-emerald-600 hover:bg-emerald-700 text-xl font-bold group relative overflow-hidden"
+                  >
+                    <span className="relative z-10 flex items-center">
+                      Launch Agent
+                      <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                    </span>
+                    <span className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-emerald-700 group-hover:opacity-0 transition-opacity"></span>
+                    <span className="absolute inset-0 bg-gradient-to-r from-emerald-700 to-emerald-800 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent className="bg-yellow-500 text-white">
+                  Coming soon
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
         </div>
 

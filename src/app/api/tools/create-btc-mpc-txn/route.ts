@@ -1,15 +1,17 @@
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
-import { Bitcoin as SignetBTC, BTCRpcAdapters, utils } from "signet.js";
+import { contracts, chainAdapters } from "signet.js";
 
-const CONTRACT = new utils.chains.near.contract.NearChainSignatureContract({
+const CONTRACT = new contracts.near.ChainSignatureContract({
   networkId: "mainnet",
   contractId: "v1.signer",
 });
 
-const btcRpcAdapter = new BTCRpcAdapters.Mempool("https://mempool.space/api");
+const btcRpcAdapter = new chainAdapters.btc.BTCRpcAdapters.Mempool(
+  "https://mempool.space/api"
+);
 
-const Bitcoin = new SignetBTC({
+const bitcoin = new chainAdapters.btc.Bitcoin({
   network: "mainnet",
   contract: CONTRACT,
   btcRpcAdapter,
@@ -42,21 +44,21 @@ export async function GET(request: Request) {
 
     // get sender btc address
     const { address: btcSenderAddress, publicKey: btcSenderPublicKey } =
-      await Bitcoin.deriveAddressAndPublicKey(accountId as string, "bitcoin-1");
+      await bitcoin.deriveAddressAndPublicKey(accountId as string, "bitcoin-1");
 
     console.log("btcSenderAddress", btcSenderAddress);
     console.log("btcSenderPublicKey", btcSenderPublicKey);
 
     // create MPC payload and txn
-    const { transaction, mpcPayloads } =
-      await Bitcoin.getMPCPayloadAndTransaction({
+    const { transaction, hashesToSign } =
+      await bitcoin.prepareTransactionForSigning({
         publicKey: btcSenderPublicKey,
         from: btcSenderAddress,
         to: btcReceiverAddress,
         value: btcAmountInSatoshi.toString(),
       });
-
-    const mpcTransactions = mpcPayloads.map(({ payload }) => ({
+    // fix: payload types
+    const mpcTransactions = hashesToSign[0].map(({ payload }) => ({
       signerId: accountId as string,
       receiverId: "v1.signer",
       actions: [

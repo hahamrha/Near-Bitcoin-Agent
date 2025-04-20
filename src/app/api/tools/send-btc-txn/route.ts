@@ -62,6 +62,7 @@ export async function GET(request: Request) {
       networkId: "mainnet",
       nodeUrl: "https://rpc.mainnet.near.org",
     };
+
     const near = await connect(connectionConfig);
     const txFinalOutcome = await near.connection.provider.txStatus(
       txHash,

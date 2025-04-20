@@ -200,14 +200,14 @@ export default function Home() {
                 </div>
               </div>
               <div className="relative order-1 md:order-2 md:pl-8">
-                <div className="absolute left-4 md:left-0 top-6 w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
+                <div className="absolute left-0 md:left-0 top-2 md:top-6 w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
                   <CheckCircle2 className="h-5 w-5 text-black" />
                 </div>
               </div>
 
               {/* Item 2: Sign & Relay to Mainnet */}
               <div className="relative order-3 md:pr-8">
-                <div className="absolute left-4 md:left-10/10 top-6 w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
+                <div className="absolute left-0 md:left-10/10 top-2 md:top-6 w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
                   <CheckCircle2 className="h-5 w-5 text-black" />
                 </div>
               </div>
@@ -232,14 +232,14 @@ export default function Home() {
                 </div>
               </div>
               <div className="relative order-5 md:order-6 md:pl-8">
-                <div className="absolute left-4 md:left-0 top-6 w-8 h-8 rounded-full bg-yellow-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
+                <div className="absolute left-0 md:left-0 top-2 md:top-6 w-8 h-8 rounded-full bg-yellow-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
                   <Clock className="h-5 w-5 text-black" />
                 </div>
               </div>
 
               {/* Item 4: Custom BTC Transactions */}
               <div className="relative order-7 md:pr-8">
-                <div className="absolute left-4 md:left-10/10 top-6 w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
+                <div className="absolute left-0 md:left-10/10 top-2 md:top-6 w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
                   <Clock className="h-5 w-5 text-black" />
                 </div>
               </div>
@@ -264,14 +264,14 @@ export default function Home() {
                 </div>
               </div>
               <div className="relative order-9 md:order-10 md:pl-8">
-                <div className="absolute left-4 md:left-0 top-6 w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
+                <div className="absolute left-0 md:left-0 top-2 md:top-6 w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
                   <Clock className="h-5 w-5 text-black" />
                 </div>
               </div>
 
               {/* Item 6: Complete Bitcoin Operations */}
               <div className="relative order-11 md:pr-8">
-                <div className="absolute left-7 md:left-10/10 top-6 w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center transform -translate-x-1/2 z-20">
+                <div className="absolute left-0 md:left-10/10 top-2 md:top-6 w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
                   <Clock className="h-5 w-5 text-black" />
                 </div>
               </div>
@@ -330,6 +330,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
     </div >
   );
 }

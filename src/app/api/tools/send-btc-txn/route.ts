@@ -1,27 +1,29 @@
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
-import {
-  Bitcoin as SignetBTC,
-  BTCRpcAdapters,
-  utils,
-  RSVSignature,
-  MPCSignature,
-} from "signet.js";
-import { providers, connect } from "near-api-js";
-import { toRSV } from "signet.js/src/chains/utils";
+import { connect } from "near-api-js";
 import {
   ExecutionOutcomeWithId,
   FinalExecutionOutcome,
 } from "near-api-js/lib/providers";
+import {
+  contracts,
+  chainAdapters,
+  RSVSignature,
+  MPCSignature,
+  // fix: convert toRSV function
+  toRSV,
+} from "signet.js";
 
-const CONTRACT = new utils.chains.near.contract.NearChainSignatureContract({
+const CONTRACT = new contracts.near.ChainSignatureContract({
   networkId: "mainnet",
   contractId: "v1.signer",
 });
 
-const btcRpcAdapter = new BTCRpcAdapters.Mempool("https://mempool.space/api");
+const btcRpcAdapter = new chainAdapters.btc.BTCRpcAdapters.Mempool(
+  "https://mempool.space/api"
+);
 
-const Bitcoin = new SignetBTC({
+const bitcoin = new chainAdapters.btc.Bitcoin({
   network: "mainnet",
   contract: CONTRACT,
   btcRpcAdapter,
@@ -78,34 +80,26 @@ export async function GET(request: Request) {
       decodedSuccessValue as string
     );
 
-    console.log("mpcSignature", mpcSignature);
-
-    const mpcSignatures: RSVSignature[] = [toRSV(mpcSignature)];
-
-    console.log("mpcSignatures", mpcSignatures);
+    const rsvSignatures: RSVSignature[] = [toRSV(mpcSignature)];
 
     // get sender btc address
     const { address: btcSenderAddress, publicKey: btcSenderPublicKey } =
-      await Bitcoin.deriveAddressAndPublicKey(accountId as string, "bitcoin-1");
+      await bitcoin.deriveAddressAndPublicKey(accountId as string, "bitcoin-1");
 
-    const { transaction } = await Bitcoin.getMPCPayloadAndTransaction({
+    // create MPC payload and txn
+    const { transaction } = await bitcoin.prepareTransactionForSigning({
       publicKey: btcSenderPublicKey,
       from: btcSenderAddress,
       to: btcReceiverAddress,
       value: btcAmountInSatoshi.toString(),
     });
 
-    // console.log("transaction", transaction);
-
-    // set maximum fee rate
-    // transaction.psbt.setMaximumFeeRate(10000);
-
-    const signedTransaction = Bitcoin.addSignature({
+    const signedTransaction = bitcoin.finalizeTransactionSigning({
       transaction,
-      mpcSignatures,
+      rsvSignatures,
     });
 
-    const btcTxnHash = await Bitcoin.broadcastTx(signedTransaction);
+    const btcTxnHash = await bitcoin.broadcastTx(signedTransaction);
 
     return NextResponse.json({ txHash: btcTxnHash }, { status: 200 });
   } catch (error) {

@@ -30,12 +30,8 @@ export async function GET() {
   const { accountId } = mbMetadata || {};
   console.log("accountId", accountId);
 
-  // const { searchParams } = new URL(request.url);
-  // const accountId = searchParams.get("accountId");
-
   const { address } = await Bitcoin.deriveAddressAndPublicKey(
     accountId as string,
-    // "0xmht.near",
     "bitcoin-1"
   );
 
@@ -43,16 +39,16 @@ export async function GET() {
 
   const btcBalance = await Bitcoin.getBalance(btcAddress);
 
-  // if (!accountId) {
-  //   return NextResponse.json(
-  //     {
-  //       error: "Unable to find user data in the request",
-  //     },
-  //     {
-  //       status: 500,
-  //     }
-  //   );
-  // }
+  if (!accountId) {
+    return NextResponse.json(
+      {
+        error: "Unable to find connected NEAR account Id in the request",
+      },
+      {
+        status: 500,
+      }
+    );
+  }
 
   return NextResponse.json({ btcBalance, btcAddress });
 }

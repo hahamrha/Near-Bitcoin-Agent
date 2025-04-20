@@ -37,16 +37,16 @@ export async function GET() {
 
   const btcAddress = address;
 
-  // if (!accountId) {
-  //   return NextResponse.json(
-  //     {
-  //       error: "Unable to find user data in the request",
-  //     },
-  //     {
-  //       status: 500,
-  //     }
-  //   );
-  // }
+  if (!accountId) {
+    return NextResponse.json(
+      {
+        error: "Unable to find connected NEAR account Id in the request",
+      },
+      {
+        status: 500,
+      }
+    );
+  }
 
   return NextResponse.json({ accountId, btcAddress });
 }

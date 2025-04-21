@@ -11,7 +11,7 @@ export async function GET() {
     },
     servers: [
       {
-        url: "https://bitcoin-bitte-agent.vercel.app",
+        url: "https://www.bitcoin-agent.xyz/",
       },
     ],
     "x-mb": {

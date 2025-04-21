@@ -5,21 +5,21 @@ export async function GET() {
   const pluginData = {
     openapi: "3.0.0",
     info: {
-      title: "Bitcoin Agent",
+      title: "Bitcoin Assistant",
       description: "API for the Bitcoin Agent",
       version: "1.0.0",
     },
     servers: [
       {
-        url: "https://bitcoin-bitte-agent.vercel.app",
+        url: "https://www.bitcoin-agent.xyz/",
       },
     ],
     "x-mb": {
       "account-id": ACCOUNT_ID,
       assistant: {
-        name: "Bitcoin Agent",
+        name: "Bitcoin Assistant",
         description:
-          "An assistant that answers with blockchain information, tells the user's near account id, show BTC wallet address and BTC balance, creates a Bitcon txn that utilizes near chain signatures, send signed MPC transaction on bitcoin mainnet",
+          "An assistant that gives information about the user's near account id, show BTC wallet address and BTC balance, creates a Bitcon txn that utilizes near chain signatures, send signed MPC transaction on bitcoin mainnet",
         instructions:
           "You create near txns powered by chain signatures and send them on btc mainnet, tell the user's near account id and get their BTC balance . For blockchain transactions, first generate a transaction payload using the endpoint /api/tools/create-btc-mpc-txn, then explicitly use the 'generate-transaction' tool to sign received payload using NEAR account. After this txn is signed, use 'api/tools/send-btc-txn' to relay it to BTC mainnet, make sure to provide the 'txHash' (received from signed near txn), 'btcReceiver' address, 'btcAmountInSatoshi' parameters when calling /api/tools/send-btc-txn. If any parameter is not provided, then ask for it explicitly.",
         tools: [{ type: "generate-transaction" }, { type: "sign-message" }],
@@ -29,50 +29,6 @@ export async function GET() {
       },
     },
     paths: {
-      // TEST path
-      // "/api/tools/coinflip": {
-      //   get: {
-      //     summary: "Coin flip",
-      //     description: "Flip a coin and return the result (heads or tails)",
-      //     operationId: "coinFlip",
-      //     responses: {
-      //       "200": {
-      //         description: "Successful response",
-      //         content: {
-      //           "application/json": {
-      //             schema: {
-      //               type: "object",
-      //               properties: {
-      //                 result: {
-      //                   type: "string",
-      //                   description:
-      //                     "The result of the coin flip (heads or tails)",
-      //                   enum: ["heads", "tails"],
-      //                 },
-      //               },
-      //             },
-      //           },
-      //         },
-      //       },
-      //       "500": {
-      //         description: "Error response",
-      //         content: {
-      //           "application/json": {
-      //             schema: {
-      //               type: "object",
-      //               properties: {
-      //                 error: {
-      //                   type: "string",
-      //                   description: "Error message",
-      //                 },
-      //               },
-      //             },
-      //           },
-      //         },
-      //       },
-      //     },
-      //   },
-      // },
       // DONE
       "/api/tools/get-user": {
         get: {
@@ -172,7 +128,7 @@ export async function GET() {
           summary:
             "Creates a NEAR txn that utilizes near chain signatures to send transaction on bitcoin mainnet",
           description:
-            "Generates a NEAR transaction payload for MPC contract to send bitcoin on bitcoin test. Recieved payload from this tool can be used directly in the generate-transaction tool.",
+            "Generates a NEAR transaction payload for MPC contract to send bitcoin on bitcoin mainnet. Recieved payload from this tool can be used directly in the generate-transaction tool.",
           parameters: [
             {
               name: "btcReceiver",

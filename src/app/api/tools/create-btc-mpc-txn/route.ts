@@ -58,6 +58,7 @@ export async function GET(request: Request) {
         value: btcAmountInSatoshi.toString(),
       });
     // fix: payload types
+    //@ts-ignore
     const mpcTransactions = hashesToSign[0].map(({ payload }) => ({
       signerId: accountId as string,
       receiverId: "v1.signer",

@@ -11,7 +11,6 @@ import {
   RSVSignature,
   MPCSignature,
   // fix: convert toRSV function
-  toRSV,
 } from "signet.js";
 
 const CONTRACT = new contracts.near.ChainSignatureContract({
@@ -79,8 +78,9 @@ export async function GET(request: Request) {
     const mpcSignature: MPCSignature = JSON.parse(
       decodedSuccessValue as string
     );
-
-    const rsvSignatures: RSVSignature[] = [toRSV(mpcSignature)];
+    //fix: convert MPC signature to RSV signature
+    // const rsvSignatures: RSVSignature[] = [toRSV(mpcSignature)];
+    const rsvSignatures: RSVSignature[] = [];
 
     // get sender btc address
     const { address: btcSenderAddress, publicKey: btcSenderPublicKey } =

@@ -5,8 +5,8 @@ export async function GET() {
   const pluginData = {
     openapi: "3.0.0",
     info: {
-      title: "Bitcoin Agent",
-      description: "API for the Bitcoin Agent",
+      title: "Bitcoin Assistant",
+      description: "API for the Bitcoin AI Agent",
       version: "1.0.0",
     },
     servers: [
@@ -17,7 +17,7 @@ export async function GET() {
     "x-mb": {
       "account-id": ACCOUNT_ID,
       assistant: {
-        name: "Bitcoin Agent",
+        name: "Bitcoin Assistant",
         description:
           "An assistant that answers with blockchain information, tells the user's near account id, show BTC wallet address and BTC balance, creates a Bitcon txn that utilizes near chain signatures, send signed MPC transaction on bitcoin mainnet",
         instructions:
@@ -29,50 +29,6 @@ export async function GET() {
       },
     },
     paths: {
-      // TEST path
-      // "/api/tools/coinflip": {
-      //   get: {
-      //     summary: "Coin flip",
-      //     description: "Flip a coin and return the result (heads or tails)",
-      //     operationId: "coinFlip",
-      //     responses: {
-      //       "200": {
-      //         description: "Successful response",
-      //         content: {
-      //           "application/json": {
-      //             schema: {
-      //               type: "object",
-      //               properties: {
-      //                 result: {
-      //                   type: "string",
-      //                   description:
-      //                     "The result of the coin flip (heads or tails)",
-      //                   enum: ["heads", "tails"],
-      //                 },
-      //               },
-      //             },
-      //           },
-      //         },
-      //       },
-      //       "500": {
-      //         description: "Error response",
-      //         content: {
-      //           "application/json": {
-      //             schema: {
-      //               type: "object",
-      //               properties: {
-      //                 error: {
-      //                   type: "string",
-      //                   description: "Error message",
-      //                 },
-      //               },
-      //             },
-      //           },
-      //         },
-      //       },
-      //     },
-      //   },
-      // },
       // DONE
       "/api/tools/get-user": {
         get: {
@@ -172,7 +128,7 @@ export async function GET() {
           summary:
             "Creates a NEAR txn that utilizes near chain signatures to send transaction on bitcoin mainnet",
           description:
-            "Generates a NEAR transaction payload for MPC contract to send bitcoin on bitcoin test. Recieved payload from this tool can be used directly in the generate-transaction tool.",
+            "Generates a NEAR transaction payload for MPC contract to send bitcoin on bitcoin mainnet. Recieved payload from this tool can be used directly in the generate-transaction tool.",
           parameters: [
             {
               name: "btcReceiver",

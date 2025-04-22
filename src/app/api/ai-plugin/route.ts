@@ -1,4 +1,4 @@
-import { ACCOUNT_ID } from "@/app/config";
+import { ACCOUNT_ID, PLUGIN_URL } from "@/app/config";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -11,7 +11,7 @@ export async function GET() {
     },
     servers: [
       {
-        url: "https://www.bitcoin-agent.xyz/",
+        url: PLUGIN_URL,
       },
     ],
     "x-mb": {
@@ -19,7 +19,7 @@ export async function GET() {
       assistant: {
         name: "Bitcoin Assistant",
         description:
-          "An assistant that gives information about the user's near account id, show BTC wallet address and BTC balance, creates a Bitcon txn that utilizes near chain signatures, send signed MPC transaction on bitcoin mainnet",
+          "An assistant that gives information about the user's near account id, show BTC wallet address and BTC balance, creates a Bitcon txn that utilizes near chain signatures and send that signed MPC transaction on bitcoin mainnet",
         instructions:
           "You create near txns powered by chain signatures and send them on btc mainnet, tell the user's near account id and get their BTC balance . For blockchain transactions, first generate a transaction payload using the endpoint /api/tools/create-btc-mpc-txn, then explicitly use the 'generate-transaction' tool to sign received payload using NEAR account. After this txn is signed, use 'api/tools/send-btc-txn' to relay it to BTC mainnet, make sure to provide the 'txHash' (received from signed near txn), 'btcReceiver' address, 'btcAmountInSatoshi' parameters when calling /api/tools/send-btc-txn. If any parameter is not provided, then ask for it explicitly.",
         tools: [{ type: "generate-transaction" }, { type: "sign-message" }],

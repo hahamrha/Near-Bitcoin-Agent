@@ -22,12 +22,14 @@ type BtcBalance = {
   decimals: number;
 };
 
-export async function GET() {
-  const mbMetadataHeader = (await headers()).get("mb-metadata");
-  const mbMetadata: { accountId: string } =
-    mbMetadataHeader && JSON.parse(mbMetadataHeader);
+export async function GET(request: Request) {
+  // const mbMetadataHeader = (await headers()).get("mb-metadata");
+  // const mbMetadata: { accountId: string } =
+  //   mbMetadataHeader && JSON.parse(mbMetadataHeader);
 
-  const { accountId } = mbMetadata || {};
+  // const { accountId } = mbMetadata || {};
+  const { searchParams } = new URL(request.url);
+  const accountId = searchParams.get("accountId");
   console.log("accountId", accountId);
 
   const { address } = await bitcoin.deriveAddressAndPublicKey(

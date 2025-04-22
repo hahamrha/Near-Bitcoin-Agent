@@ -1,5 +1,3 @@
-// import { DEPLOYMENT_URL } from "vercel-url";
-
 const ACCOUNT_ID = process.env.ACCOUNT_ID;
 
 // Set the plugin url in order of BITTE_CONFIG, env, DEPLOYMENT_URL (used for Vercel deployments)

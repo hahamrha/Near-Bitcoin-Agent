@@ -17,6 +17,11 @@ const bitcoin = new chainAdapters.btc.Bitcoin({
   btcRpcAdapter,
 });
 
+type BtcBalance = {
+  balance: bigint;
+  decimals: number;
+};
+
 export async function GET() {
   const mbMetadataHeader = (await headers()).get("mb-metadata");
   const mbMetadata: { accountId: string } =
@@ -32,7 +37,7 @@ export async function GET() {
 
   const btcAddress = address;
 
-  const btcBalance = await bitcoin.getBalance(btcAddress);
+  const btcBalance: BtcBalance = await bitcoin.getBalance(btcAddress);
 
   if (!accountId) {
     return NextResponse.json(
@@ -45,5 +50,11 @@ export async function GET() {
     );
   }
 
-  return NextResponse.json({ btcBalance, btcAddress });
+  // serialize bigint to string
+  const serializedBalance = BigInt(btcBalance.balance).toString();
+
+  return NextResponse.json(
+    { btcBalance: serializedBalance, address: btcAddress },
+    { status: 200 }
+  );
 }

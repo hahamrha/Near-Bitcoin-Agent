@@ -1,4 +1,4 @@
-import { ACCOUNT_ID } from "@/app/config";
+import { ACCOUNT_ID, PLUGIN_URL } from "@/app/config";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -11,7 +11,7 @@ export async function GET() {
     },
     servers: [
       {
-        url: "https://www.bitcoin-agent.xyz/",
+        url: PLUGIN_URL,
       },
     ],
     "x-mb": {

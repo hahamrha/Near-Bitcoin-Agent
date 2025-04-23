@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Head from "next/head";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -56,6 +57,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <title>Bitcoin Agent</title>
+        <meta name="description" content="An AI agent that uses NEAR chain signatures to interact with Bitcoin L1." />
+        <meta property="og:title" content="Bitcoin Agent" />
+        <meta property="og:description" content="An AI agent that uses NEAR chain signatures to interact with Bitcoin L1." />
+        <meta property="og:image" content="/og-image.png" />
+        <meta property="og:url" content="https://www.bitcoin-agent.xyz/" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Bitcoin Agent" />
+        <meta name="twitter:description" content="An AI agent that uses NEAR chain signatures to interact with Bitcoin L1." />
+        <meta name="twitter:image" content="/og-image.png" />
+      </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

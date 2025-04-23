@@ -43,7 +43,7 @@ export async function GET() {
                   schema: {
                     type: "object",
                     properties: {
-                      accountId: {
+                      nearAccountId: {
                         type: "string",
                         description: "The user's Near account ID",
                       },

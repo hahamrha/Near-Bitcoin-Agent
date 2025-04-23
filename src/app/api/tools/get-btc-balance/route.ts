@@ -56,7 +56,7 @@ export async function GET(request: Request) {
   const serializedBalance = BigInt(btcBalance.balance).toString();
 
   return NextResponse.json(
-    { btcBalance: serializedBalance, address: btcAddress },
+    { btcBalance: serializedBalance, btcAddress: btcAddress },
     { status: 200 }
   );
 }

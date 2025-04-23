@@ -45,5 +45,8 @@ export async function GET(request: Request) {
     );
   }
 
-  return NextResponse.json({ accountId, btcAddress });
+  return NextResponse.json(
+    { nearAccountId: accountId, btcAddress: btcAddress },
+    { status: 200 }
+  );
 }

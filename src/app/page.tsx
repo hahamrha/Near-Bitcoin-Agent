@@ -7,7 +7,35 @@ import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Bitcoin, Bot, Wallet, Github, CheckCircle2, Clock } from "lucide-react";
 import Link from "next/link"
 import Image from "next/image";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Bitcoin Agent",
+  description: "An AI agent that uses NEAR chain signatures to interact with Bitcoin L1.",
+  openGraph: {
+    title: "Bitcoin Agent",
+    description: "An AI agent that uses NEAR chain signatures to interact with Bitcoin L1.",
+    url: "https://www.bitcoin-agent.xyz/",
+    siteName: "Bitcoin Agent",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Bitcoin Agent",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bitcoin Agent",
+    description: "An AI agent that uses NEAR chain signatures to interact with Bitcoin L1.",
+    creator: "@btc_near",
+    site: "@btc_near",
+    images: ["/og-image.png"],
+  },
+};
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null)

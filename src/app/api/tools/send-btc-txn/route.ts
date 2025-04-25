@@ -30,13 +30,13 @@ const bitcoin = new chainAdapters.btc.Bitcoin({
 
 export async function GET(request: Request) {
   try {
-    // const mbMetadataHeader = (await headers()).get("mb-metadata");
-    // const mbMetadata: { accountId: string } =
-    //   mbMetadataHeader && JSON.parse(mbMetadataHeader);
-    // const { accountId } = mbMetadata || {};
+    const mbMetadataHeader = (await headers()).get("mb-metadata");
+    const mbMetadata: { accountId: string } =
+      mbMetadataHeader && JSON.parse(mbMetadataHeader);
+    const { accountId } = mbMetadata || {};
 
     const { searchParams } = new URL(request.url);
-    const accountId = searchParams.get("accountId");
+    // const accountId = searchParams.get("accountId");
     const btcReceiverAddress = searchParams.get("btcReceiver");
     const btcAmountInSatoshi = searchParams.get("btcAmountInSatoshi");
     const txHash = searchParams.get("txHash");

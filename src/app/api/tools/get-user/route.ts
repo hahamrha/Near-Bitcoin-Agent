@@ -18,13 +18,13 @@ const bitcoin = new chainAdapters.btc.Bitcoin({
 });
 
 export async function GET(request: Request) {
-  // const mbMetadataHeader = (await headers()).get("mb-metadata");
-  // const mbMetadata: { accountId: string } =
-  //   mbMetadataHeader && JSON.parse(mbMetadataHeader);
+  const mbMetadataHeader = (await headers()).get("mb-metadata");
+  const mbMetadata: { accountId: string } =
+    mbMetadataHeader && JSON.parse(mbMetadataHeader);
 
-  // const { accountId } = mbMetadata || {};
-  const { searchParams } = new URL(request.url);
-  const accountId = searchParams.get("accountId");
+  const { accountId } = mbMetadata || {};
+  // const { searchParams } = new URL(request.url);
+  // const accountId = searchParams.get("accountId");
   console.log("accountId", accountId);
 
   const { address } = await bitcoin.deriveAddressAndPublicKey(

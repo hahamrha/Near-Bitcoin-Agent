@@ -1,41 +1,106 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, Bitcoin, Copy, ExternalLink, RefreshCw, Wallet, CheckIcon, Bot, Github } from "lucide-react"
-import Image from "next/image"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useState, useEffect, useContext } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  ArrowLeft,
+  Bitcoin,
+  Copy,
+  ExternalLink,
+  RefreshCw,
+  Wallet,
+  CheckIcon,
+  Bot,
+  Github,
+} from "lucide-react";
+import Image from "next/image";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { NearContext } from "@/context/context";
+import { connect, utils } from "near-api-js";
 
 export default function Dashboard() {
-  const [copied, setCopied] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
+  const [copied, setCopied] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [nearBalance, setNearBalance] = useState(0);
+  const [btcBalance, setBtcBalance] = useState(0);
+  const [btcAddress, setBtcAddress] = useState("...");
 
-  // Mock wallet data - in a real app, this would come from an API
-  const walletAddress = "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh"
-  const walletBalance = 0.05847
+  const { wallet, signedAccountId } = useContext(NearContext);
 
-  // Simulate loading wallet data
+  const signIn = () => {
+    //@ts-ignore
+    wallet.signIn();
+  };
+
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 1500)
+    setIsLoading(true);
+    if (signedAccountId) {
+      loadData();
+    } else {
+      setIsLoading(false);
+    }
+  }, [signedAccountId]);
 
-    return () => clearTimeout(timer)
-  }, [])
+  async function loadData() {
+    await getUser(signedAccountId);
+    await getNearAccountBalance();
+    setIsLoading(false);
+  }
+
+  async function getUser(signedAccountId: string) {
+    console.log("signedAccountId", signedAccountId);
+
+    // make api call to /api/tools/get-user
+    const mbMetadata = {
+      accountId: signedAccountId, // Replace with actual value
+    };
+
+    const response = await fetch("/api/tools/get-btc-balance", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "mb-metadata": JSON.stringify(mbMetadata),
+      },
+    });
+
+    if (!response.ok) {
+      console.error("Error fetching user data:", response.statusText);
+      return;
+    }
+    const data = await response.json();
+    console.log("data", data);
+    setBtcAddress(data.btcAddress);
+    setBtcBalance(data.btcBalance);
+  }
+
+  async function getNearAccountBalance() {
+    const connectionConfig = {
+      networkId: "mainnet",
+      nodeUrl: "https://rpc.mainnet.near.org",
+    };
+    const nearConnection = await connect(connectionConfig);
+    // gets account balance
+    const account = await nearConnection.account(signedAccountId);
+    const response = await account.getAccountBalance();
+    const balance = utils.format.formatNearAmount(response.total, 5);
+    setNearBalance(parseFloat(balance));
+  }
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(walletAddress)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
-
-  const formatBitcoinAddress = (address: string) => {
-    if (address.length <= 12) return address
-    return `${address.substring(0, 6)}...${address.substring(address.length - 6)}`
-  }
+    navigator.clipboard.writeText(btcAddress);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <div className="bg-black text-white min-h-screen">
@@ -43,114 +108,164 @@ export default function Dashboard() {
       <header className="border-b border-emerald-900/50 bg-black/90 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <Link href="/" className="flex items-center gap-0 text-xl font-bold">
-
+            <Link
+              href="/"
+              className="flex items-center gap-0 text-xl font-bold"
+            >
               <Bitcoin className="h-6 w-6 text-emerald-500" />
               <span>
                 Bitcoin <span className="text-emerald-500">Agent</span>
               </span>
-
             </Link>
-
           </div>
 
-          <Button
-            variant="outline"
-            size="sm"
-            className="border-emerald-900/50 hover:border-emerald-500 text-emerald-500"
-            asChild
-          >
-            <Link href="/">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Home
-            </Link>
-          </Button>
+          {signedAccountId && (
+            <div className="flex items-center gap-4">
+              <p className="text-md font-bold text-gray-400">
+                {nearBalance.toFixed(3)} <span>NEAR</span>{" "}
+              </p>
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-red-900 hover:border-red-500 text-red-500 hover:text-red-500"
+                onClick={() => {
+                  // @ts-ignore
+                  wallet.signOut();
+                }}
+              >
+                Disconnect
+              </Button>
+            </div>
+          )}
         </div>
       </header>
 
       {/* Main Content */}
       <main className="max-w-6xl mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold mb-2">Dashboard</h1>
-        <p className="text-gray-400 mb-8">Manage your Bitcoin wallet and transactions</p>
+        <p className="text-gray-400 mb-8">
+          Manage your Bitcoin wallet and transactions
+        </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Wallet Info Card */}
-          <Card className="border-emerald-900/50 bg-black/60 backdrop-blur-sm col-span-1 lg:col-span-2">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Wallet className="h-5 w-5 text-emerald-500" />
-                Bitcoin Wallet
-              </CardTitle>
-              <CardDescription>Your Bitcoin wallet generated via NEAR chain signatures</CardDescription>
-            </CardHeader>
+          {signedAccountId ? (
+            <Card className="border-emerald-900/50 bg-black/60 backdrop-blur-sm col-span-1 lg:col-span-2">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Wallet className="h-5 w-5 text-emerald-500" />
+                  Bitcoin Wallet
+                </CardTitle>
+                <CardDescription>
+                  Your Bitcoin wallet generated via NEAR chain signatures
+                </CardDescription>
+              </CardHeader>
 
-            <CardContent className="space-y-6">
-              {/* Wallet Address */}
-              <div className="space-y-2">
-                <div className="text-sm text-gray-400">Wallet Address</div>
-                {isLoading ? (
-                  <div className="h-10 bg-emerald-900/20 animate-pulse rounded-md"></div>
-                ) : (
-                  <div className="flex items-center gap-2">
-                    <div className="bg-emerald-900/20 text-white p-3 rounded-md flex-1 font-mono text-sm break-all">
-                      {walletAddress}
+              <CardContent className="space-y-6">
+                {/* Wallet Address */}
+                <div className="space-y-2">
+                  <div className="text-sm text-gray-400">Wallet Address</div>
+                  {isLoading ? (
+                    <div className="h-10 bg-emerald-900/20 animate-pulse rounded-md"></div>
+                  ) : (
+                    <div className="flex items-center gap-2">
+                      <div className="bg-emerald-900/20 text-white p-3 rounded-md flex-1 font-mono text-sm break-all">
+                        {btcAddress}
+                      </div>
+                      <Button
+                        size="icon"
+                        variant="outline"
+                        className="border-emerald-900/50 hover:border-emerald-500 hover:text-emerald-500"
+                        onClick={copyToClipboard}
+                      >
+                        {copied ? (
+                          <CheckIcon className="h-4 w-4" />
+                        ) : (
+                          <Copy className="h-4 w-4" />
+                        )}
+                      </Button>
                     </div>
-                    <Button
-                      size="icon"
-                      variant="outline"
-                      className="border-emerald-900/50 hover:border-emerald-500 hover:text-emerald-500"
-                      onClick={copyToClipboard}
-                    >
-                      {copied ? <CheckIcon className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                    </Button>
+                  )}
+                  <div className="text-xs text-gray-500">
+                    This address is uniquely generated for your account using
+                    NEAR chain signatures
                   </div>
-                )}
-                <div className="text-xs text-gray-500">
-                  This address is uniquely generated for your account using NEAR chain signatures
                 </div>
-              </div>
 
-              {/* Wallet Balance */}
-              <div className="space-y-2">
-                <div className="text-sm text-gray-400">Wallet Balance</div>
-                {isLoading ? (
-                  <div className="h-16 bg-emerald-900/20 animate-pulse rounded-md"></div>
-                ) : (
-                  <div className="flex items-center gap-4">
-                    <div className="bg-emerald-900/20 p-4 rounded-md">
-                      <Bitcoin className="h-8 w-8 text-emerald-500" />
+                {/* Wallet Balance */}
+                <div className="space-y-2">
+                  <div className="text-sm text-gray-400">Wallet Balance</div>
+                  {isLoading ? (
+                    <div className="h-16 bg-emerald-900/20 animate-pulse rounded-md"></div>
+                  ) : (
+                    <div className="flex items-center gap-4">
+                      <div className="bg-emerald-900/20 p-4 rounded-md">
+                        <Bitcoin className="h-8 w-8 text-emerald-500" />
+                      </div>
+                      <div>
+                        <div className="text-2xl font-bold text-white">
+                          {btcBalance} BTC
+                        </div>
+                        <div className="text-sm text-gray-400">
+                          ≈ ${(btcBalance * 62000).toLocaleString()} USD
+                        </div>
+                      </div>
+                      <Button
+                        size="icon"
+                        variant="outline"
+                        className="ml-auto border-emerald-900/50 hover:border-emerald-500 hover:text-emerald-500"
+                        onClick={async () => {
+                          setIsLoading(true);
+                          await getUser(signedAccountId);
+                          await getNearAccountBalance();
+                          setIsLoading(false);
+                        }}
+                      >
+                        <RefreshCw
+                          className={
+                            isLoading ? "animate-spin h-4 w-4" : "h-4 w-4"
+                          }
+                        />
+                      </Button>
                     </div>
-                    <div>
-                      <div className="text-2xl font-bold text-white">{walletBalance} BTC</div>
-                      <div className="text-sm text-gray-400">≈ ${(walletBalance * 62000).toLocaleString()} USD</div>
-                    </div>
-                    <Button
-                      size="icon"
-                      variant="outline"
-                      className="ml-auto border-emerald-900/50 hover:border-emerald-500 hover:text-emerald-500"
-                      onClick={() => {
-                        setIsLoading(true);
-                        setTimeout(() => setIsLoading(false), 1500);
-                      }}
-                    >
-                      <RefreshCw className="h-4 w-4" />
-                    </Button>
-                  </div>
-                )}
-              </div>
-            </CardContent>
+                  )}
+                </div>
+              </CardContent>
 
-            <CardFooter className="flex justify-between border-t border-emerald-900/30 pt-4">
+              <CardFooter className="flex justify-between border-t border-emerald-900/30 pt-4">
+                <Button
+                  variant="outline"
+                  className="border-emerald-900/50 hover:border-emerald-500 hover:text-emerald-500"
+                  onClick={() =>
+                    window.open(
+                      `https://mempool.space/address/${btcAddress}`,
+                      "_blank"
+                    )
+                  }
+                >
+                  <ExternalLink className="mr-2 h-4 w-4" />
+                  View on Explorer
+                </Button>
+                <Button
+                  className="bg-emerald-600 hover:bg-emerald-700 group relative overflow-hidden"
+                  onClick={() =>
+                    window.open(`https://app.near-intents.org/`, "_blank")
+                  }
+                >
+                  Fund Wallet
+                </Button>
+              </CardFooter>
+            </Card>
+          ) : (
+            <Card className="border-emerald-900/50 bg-black/60 backdrop-blur-sm col-span-1 lg:col-span-2 justify-center items-center">
               <Button
-                variant="outline"
-                className="border-emerald-900/50 hover:border-emerald-500 hover:text-emerald-500"
+                className="bg-emerald-600 hover:bg-emerald-700 group relative overflow-hidden "
+                onClick={signIn}
               >
-                <ExternalLink className="mr-2 h-4 w-4" />
-                View on Explorer
+                Connect NEAR Account
               </Button>
-              <Button className="bg-emerald-600 hover:bg-emerald-700 group relative overflow-hidden">Fund Wallet</Button>
-            </CardFooter>
-          </Card>
+            </Card>
+          )}
 
           {/* Agent Info Card */}
           <Card className="border-emerald-900/50 bg-black/60 backdrop-blur-sm">
@@ -159,7 +274,9 @@ export default function Dashboard() {
                 <Bot className="h-5 w-5 text-emerald-500" />
                 Agent Status
               </CardTitle>
-              <CardDescription>Bitcoin Agent information and status</CardDescription>
+              <CardDescription>
+                Bitcoin Agent information and status
+              </CardDescription>
             </CardHeader>
 
             <CardContent className="space-y-4">
@@ -169,24 +286,42 @@ export default function Dashboard() {
               </div>
 
               <div className="text-sm text-gray-400">
-                <p className="mb-2">Your Bitcoin Agent is currently running and connected to the Bitcoin network.</p>
+                <p className="mb-2">
+                  Your Bitcoin Agent is currently running and connected to the
+                  Bitcoin network.
+                </p>
                 <p>
-                  The agent uses NEAR chain signatures to securely manage your Bitcoin transactions without requiring
-                  you to manage private keys directly.
+                  The agent uses NEAR chain signatures to securely manage your
+                  Bitcoin transactions without requiring you to manage private
+                  keys directly.
                 </p>
               </div>
 
               <div className="bg-emerald-900/20 p-3 rounded-md mt-4">
                 <h4 className="text-sm font-medium mb-1">Connected Networks</h4>
                 <div className="flex gap-2">
-                  <Badge className="bg-emerald-900/50 text-emerald-400">Bitcoin Mainnet</Badge>
-                  <Badge className="bg-emerald-900/50 text-emerald-400">NEAR Mainnet</Badge>
+                  <Badge className="bg-emerald-900/50 text-emerald-400">
+                    Bitcoin Mainnet
+                  </Badge>
+                  <Badge className="bg-emerald-900/50 text-emerald-400">
+                    NEAR Mainnet
+                  </Badge>
                 </div>
               </div>
             </CardContent>
 
             <CardFooter className="border-t border-emerald-900/30 pt-4">
-              <Button onClick={() => window.open("https://bitte.ai/agents/bitcoin-agent.xyz", "_blank")} className="w-full bg-emerald-600 hover:bg-emerald-700">Launch Agent Interface</Button>
+              <Button
+                onClick={() =>
+                  window.open(
+                    "https://bitte.ai/agents/bitcoin-agent.xyz",
+                    "_blank"
+                  )
+                }
+                className="w-full bg-emerald-600 hover:bg-emerald-700"
+              >
+                Launch Agent Interface
+              </Button>
             </CardFooter>
           </Card>
         </div>
@@ -197,9 +332,24 @@ export default function Dashboard() {
 
           <Tabs defaultValue="all" className="w-full">
             <TabsList className="bg-black border border-emerald-900/50 text-white tabs-list">
-              <TabsTrigger value="all" className=" data-[state=active]:text-black">All Transactions</TabsTrigger>
-              <TabsTrigger value="sent" className=" data-[state=active]:text-black">Sent</TabsTrigger>
-              <TabsTrigger value="received" className=" data-[state=active]:text-black">Received</TabsTrigger>
+              <TabsTrigger
+                value="all"
+                className=" data-[state=active]:text-black"
+              >
+                All Transactions
+              </TabsTrigger>
+              <TabsTrigger
+                value="sent"
+                className=" data-[state=active]:text-black"
+              >
+                Sent
+              </TabsTrigger>
+              <TabsTrigger
+                value="received"
+                className=" data-[state=active]:text-black"
+              >
+                Received
+              </TabsTrigger>
             </TabsList>
 
             <TabsContent value="all" className="mt-4">
@@ -208,7 +358,10 @@ export default function Dashboard() {
                   {isLoading ? (
                     <div className="space-y-4">
                       {[1, 2, 3].map((i) => (
-                        <div key={i} className="h-16 bg-emerald-900/20 animate-pulse rounded-md"></div>
+                        <div
+                          key={i}
+                          className="h-16 bg-emerald-900/20 animate-pulse rounded-md"
+                        ></div>
                       ))}
                     </div>
                   ) : (
@@ -252,10 +405,14 @@ export default function Dashboard() {
               <h3 className="text-xl font-bold mb-4">
                 Bitcoin <span className="text-emerald-500">Agent</span>
               </h3>
-              <a href="https://www.alphadevs.dev/" target="_blank" rel="noreferrer" className="text-gray-400 text-sm">
+              <a
+                href="https://www.alphadevs.dev/"
+                target="_blank"
+                rel="noreferrer"
+                className="text-gray-400 text-sm"
+              >
                 © Team AlphaDevs
               </a>
-
             </div>
 
             {/* Social Links */}
@@ -283,8 +440,6 @@ export default function Dashboard() {
           </div>
         </div>
       </footer>
-
-
     </div>
-  )
+  );
 }

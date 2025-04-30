@@ -1,0 +1,26 @@
+"use client";
+
+import { Wallet } from "@/services/near-wallet";
+import { useEffect, useState } from "react";
+import { NearContext } from "./context";
+
+// NEAR WALLET
+const wallet = new Wallet({
+  networkId: "mainnet",
+  createAccessKeyFor: "v1.signer",
+});
+
+export function NearProvider({ children }: { children: React.ReactNode }) {
+  const [signedAccountId, setSignedAccountId] = useState("");
+
+  useEffect(() => {
+    wallet.startUp(setSignedAccountId);
+  }, [signedAccountId]);
+
+  return (
+    // @ts-ignore
+    <NearContext.Provider value={{ wallet, signedAccountId }}>
+      {children}
+    </NearContext.Provider>
+  );
+}

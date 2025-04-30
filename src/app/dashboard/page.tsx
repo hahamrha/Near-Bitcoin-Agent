@@ -34,6 +34,7 @@ export default function Dashboard() {
   const [nearBalance, setNearBalance] = useState(0);
   const [btcBalance, setBtcBalance] = useState(0);
   const [btcAddress, setBtcAddress] = useState("...");
+  const [bitcoinPrice, setBitcoinPrice] = useState(0);
 
   const { wallet, signedAccountId } = useContext(NearContext);
 
@@ -54,6 +55,7 @@ export default function Dashboard() {
   async function loadData() {
     await getUser(signedAccountId);
     await getNearAccountBalance();
+    await getBitcoinPrice();
     setIsLoading(false);
   }
 
@@ -94,6 +96,15 @@ export default function Dashboard() {
     const response = await account.getAccountBalance();
     const balance = utils.format.formatNearAmount(response.total, 5);
     setNearBalance(parseFloat(balance));
+  }
+
+  async function getBitcoinPrice() {
+    const response = await fetch(
+      "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
+    );
+    const data = await response.json();
+    setBitcoinPrice(data.bitcoin.usd);
+    // console.log("Bitcoin Price:", data.bitcoin.usd);
   }
 
   const copyToClipboard = () => {
@@ -207,7 +218,7 @@ export default function Dashboard() {
                           {btcBalance} BTC
                         </div>
                         <div className="text-sm text-gray-400">
-                          ≈ ${(btcBalance * 62000).toLocaleString()} USD
+                          ≈ ${(btcBalance * bitcoinPrice).toLocaleString()} USD
                         </div>
                       </div>
                       <Button

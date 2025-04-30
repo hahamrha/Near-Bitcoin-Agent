@@ -1,9 +1,237 @@
-import React from 'react'
+"use client"
 
-const Dashboard = () => {
+import { useState, useEffect } from "react"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { ArrowLeft, Bitcoin, Copy, ExternalLink, RefreshCw, Wallet, CheckIcon, Bot, Github } from "lucide-react"
+import Image from "next/image"
+
+export default function Dashboard() {
+  const [copied, setCopied] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
+
+  // Mock wallet data - in a real app, this would come from an API
+  const walletAddress = "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh"
+  const walletBalance = 0.05847
+
+  // Simulate loading wallet data
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 1500)
+
+    return () => clearTimeout(timer)
+  }, [])
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(walletAddress)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  const formatBitcoinAddress = (address: string) => {
+    if (address.length <= 12) return address
+    return `${address.substring(0, 6)}...${address.substring(address.length - 6)}`
+  }
+
   return (
-    <div>Dashboard</div>
+    <div className="bg-black text-white min-h-screen">
+      {/* Header */}
+      <header className="border-b border-emerald-900/50 bg-black/90 backdrop-blur-sm sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2 text-xl font-bold">
+              <Bitcoin className="h-6 w-6 text-emerald-500" />
+              <span>
+                Bitcoin <span className="text-emerald-500">Agent</span>
+              </span>
+            </Link>
+            <Badge className="bg-emerald-900/50 text-emerald-400 ml-2">v1.0</Badge>
+          </div>
+
+          <Button
+            variant="outline"
+            size="sm"
+            className="border-emerald-900/50 hover:border-emerald-500 text-emerald-500"
+            asChild
+          >
+            <Link href="/">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back to Home
+            </Link>
+          </Button>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="max-w-6xl mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold mb-2">Dashboard</h1>
+        <p className="text-gray-400 mb-8">Manage your Bitcoin wallet and transactions</p>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Wallet Info Card */}
+          <Card className="border-emerald-900/50 bg-black/60 backdrop-blur-sm col-span-1 lg:col-span-2">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Wallet className="h-5 w-5 text-emerald-500" />
+                Bitcoin Wallet
+              </CardTitle>
+              <CardDescription>Your Bitcoin wallet generated via NEAR chain signatures</CardDescription>
+            </CardHeader>
+
+            <CardContent className="space-y-6">
+              {/* Wallet Address */}
+              <div className="space-y-2">
+                <div className="text-sm text-gray-400">Wallet Address</div>
+                {isLoading ? (
+                  <div className="h-10 bg-emerald-900/20 animate-pulse rounded-md"></div>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <div className="bg-emerald-900/20 text-white p-3 rounded-md flex-1 font-mono text-sm break-all">
+                      {walletAddress}
+                    </div>
+                    <Button
+                      size="icon"
+                      variant="outline"
+                      className="border-emerald-900/50 hover:border-emerald-500 hover:text-emerald-500"
+                      onClick={copyToClipboard}
+                    >
+                      {copied ? <CheckIcon className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                    </Button>
+                  </div>
+                )}
+                <div className="text-xs text-gray-500">
+                  This address is uniquely generated for your account using NEAR chain signatures
+                </div>
+              </div>
+
+              {/* Wallet Balance */}
+              <div className="space-y-2">
+                <div className="text-sm text-gray-400">Wallet Balance</div>
+                {isLoading ? (
+                  <div className="h-16 bg-emerald-900/20 animate-pulse rounded-md"></div>
+                ) : (
+                  <div className="flex items-center gap-4">
+                    <div className="bg-emerald-900/20 p-4 rounded-md">
+                      <Bitcoin className="h-8 w-8 text-emerald-500" />
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-white">{walletBalance} BTC</div>
+                      <div className="text-sm text-gray-400">≈ ${(walletBalance * 62000).toLocaleString()} USD</div>
+                    </div>
+                    <Button
+                      size="icon"
+                      variant="outline"
+                      className="ml-auto border-emerald-900/50 hover:border-emerald-500 hover:text-emerald-500"
+                      onClick={() => {
+                        setIsLoading(true);
+                        setTimeout(() => setIsLoading(false), 1500);
+                      }}
+                    >
+                      <RefreshCw className="h-4 w-4" />
+                    </Button>
+                  </div>
+                )}
+              </div>
+            </CardContent>
+
+            <CardFooter className="flex justify-between border-t border-emerald-900/30 pt-4">
+              <Button
+                variant="outline"
+                className="border-emerald-900/50 hover:border-emerald-500 hover:text-emerald-500"
+              >
+                <ExternalLink className="mr-2 h-4 w-4" />
+                View on Explorer
+              </Button>
+
+            </CardFooter>
+          </Card>
+
+          {/* Agent Info Card */}
+          <Card className="border-emerald-900/50 bg-black/60 backdrop-blur-sm">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Bot className="h-5 w-5 text-emerald-500" />
+                Agent Status
+              </CardTitle>
+              <CardDescription>Bitcoin Agent information and status</CardDescription>
+            </CardHeader>
+
+            <CardContent className="space-y-4">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
+                <span className="text-sm">Agent is active</span>
+              </div>
+
+              <div className="text-sm text-gray-400">
+                <p className="mb-2">Your Bitcoin Agent is currently running and connected to the Bitcoin network.</p>
+                <p>
+                  The agent uses NEAR chain signatures to securely manage your Bitcoin transactions without requiring
+                  you to manage private keys directly.
+                </p>
+              </div>
+
+              <div className="bg-emerald-900/20 p-3 rounded-md mt-4">
+                <h4 className="text-sm font-medium mb-1">Connected Networks</h4>
+                <div className="flex gap-2">
+                  <Badge className="bg-emerald-900/50 text-emerald-400">Bitcoin Mainnet</Badge>
+                  <Badge className="bg-emerald-900/50 text-emerald-400">NEAR Mainnet</Badge>
+                </div>
+              </div>
+            </CardContent>
+
+            <CardFooter className="border-t border-emerald-900/30 pt-4">
+              <Button onClick={() => window.open("https://bitte.ai/agents/bitcoin-agent.xyz", "_blank")} className="w-full bg-emerald-600 hover:bg-emerald-700">Launch Agent Interface</Button>
+            </CardFooter>
+          </Card>
+        </div>
+
+      </main>
+
+      {/* Footer */}
+      <footer className="border-t border-emerald-900/50 py-8 bg-black">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex justify-between gap-8">
+            {/* Logo and Copyright */}
+            <div className="flex flex-col">
+              <h3 className="text-xl font-bold mb-4">
+                Bitcoin <span className="text-emerald-500">Agent</span>
+              </h3>
+              <a href="https://www.alphadevs.dev/" target="_blank" rel="noreferrer" className="text-gray-400 text-sm">
+                © Team AlphaDevs
+              </a>
+
+            </div>
+
+            {/* Social Links */}
+            <div className="flex flex-col">
+              <h3 className="text-lg font-bold mb-4">Connect With Us</h3>
+              <div className="flex gap-4">
+                <Link
+                  href="https://x.com/btc_near"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 text-gray-400 hover:text-emerald-500 transition-colors"
+                >
+                  <Image src="/x.png" alt="X" width={26} height={26} />
+                </Link>
+                <Link
+                  href="https://github.com/0xAlphaDevs/Near-Bitcoin-Agent"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-gray-400 hover:text-emerald-500 transition-colors"
+                >
+                  <Github className="h-5 w-5 " />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+
+    </div>
   )
 }
-
-export default Dashboard

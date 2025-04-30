@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, Bitcoin, Copy, ExternalLink, RefreshCw, Wallet, CheckIcon, Bot, Github } from "lucide-react"
 import Image from "next/image"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function Dashboard() {
   const [copied, setCopied] = useState(false)
@@ -147,7 +148,7 @@ export default function Dashboard() {
                 <ExternalLink className="mr-2 h-4 w-4" />
                 View on Explorer
               </Button>
-
+              <Button className="bg-emerald-600 hover:bg-emerald-700 group relative overflow-hidden">Fund Wallet</Button>
             </CardFooter>
           </Card>
 
@@ -190,6 +191,56 @@ export default function Dashboard() {
           </Card>
         </div>
 
+        {/* Transaction History */}
+        <div className="mt-8">
+          <h2 className="text-xl font-bold mb-4">Transaction History</h2>
+
+          <Tabs defaultValue="all" className="w-full">
+            <TabsList className="bg-black border border-emerald-900/50 text-white tabs-list">
+              <TabsTrigger value="all" className=" data-[state=active]:text-black">All Transactions</TabsTrigger>
+              <TabsTrigger value="sent" className=" data-[state=active]:text-black">Sent</TabsTrigger>
+              <TabsTrigger value="received" className=" data-[state=active]:text-black">Received</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="all" className="mt-4">
+              <Card className="border-emerald-900/50 bg-black/60 backdrop-blur-sm">
+                <CardContent className="pt-6">
+                  {isLoading ? (
+                    <div className="space-y-4">
+                      {[1, 2, 3].map((i) => (
+                        <div key={i} className="h-16 bg-emerald-900/20 animate-pulse rounded-md"></div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="text-center py-8 text-gray-400">
+                      <p>No transactions found</p>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="sent" className="mt-4">
+              <Card className="border-emerald-900/50 bg-black/60 backdrop-blur-sm">
+                <CardContent className="pt-6">
+                  <div className="text-center py-8 text-gray-400">
+                    <p>No sent transactions</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="received" className="mt-4">
+              <Card className="border-emerald-900/50 bg-black/60 backdrop-blur-sm">
+                <CardContent className="pt-6">
+                  <div className="text-center py-8 text-gray-400">
+                    <p>No received transactions</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
+        </div>
       </main>
 
       {/* Footer */}

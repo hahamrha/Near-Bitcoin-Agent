@@ -100,7 +100,19 @@ export default function Home() {
               <span className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-emerald-700 group-hover:opacity-0 transition-opacity"></span>
               <span className="absolute inset-0 bg-gradient-to-r from-emerald-700 to-emerald-800 opacity-0 group-hover:opacity-100 transition-opacity"></span>
             </Button>
-
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-emerald-600 text-emerald-500 hover:bg-emerald-950 hover:text-white text-xl font-bold"
+              asChild
+            >
+              <Link href="/dashboard">
+                <span className="flex items-center">
+                  Go to Dashboard
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </span>
+              </Link>
+            </Button>
           </div>
         </div>
 

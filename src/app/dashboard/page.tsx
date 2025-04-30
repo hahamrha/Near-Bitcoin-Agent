@@ -50,7 +50,7 @@ export default function Dashboard() {
               </span>
 
             </Link>
-            <Badge className="bg-emerald-900/50 text-emerald-400 ml-2 ">v1.0</Badge>
+
           </div>
 
           <Button

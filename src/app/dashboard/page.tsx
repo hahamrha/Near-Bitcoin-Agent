@@ -42,13 +42,15 @@ export default function Dashboard() {
       <header className="border-b border-emerald-900/50 bg-black/90 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <Link href="/" className="flex items-center gap-2 text-xl font-bold">
+            <Link href="/" className="flex items-center gap-0 text-xl font-bold">
+
               <Bitcoin className="h-6 w-6 text-emerald-500" />
               <span>
                 Bitcoin <span className="text-emerald-500">Agent</span>
               </span>
+
             </Link>
-            <Badge className="bg-emerald-900/50 text-emerald-400 ml-2">v1.0</Badge>
+            <Badge className="bg-emerald-900/50 text-emerald-400 ml-2 ">v1.0</Badge>
           </div>
 
           <Button

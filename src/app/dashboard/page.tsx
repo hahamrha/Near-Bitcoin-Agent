@@ -82,7 +82,7 @@ export default function Dashboard() {
     const data = await response.json();
     console.log("data", data);
     setBtcAddress(data.btcAddress);
-    setBtcBalance(data.btcBalance);
+    setBtcBalance(data.btcBalance / 1e8);
   }
 
   async function getNearAccountBalance() {
@@ -215,10 +215,11 @@ export default function Dashboard() {
                       </div>
                       <div>
                         <div className="text-2xl font-bold text-white">
-                          {btcBalance} BTC
+                          ${(btcBalance * bitcoinPrice).toLocaleString()}
                         </div>
                         <div className="text-sm text-gray-400">
-                          ≈ ${(btcBalance * bitcoinPrice).toLocaleString()} USD
+                          {" "}
+                          {btcBalance} BTC
                         </div>
                       </div>
                       <Button

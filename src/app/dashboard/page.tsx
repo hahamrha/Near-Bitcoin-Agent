@@ -149,12 +149,15 @@ export default function Dashboard() {
 
           {signedAccountId && (
             <div className="flex items-center gap-4">
-              <p className="text-md font-bold text-gray-400">
-                {nearBalance.toFixed(3)} <span>NEAR</span>{" "}
-              </p>
+              <div className="flex flex-col items-center">
+                <p className="text-sm font-medium text-gray-400">
+                  {nearBalance.toFixed(3)} <span className="text-xs">NEAR</span>{" "}
+                </p>
+                <p className="text-xs text-gray-400 truncate max-w-[120px] sm:max-w-[180px]">{signedAccountId}</p>
+              </div>
               <Button
                 variant="outline"
-                size="sm"
+                size="lg"
                 className="border-red-900 hover:border-red-500 text-red-500 hover:text-red-500"
                 onClick={() => {
                   // @ts-ignore

@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@bitte-ai/agent-sdk':
         specifier: ^0.1.9
-        version: 0.1.9(typescript@5.8.2)
+        version: 0.1.9(@upstash/redis@1.34.8)(typescript@5.8.2)
       '@near-wallet-selector/bitte-wallet':
         specifier: ^8.9.13
         version: 8.10.2
@@ -38,6 +38,9 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.2.0
         version: 1.2.0(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@upstash/redis':
+        specifier: ^1.34.8
+        version: 1.34.8
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -1092,6 +1095,9 @@ packages:
   '@types/react@19.1.0':
     resolution: {integrity: sha512-UaicktuQI+9UKyA4njtDOGBD/67t8YEBt2xdfqu8+gP9hqPUPsiXlNPcpS2gVdjmis5GKPG3fCxbQLVgxsQZ8w==}
 
+  '@upstash/redis@1.34.8':
+    resolution: {integrity: sha512-eGJgOKc+2Uq4AdSM0lNx+WvFFhQeyhJ32SGNuSniLPg4lNb6m5h2AQ77qL+TgWiMZO8HCQ82Zsc/RlVBevCWTg==}
+
   '@walletconnect/core@2.19.2':
     resolution: {integrity: sha512-iu0mgLj51AXcKpdNj8+4EdNNBd/mkNjLEhZn6UMc/r7BM9WbmpPMEydA39WeRLbdLO4kbpmq4wTbiskI1rg+HA==}
     engines: {node: '>=18'}
@@ -1408,6 +1414,9 @@ packages:
 
   crypt@0.0.2:
     resolution: {integrity: sha512-mCxBlsHFYh9C+HVpiEacem8FEBnMXgU9gy4zmNC+SXAZNB/1idgp/aulFJ4FgCi7GPEVbfyng092GqL2k2rmow==}
+
+  crypto-js@4.2.0:
+    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
 
   csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
@@ -2661,9 +2670,9 @@ snapshots:
       call-me-maybe: 1.0.2
       openapi-types: 12.1.3
 
-  '@bitte-ai/agent-sdk@0.1.9(typescript@5.8.2)':
+  '@bitte-ai/agent-sdk@0.1.9(@upstash/redis@1.34.8)(typescript@5.8.2)':
     dependencies:
-      near-safe: 0.9.12(typescript@5.8.2)
+      near-safe: 0.9.12(@upstash/redis@1.34.8)(typescript@5.8.2)
       viem: 2.25.0(typescript@5.8.2)
       zerion-sdk: 0.1.1
     transitivePeerDependencies:
@@ -3733,15 +3742,15 @@ snapshots:
 
   '@radix-ui/rect@1.1.1': {}
 
-  '@reown/walletkit@1.2.3(typescript@5.8.2)':
+  '@reown/walletkit@1.2.3(@upstash/redis@1.34.8)(typescript@5.8.2)':
     dependencies:
-      '@walletconnect/core': 2.19.2(typescript@5.8.2)
+      '@walletconnect/core': 2.19.2(@upstash/redis@1.34.8)(typescript@5.8.2)
       '@walletconnect/jsonrpc-provider': 1.0.14
       '@walletconnect/jsonrpc-utils': 1.0.8
       '@walletconnect/logger': 2.1.2
-      '@walletconnect/sign-client': 2.19.2(typescript@5.8.2)
-      '@walletconnect/types': 2.19.2
-      '@walletconnect/utils': 2.19.2(typescript@5.8.2)
+      '@walletconnect/sign-client': 2.19.2(@upstash/redis@1.34.8)(typescript@5.8.2)
+      '@walletconnect/types': 2.19.2(@upstash/redis@1.34.8)
+      '@walletconnect/utils': 2.19.2(@upstash/redis@1.34.8)(typescript@5.8.2)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -3865,21 +3874,25 @@ snapshots:
     dependencies:
       csstype: 3.1.3
 
-  '@walletconnect/core@2.19.2(typescript@5.8.2)':
+  '@upstash/redis@1.34.8':
+    dependencies:
+      crypto-js: 4.2.0
+
+  '@walletconnect/core@2.19.2(@upstash/redis@1.34.8)(typescript@5.8.2)':
     dependencies:
       '@walletconnect/heartbeat': 1.2.2
       '@walletconnect/jsonrpc-provider': 1.0.14
       '@walletconnect/jsonrpc-types': 1.0.4
       '@walletconnect/jsonrpc-utils': 1.0.8
       '@walletconnect/jsonrpc-ws-connection': 1.0.16
-      '@walletconnect/keyvaluestorage': 1.1.1
+      '@walletconnect/keyvaluestorage': 1.1.1(@upstash/redis@1.34.8)
       '@walletconnect/logger': 2.1.2
       '@walletconnect/relay-api': 1.0.11
       '@walletconnect/relay-auth': 1.1.0
       '@walletconnect/safe-json': 1.0.2
       '@walletconnect/time': 1.0.2
-      '@walletconnect/types': 2.19.2
-      '@walletconnect/utils': 2.19.2(typescript@5.8.2)
+      '@walletconnect/types': 2.19.2(@upstash/redis@1.34.8)
+      '@walletconnect/utils': 2.19.2(@upstash/redis@1.34.8)(typescript@5.8.2)
       '@walletconnect/window-getters': 1.0.1
       es-toolkit: 1.33.0
       events: 3.3.0
@@ -3950,11 +3963,11 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@walletconnect/keyvaluestorage@1.1.1':
+  '@walletconnect/keyvaluestorage@1.1.1(@upstash/redis@1.34.8)':
     dependencies:
       '@walletconnect/safe-json': 1.0.2
       idb-keyval: 6.2.1
-      unstorage: 1.15.0(idb-keyval@6.2.1)
+      unstorage: 1.15.0(@upstash/redis@1.34.8)(idb-keyval@6.2.1)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -3995,16 +4008,16 @@ snapshots:
     dependencies:
       tslib: 1.14.1
 
-  '@walletconnect/sign-client@2.19.2(typescript@5.8.2)':
+  '@walletconnect/sign-client@2.19.2(@upstash/redis@1.34.8)(typescript@5.8.2)':
     dependencies:
-      '@walletconnect/core': 2.19.2(typescript@5.8.2)
+      '@walletconnect/core': 2.19.2(@upstash/redis@1.34.8)(typescript@5.8.2)
       '@walletconnect/events': 1.0.1
       '@walletconnect/heartbeat': 1.2.2
       '@walletconnect/jsonrpc-utils': 1.0.8
       '@walletconnect/logger': 2.1.2
       '@walletconnect/time': 1.0.2
-      '@walletconnect/types': 2.19.2
-      '@walletconnect/utils': 2.19.2(typescript@5.8.2)
+      '@walletconnect/types': 2.19.2(@upstash/redis@1.34.8)
+      '@walletconnect/utils': 2.19.2(@upstash/redis@1.34.8)(typescript@5.8.2)
       events: 3.3.0
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -4034,12 +4047,12 @@ snapshots:
     dependencies:
       tslib: 1.14.1
 
-  '@walletconnect/types@2.19.2':
+  '@walletconnect/types@2.19.2(@upstash/redis@1.34.8)':
     dependencies:
       '@walletconnect/events': 1.0.1
       '@walletconnect/heartbeat': 1.2.2
       '@walletconnect/jsonrpc-types': 1.0.4
-      '@walletconnect/keyvaluestorage': 1.1.1
+      '@walletconnect/keyvaluestorage': 1.1.1(@upstash/redis@1.34.8)
       '@walletconnect/logger': 2.1.2
       events: 3.3.0
     transitivePeerDependencies:
@@ -4062,18 +4075,18 @@ snapshots:
       - ioredis
       - uploadthing
 
-  '@walletconnect/utils@2.19.2(typescript@5.8.2)':
+  '@walletconnect/utils@2.19.2(@upstash/redis@1.34.8)(typescript@5.8.2)':
     dependencies:
       '@noble/ciphers': 1.2.1
       '@noble/curves': 1.8.1
       '@noble/hashes': 1.7.1
       '@walletconnect/jsonrpc-utils': 1.0.8
-      '@walletconnect/keyvaluestorage': 1.1.1
+      '@walletconnect/keyvaluestorage': 1.1.1(@upstash/redis@1.34.8)
       '@walletconnect/relay-api': 1.0.11
       '@walletconnect/relay-auth': 1.1.0
       '@walletconnect/safe-json': 1.0.2
       '@walletconnect/time': 1.0.2
-      '@walletconnect/types': 2.19.2
+      '@walletconnect/types': 2.19.2(@upstash/redis@1.34.8)
       '@walletconnect/window-getters': 1.0.1
       '@walletconnect/window-metadata': 1.0.1
       bs58: 6.0.0
@@ -4372,6 +4385,8 @@ snapshots:
       uncrypto: 0.1.3
 
   crypt@0.0.2: {}
+
+  crypto-js@4.2.0: {}
 
   csstype@3.1.3: {}
 
@@ -4953,9 +4968,9 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  near-ca@0.9.4(typescript@5.8.2):
+  near-ca@0.9.4(@upstash/redis@1.34.8)(typescript@5.8.2):
     dependencies:
-      '@reown/walletkit': 1.2.3(typescript@5.8.2)
+      '@reown/walletkit': 1.2.3(@upstash/redis@1.34.8)(typescript@5.8.2)
       elliptic: 6.6.1
       js-sha3: 0.9.3
       near-api-js: 5.1.1
@@ -4985,11 +5000,11 @@ snapshots:
       - utf-8-validate
       - zod
 
-  near-safe@0.9.12(typescript@5.8.2):
+  near-safe@0.9.12(@upstash/redis@1.34.8)(typescript@5.8.2):
     dependencies:
       '@safe-global/safe-gateway-typescript-sdk': 3.22.9
       near-api-js: 5.1.1
-      near-ca: 0.9.4(typescript@5.8.2)
+      near-ca: 0.9.4(@upstash/redis@1.34.8)(typescript@5.8.2)
       semver: 7.7.1
       viem: 2.25.0(typescript@5.8.2)
     transitivePeerDependencies:
@@ -5544,7 +5559,7 @@ snapshots:
 
   unpipe@1.0.0: {}
 
-  unstorage@1.15.0(idb-keyval@6.2.1):
+  unstorage@1.15.0(@upstash/redis@1.34.8)(idb-keyval@6.2.1):
     dependencies:
       anymatch: 3.1.3
       chokidar: 4.0.3
@@ -5555,6 +5570,7 @@ snapshots:
       ofetch: 1.4.1
       ufo: 1.5.4
     optionalDependencies:
+      '@upstash/redis': 1.34.8
       idb-keyval: 6.2.1
 
   util-deprecate@1.0.2: {}

@@ -81,7 +81,6 @@ export default function Dashboard() {
       return;
     }
     const data = await response.json();
-    console.log("data", data);
     setBtcAddress(data.btcAddress);
     setBtcBalance(data.btcBalance / 1e8);
   }
@@ -124,8 +123,15 @@ export default function Dashboard() {
               href="/"
               className="flex items-center gap-0 text-xl font-bold"
             >
-              <Bitcoin className="h-6 w-6 text-emerald-500" />
-              <span>
+              {/* <Bitcoin className="h-6 w-6 text-emerald-500" /> */}
+              <Image
+                src="/icon.png"
+                alt="Logo"
+                width={30}
+                height={30}
+                className="rounded-full"
+              />
+              <span className="ml-2">
                 Bitcoin <span className="text-emerald-500">Agent</span>
               </span>
             </Link>
@@ -169,7 +175,7 @@ export default function Dashboard() {
           {signedAccountId ? (
             <Card className="border-emerald-900/50 bg-black/60 backdrop-blur-sm col-span-1 lg:col-span-2">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-center gap-2 text-white">
                   <Wallet className="h-5 w-5 text-emerald-500" />
                   Bitcoin Wallet
                 </CardTitle>
@@ -181,7 +187,9 @@ export default function Dashboard() {
               <CardContent className="space-y-6">
                 {/* Wallet Address */}
                 <div className="space-y-2">
-                  <div className="text-sm text-gray-400">Wallet Address</div>
+                  <div className="text-sm text-gray-400 mb-4">
+                    Wallet Address
+                  </div>
                   {isLoading ? (
                     <div className="h-10 bg-emerald-900/20 animate-pulse rounded-md"></div>
                   ) : (
@@ -211,7 +219,9 @@ export default function Dashboard() {
 
                 {/* Wallet Balance */}
                 <div className="space-y-2">
-                  <div className="text-sm text-gray-400">Wallet Balance</div>
+                  <div className="text-sm text-gray-400 mb-4">
+                    Wallet Balance
+                  </div>
                   {isLoading ? (
                     <div className="h-16 bg-emerald-900/20 animate-pulse rounded-md"></div>
                   ) : (
@@ -288,7 +298,7 @@ export default function Dashboard() {
           {/* Agent Info Card */}
           <Card className="border-emerald-900/50 bg-black/60 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-white">
                 <Bot className="h-5 w-5 text-emerald-500" />
                 Agent Status
               </CardTitle>
@@ -300,13 +310,15 @@ export default function Dashboard() {
             <CardContent className="space-y-4">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
-                <span className="text-sm">Agent is active</span>
+                <span className="text-lg text-gray-400">Active</span>
               </div>
 
               <div className="text-sm text-gray-400">
                 <p className="mb-2">
-                  Your Bitcoin Agent is currently running and connected to the
-                  Bitcoin network.
+                  Your Bitcoin Agent is currently active and ready to sign
+                  transactions.
+                  {/* running in secure TEE (Trusted
+                  Execution Environment) */}
                 </p>
                 <p>
                   The agent uses NEAR chain signatures to securely manage your
@@ -316,8 +328,13 @@ export default function Dashboard() {
               </div>
 
               <div className="bg-emerald-900/20 p-3 rounded-md mt-4">
-                <h4 className="text-sm font-medium mb-1">Connected Networks</h4>
-                <div className="flex gap-2">
+                <h4 className="text-sm font-medium mb-2 text-white">
+                  Available Networks
+                </h4>
+                <p className="text-xs text-gray-500 mb-2">
+                  The agent is currently working with following networks:
+                </p>
+                <div className="flex gap-4 ">
                   <Badge className="bg-emerald-900/50 text-emerald-400">
                     Bitcoin Mainnet
                   </Badge>
@@ -344,7 +361,7 @@ export default function Dashboard() {
           </Card>
         </div>
 
-        <TransactionHistory />
+        <TransactionHistory btcPrice={bitcoinPrice} />
       </main>
 
       {/* Footer */}

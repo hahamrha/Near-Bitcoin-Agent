@@ -1,7 +1,6 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { allTransactions } from "@/lib/sampleData";
 import {
   Card,
   CardContent,
@@ -11,16 +10,19 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { NearContext } from "@/context/context";
+import { parseBitcoinTransaction } from "@/lib/parseBitcoinTransactions";
+import { ParsedTransaction, Transaction } from "@/lib/types";
 
-const TransactionHistory = () => {
+const TransactionHistory = ({ btcPrice }: { btcPrice: number }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [parsedTxns, setParsedTxns] = useState<ParsedTransaction[]>([]);
 
   // NEAR Context
   const { wallet, signedAccountId } = useContext(NearContext);
 
   // Filter transactions for sent and received tabs
-  const sentTransactions = allTransactions.filter((tx) => tx.type === "sent");
-  const receivedTransactions = allTransactions.filter(
+  const sentTransactions = parsedTxns.filter((tx) => tx.type === "sent");
+  const receivedTransactions = parsedTxns.filter(
     (tx) => tx.type === "received"
   );
   // Format functions
@@ -49,8 +51,6 @@ const TransactionHistory = () => {
   }
 
   async function getTransactions(signedAccountId: string) {
-    console.log("signedAccountId", signedAccountId);
-
     // make api call to /api/tools/get-user
     const mbMetadata = {
       accountId: signedAccountId, // Replace with actual value
@@ -69,7 +69,18 @@ const TransactionHistory = () => {
       return;
     }
     const data = await response.json();
-    console.log("data", data);
+    if (data.error) {
+      console.error("Error fetching user data:", data.error);
+      return;
+    }
+    // Process the data as needed
+    console.log("Fetched transactions:", data.txns);
+    const parsedTxns = parseBitcoinTransaction(
+      data.txns as Transaction[],
+      data.btcAddress
+    );
+    console.log("Parsed transactions:", parsedTxns);
+    setParsedTxns(parsedTxns);
   }
 
   return (
@@ -133,47 +144,63 @@ const TransactionHistory = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {allTransactions.map((tx) => (
-                        <tr
-                          key={tx.hash}
-                          className="border-b border-emerald-900/20 hover:bg-emerald-900/10"
-                        >
-                          <td className="py-3 px-2">
-                            <div className="flex items-center">
-                              <span className="font-mono text-xs text-emerald-400">
-                                {formatHash(tx.hash)}
-                              </span>
-                            </div>
-                          </td>
-                          <td className="py-3 px-2">
-                            <span className="font-mono text-xs text-gray-300">
-                              {formatAddress(tx.from)}
-                            </span>
-                          </td>
-                          <td className="py-3 px-2">
-                            <span className="font-mono text-xs text-gray-300">
-                              {formatAddress(tx.to)}
-                            </span>
-                          </td>
-                          <td className="py-3 px-2 text-right">
-                            <span
-                              className={`font-medium ${
-                                tx.type === "received"
-                                  ? "text-emerald-500"
-                                  : "text-gray-300"
-                              }`}
-                            >
-                              {tx.type === "received" ? "+" : "-"}
-                              {tx.amount} BTC
-                            </span>
-                          </td>
-                          <td className="py-3 px-2 text-right">
-                            <span className="text-xs text-gray-400">
-                              {tx.fee} BTC
-                            </span>
+                      {parsedTxns.length === 0 ? (
+                        <tr>
+                          <td
+                            colSpan={5}
+                            className="text-center py-4 text-white"
+                          >
+                            No transactions found.
                           </td>
                         </tr>
-                      ))}
+                      ) : (
+                        parsedTxns.map((tx) => (
+                          <tr
+                            key={tx.hash}
+                            className="border-b border-emerald-900/20 hover:bg-emerald-900/10"
+                          >
+                            <td className="py-3 px-2">
+                              <div className="flex items-center">
+                                <a
+                                  href={`https://mempool.space/tx/${tx.hash}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="font-mono text-xs text-emerald-400 hover:underline"
+                                >
+                                  {formatHash(tx.hash)}
+                                </a>
+                              </div>
+                            </td>
+                            <td className="py-3 px-2">
+                              <span className="font-mono text-xs text-gray-300">
+                                {formatAddress(tx.from)}
+                              </span>
+                            </td>
+                            <td className="py-3 px-2">
+                              <span className="font-mono text-xs text-gray-300">
+                                {formatAddress(tx.to)}
+                              </span>
+                            </td>
+                            <td className="py-3 px-2 text-right">
+                              <span
+                                className={`font-medium ${
+                                  tx.type === "received"
+                                    ? "text-emerald-500"
+                                    : "text-gray-300"
+                                }`}
+                              >
+                                {tx.type === "received" ? "+" : "-"}$
+                                {(tx.amount * btcPrice).toFixed(2)}
+                              </span>
+                            </td>
+                            <td className="py-3 px-2 text-right">
+                              <span className="text-xs text-gray-400">
+                                ${(tx.fee * btcPrice).toFixed(2)}
+                              </span>
+                            </td>
+                          </tr>
+                        ))
+                      )}
                     </tbody>
                   </table>
                 </div>
@@ -218,35 +245,51 @@ const TransactionHistory = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {sentTransactions.map((tx) => (
-                        <tr
-                          key={tx.hash}
-                          className="border-b border-emerald-900/20 hover:bg-emerald-900/10"
-                        >
-                          <td className="py-3 px-2">
-                            <div className="flex items-center">
-                              <span className="font-mono text-xs text-emerald-400">
-                                {formatHash(tx.hash)}
-                              </span>
-                            </div>
-                          </td>
-                          <td className="py-3 px-2">
-                            <span className="font-mono text-xs text-gray-300">
-                              {formatAddress(tx.to)}
-                            </span>
-                          </td>
-                          <td className="py-3 px-2 text-right">
-                            <span className="font-medium text-gray-300">
-                              -{tx.amount} BTC
-                            </span>
-                          </td>
-                          <td className="py-3 px-2 text-right">
-                            <span className="text-xs text-gray-400">
-                              {tx.fee} BTC
-                            </span>
+                      {sentTransactions.length === 0 ? (
+                        <tr>
+                          <td
+                            colSpan={4}
+                            className="text-center py-4 text-white"
+                          >
+                            No sent transactions found.
                           </td>
                         </tr>
-                      ))}
+                      ) : (
+                        sentTransactions.map((tx) => (
+                          <tr
+                            key={tx.hash}
+                            className="border-b border-emerald-900/20 hover:bg-emerald-900/10"
+                          >
+                            <td className="py-3 px-2">
+                              <div className="flex items-center">
+                                <a
+                                  href={`https://mempool.space/tx/${tx.hash}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="font-mono text-xs text-emerald-400 hover:underline"
+                                >
+                                  {formatHash(tx.hash)}
+                                </a>
+                              </div>
+                            </td>
+                            <td className="py-3 px-2">
+                              <span className="font-mono text-xs text-gray-300">
+                                {formatAddress(tx.from)}
+                              </span>
+                            </td>
+                            <td className="py-3 px-2 text-right">
+                              <span className="font-medium text-red-400">
+                                -${(tx.amount * btcPrice).toFixed(2)}
+                              </span>
+                            </td>
+                            <td className="py-3 px-2 text-right">
+                              <span className="text-xs text-gray-400">
+                                ${(tx.fee * btcPrice).toFixed(2)}
+                              </span>
+                            </td>
+                          </tr>
+                        ))
+                      )}
                     </tbody>
                   </table>
                 </div>
@@ -293,35 +336,51 @@ const TransactionHistory = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {receivedTransactions.map((tx) => (
-                        <tr
-                          key={tx.hash}
-                          className="border-b border-emerald-900/20 hover:bg-emerald-900/10"
-                        >
-                          <td className="py-3 px-2">
-                            <div className="flex items-center">
-                              <span className="font-mono text-xs text-emerald-400">
-                                {formatHash(tx.hash)}
-                              </span>
-                            </div>
-                          </td>
-                          <td className="py-3 px-2">
-                            <span className="font-mono text-xs text-gray-300">
-                              {formatAddress(tx.from)}
-                            </span>
-                          </td>
-                          <td className="py-3 px-2 text-right">
-                            <span className="font-medium text-emerald-500">
-                              +{tx.amount} BTC
-                            </span>
-                          </td>
-                          <td className="py-3 px-2 text-right">
-                            <span className="text-xs text-gray-400">
-                              {tx.fee} BTC
-                            </span>
+                      {receivedTransactions.length === 0 ? (
+                        <tr>
+                          <td
+                            colSpan={4}
+                            className="text-center py-4 text-white"
+                          >
+                            No received transactions found.
                           </td>
                         </tr>
-                      ))}
+                      ) : (
+                        receivedTransactions.map((tx) => (
+                          <tr
+                            key={tx.hash}
+                            className="border-b border-emerald-900/20 hover:bg-emerald-900/10"
+                          >
+                            <td className="py-3 px-2">
+                              <div className="flex items-center">
+                                <a
+                                  href={`https://mempool.space/tx/${tx.hash}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="font-mono text-xs text-emerald-400 hover:underline"
+                                >
+                                  {formatHash(tx.hash)}
+                                </a>
+                              </div>
+                            </td>
+                            <td className="py-3 px-2">
+                              <span className="font-mono text-xs text-gray-300">
+                                {formatAddress(tx.from)}
+                              </span>
+                            </td>
+                            <td className="py-3 px-2 text-right">
+                              <span className="font-medium text-emerald-500">
+                                +${(tx.amount * btcPrice).toFixed(2)}
+                              </span>
+                            </td>
+                            <td className="py-3 px-2 text-right">
+                              <span className="text-xs text-gray-400">
+                                ${(tx.fee * btcPrice).toFixed(2)}
+                              </span>
+                            </td>
+                          </tr>
+                        ))
+                      )}
                     </tbody>
                   </table>
                 </div>

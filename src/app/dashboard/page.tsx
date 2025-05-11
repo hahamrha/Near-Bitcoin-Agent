@@ -22,11 +22,22 @@ import {
   CheckIcon,
   Bot,
   Github,
+  Scan,
 } from "lucide-react";
 import Image from "next/image";
 import { NearContext } from "@/context/context";
 import { connect, utils } from "near-api-js";
 import TransactionHistory from "@/components/dashboard/TransactionHistory";
+import { QRCodeCanvas } from "qrcode.react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 export default function Dashboard() {
   const [copied, setCopied] = useState(false);
@@ -106,6 +117,8 @@ export default function Dashboard() {
     setBitcoinPrice(data.bitcoin.usd);
     // console.log("Bitcoin Price:", data.bitcoin.usd);
   }
+
+
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(btcAddress);
@@ -197,6 +210,24 @@ export default function Dashboard() {
                       <div className="bg-emerald-900/20 text-white p-3 rounded-md flex-1 font-mono text-sm break-all">
                         {btcAddress}
                       </div>
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button variant="outline">
+                            <Scan className="h-4 w-4" />
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent className="sm:max-w-[425px]">
+                          <DialogHeader>
+                            <DialogTitle>Scan</DialogTitle>
+                            <DialogDescription>
+                              Scan the QR code below to get your Bitcoin address.
+                            </DialogDescription>
+                          </DialogHeader>
+                          <div className="flex justify-center">
+                            <QRCodeCanvas value={btcAddress} size={160} />
+                          </div>
+                        </DialogContent>
+                      </Dialog>
                       <Button
                         size="icon"
                         variant="outline"

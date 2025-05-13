@@ -22,7 +22,7 @@ import {
   CheckIcon,
   Bot,
   Github,
-  Scan,
+  QrCode,
 } from "lucide-react";
 import Image from "next/image";
 import { NearContext } from "@/context/context";
@@ -204,7 +204,7 @@ export default function Dashboard() {
                     Wallet Address
                   </div>
                   {isLoading ? (
-                    <div className="h-10 bg-emerald-900/20 animate-pulse rounded-md"></div>
+                    <div className="h-10 bg-gray-900 animate-pulse rounded-md"></div>
                   ) : (
                     <div className="flex items-center gap-2">
                       <div className="bg-emerald-900/20 text-white p-3 rounded-md flex-1 font-mono text-sm break-all">
@@ -213,7 +213,7 @@ export default function Dashboard() {
                       <Dialog>
                         <DialogTrigger asChild>
                           <Button variant="outline">
-                            <Scan className="h-4 w-4" />
+                            <QrCode className="h-4 w-4" />
                           </Button>
                         </DialogTrigger>
                         <DialogContent className="sm:max-w-[425px]">
@@ -254,7 +254,7 @@ export default function Dashboard() {
                     Wallet Balance
                   </div>
                   {isLoading ? (
-                    <div className="h-16 bg-emerald-900/20 animate-pulse rounded-md"></div>
+                    <div className="h-16 bg-gray-900 animate-pulse rounded-md"></div>
                   ) : (
                     <div className="flex items-center gap-4">
                       <div className="bg-emerald-900/20 p-4 rounded-md">

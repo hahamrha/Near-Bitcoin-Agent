@@ -10,6 +10,7 @@ import {
   chainAdapters,
   RSVSignature,
   MPCSignature,
+  utils,
   // fix: convert toRSV function
 } from "signet.js";
 
@@ -79,21 +80,23 @@ export async function GET(request: Request) {
     const mpcSignature: MPCSignature = JSON.parse(
       decodedSuccessValue as string
     );
-    //fix: convert MPC signature to RSV signature
-    // const rsvSignatures: RSVSignature[] = [toRSV(mpcSignature)];
-    const rsvSignatures: RSVSignature[] = [];
+
+    const rsvSignatures: RSVSignature[] = [
+      utils.cryptography.toRSV(mpcSignature),
+    ];
 
     // get sender btc address
     const { address: btcSenderAddress, publicKey: btcSenderPublicKey } =
       await bitcoin.deriveAddressAndPublicKey(accountId as string, "bitcoin-1");
 
     // create MPC payload and txn
-    const { transaction } = await bitcoin.prepareTransactionForSigning({
-      publicKey: btcSenderPublicKey,
-      from: btcSenderAddress,
-      to: btcReceiverAddress,
-      value: btcAmountInSatoshi.toString(),
-    });
+    const { transaction, hashesToSign } =
+      await bitcoin.prepareTransactionForSigning({
+        publicKey: btcSenderPublicKey,
+        from: btcSenderAddress,
+        to: btcReceiverAddress,
+        value: btcAmountInSatoshi.toString(),
+      });
 
     const signedTransaction = bitcoin.finalizeTransactionSigning({
       transaction,

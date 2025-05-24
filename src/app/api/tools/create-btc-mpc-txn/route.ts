@@ -58,9 +58,8 @@ export async function GET(request: Request) {
         to: btcReceiverAddress,
         value: btcAmountInSatoshi.toString(),
       });
-    // fix: payload types
-    //@ts-ignore
-    const mpcTransactions = hashesToSign[0].map(({ payload }) => ({
+
+    const mpcTransactions = {
       signerId: accountId as string,
       receiverId: "v1.signer",
       actions: [
@@ -70,7 +69,7 @@ export async function GET(request: Request) {
             methodName: "sign",
             args: {
               request: {
-                payload: Array.from(payload),
+                payload: Array.from(hashesToSign[0]),
                 path: "bitcoin-1",
                 key_version: 0,
               },
@@ -80,11 +79,11 @@ export async function GET(request: Request) {
           },
         },
       ],
-    }));
+    };
 
     console.log("mpcTransactions", mpcTransactions);
 
-    return NextResponse.json(mpcTransactions[0]);
+    return NextResponse.json(mpcTransactions);
   } catch (error) {
     console.error("Error generating NEAR transaction payload:", error);
     return NextResponse.json(

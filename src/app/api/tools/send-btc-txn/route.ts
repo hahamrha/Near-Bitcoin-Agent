@@ -42,10 +42,6 @@ export async function GET(request: Request) {
     const txHash = searchParams.get("txHash");
 
     if (!btcReceiverAddress || !btcAmountInSatoshi || !txHash) {
-      console.log(
-        `btcReceiver: ${btcReceiverAddress}\nbtcAmountInSatoshi: ${btcAmountInSatoshi}\ntxHash: ${txHash}`
-      );
-
       return NextResponse.json(
         {
           error:

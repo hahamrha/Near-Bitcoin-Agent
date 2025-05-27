@@ -95,8 +95,7 @@ async function getTokenFromRedis() {
   try {
     let token = await redis.get("blockstream_token");
     let timestamp = await redis.get("blockstream_token_expiry");
-    console.log("Token from Redis:", token);
-    console.log("Timestamp from Redis:", Number(timestamp));
+
     switch (true) {
       case !token || !timestamp:
         token = await refreshToken();

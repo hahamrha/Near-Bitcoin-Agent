@@ -74,12 +74,12 @@ const TransactionHistory = ({ btcPrice }: { btcPrice: number }) => {
       return;
     }
     // Process the data as needed
-    console.log("Fetched transactions:", data.txns);
+
     const parsedTxns = parseBitcoinTransaction(
       data.txns as Transaction[],
       data.btcAddress
     );
-    console.log("Parsed transactions:", parsedTxns);
+
     setParsedTxns(parsedTxns);
   }
 

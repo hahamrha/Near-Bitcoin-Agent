@@ -37,7 +37,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
 
 export default function Dashboard() {
   const [copied, setCopied] = useState(false);
@@ -72,11 +72,8 @@ export default function Dashboard() {
   }
 
   async function getUser(signedAccountId: string) {
-    console.log("signedAccountId", signedAccountId);
-
-    // make api call to /api/tools/get-user
     const mbMetadata = {
-      accountId: signedAccountId, // Replace with actual value
+      accountId: signedAccountId,
     };
 
     const response = await fetch("/api/tools/get-btc-balance", {
@@ -115,10 +112,7 @@ export default function Dashboard() {
     );
     const data = await response.json();
     setBitcoinPrice(data.bitcoin.usd);
-    // console.log("Bitcoin Price:", data.bitcoin.usd);
   }
-
-
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(btcAddress);
@@ -220,7 +214,8 @@ export default function Dashboard() {
                           <DialogHeader>
                             <DialogTitle>Scan</DialogTitle>
                             <DialogDescription>
-                              Scan the QR code below to get your Bitcoin address.
+                              Scan the QR code below to get your Bitcoin
+                              address.
                             </DialogDescription>
                           </DialogHeader>
                           <div className="flex justify-center">

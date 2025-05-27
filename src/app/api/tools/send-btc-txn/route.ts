@@ -11,7 +11,6 @@ import {
   RSVSignature,
   MPCSignature,
   utils,
-  // fix: convert toRSV function
 } from "signet.js";
 
 const CONTRACT = new contracts.near.ChainSignatureContract({
@@ -41,10 +40,6 @@ export async function GET(request: Request) {
     const btcReceiverAddress = searchParams.get("btcReceiver");
     const btcAmountInSatoshi = searchParams.get("btcAmountInSatoshi");
     const txHash = searchParams.get("txHash");
-
-    console.log("btcReceiverAddress", btcReceiverAddress);
-    console.log("btcAmountInSatoshi", btcAmountInSatoshi);
-    console.log("txHash", txHash);
 
     if (!btcReceiverAddress || !btcAmountInSatoshi || !txHash) {
       console.log(
@@ -102,6 +97,9 @@ export async function GET(request: Request) {
       transaction,
       rsvSignatures,
     });
+
+    // gas settings is handled by signet.js
+    // can be manually set if needed
 
     const btcTxnHash = await bitcoin.broadcastTx(signedTransaction);
 

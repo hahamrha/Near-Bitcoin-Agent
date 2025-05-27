@@ -28,9 +28,6 @@ export async function GET(request: Request) {
     mbMetadataHeader && JSON.parse(mbMetadataHeader);
 
   const { accountId } = mbMetadata || {};
-  // const { searchParams } = new URL(request.url);
-  // const accountId = searchParams.get("accountId");
-  console.log("accountId", accountId);
 
   const { address } = await bitcoin.deriveAddressAndPublicKey(
     accountId as string,

@@ -39,16 +39,9 @@ export async function GET(request: Request) {
       );
     }
 
-    console.log("btcAmountInSatoshi", btcAmountInSatoshi);
-    console.log("accountId", accountId);
-    console.log("btcReceiverAddress", btcReceiverAddress);
-
     // get sender btc address
     const { address: btcSenderAddress, publicKey: btcSenderPublicKey } =
       await bitcoin.deriveAddressAndPublicKey(accountId as string, "bitcoin-1");
-
-    console.log("btcSenderAddress", btcSenderAddress);
-    console.log("btcSenderPublicKey", btcSenderPublicKey);
 
     // create MPC payload and txn
     const { transaction, hashesToSign } =
@@ -80,8 +73,6 @@ export async function GET(request: Request) {
         },
       ],
     };
-
-    console.log("mpcTransactions", mpcTransactions);
 
     return NextResponse.json(mpcTransactions);
   } catch (error) {

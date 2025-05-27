@@ -20,7 +20,8 @@ We are now evolving the agent to support Bitcoin Mainnet, enabling secure creati
 
 ## Agent Links
 
-- [Deployment](https://bitcoin-agent.xyz)
+- [Website](https://bitcoin-agent.xyz)
+- [Agent Deployment](https://bitte.ai/agents/bitcoin-agent.xyz)
 
 ## Features
 

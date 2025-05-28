@@ -222,21 +222,6 @@ export default function Home() {
               </div>
 
               {/* Item 3: Move Agent to BTC Mainnet */}
-              {/* <div className="md:text-right flex flex-col items-start md:items-end order-6 md:order-5 md:pr-8">
-                <div className="bg-black/60 border border-emerald-900/50 p-6 rounded-lg w-full hover:border-emerald-500 transition-all duration-300">
-                  <Badge className="mb-2 bg-yellow-500 text-black">In Progress</Badge>
-                  <h4 className="text-xl font-bold mb-2 flex items-center md:justify-end gap-2">
-                    <span>Initial review & user feedback</span>
-                  </h4>
-                  <p className="text-gray-400">Getting agent verified with Bitte.ai and gathering feedback from early users.</p>
-                </div>
-              </div>
-              <div className="relative order-5 md:order-6 md:pl-8">
-                <div className="absolute left-0 md:left-0 top-2 md:top-6 w-8 h-8 rounded-full bg-yellow-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
-                  <Clock className="h-5 w-5 text-black" />
-                </div>
-              </div> */}
-
               <div className="md:text-right flex flex-col items-start md:items-end order-6 md:order-5 md:pr-8">
                 <div className="bg-black/60 border border-emerald-900/50 p-6 rounded-lg w-full hover:border-emerald-500 transition-all duration-300">
                   <Badge className="mb-2 bg-emerald-500 text-black">Completed</Badge>

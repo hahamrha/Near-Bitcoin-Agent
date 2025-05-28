@@ -346,11 +346,11 @@ export default function Dashboard() {
                   {/* running in secure TEE (Trusted
                   Execution Environment) */}
                 </p>
-                <p>
+                {/* <p>
                   The agent uses NEAR chain signatures to securely manage your
                   Bitcoin transactions without requiring you to manage private
                   keys directly.
-                </p>
+                </p> */}
               </div>
 
               <div className="bg-emerald-900/20 p-3 rounded-md mt-4">
@@ -358,7 +358,8 @@ export default function Dashboard() {
                   Available Networks
                 </h4>
                 <p className="text-xs text-gray-500 mb-2">
-                  The agent is currently working with following networks:
+                  The agent is currently working with following networks to sign
+                  and send transactions
                 </p>
                 <div className="flex gap-4 ">
                   <Badge className="bg-emerald-900/50 text-emerald-400">

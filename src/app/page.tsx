@@ -224,28 +224,28 @@ export default function Home() {
               {/* Item 3: Move Agent to BTC Mainnet */}
               <div className="md:text-right flex flex-col items-start md:items-end order-6 md:order-5 md:pr-8">
                 <div className="bg-black/60 border border-emerald-900/50 p-6 rounded-lg w-full hover:border-emerald-500 transition-all duration-300">
-                  <Badge className="mb-2 bg-yellow-500 text-black">In Progress</Badge>
+                  <Badge className="mb-2 bg-emerald-500 text-black">Completed</Badge>
                   <h4 className="text-xl font-bold mb-2 flex items-center md:justify-end gap-2">
                     <span>Initial review & user feedback</span>
                   </h4>
-                  <p className="text-gray-400">Getting agent verified with Bitte.ai and gathering feedback from early users.</p>
+                  <p className="text-gray-400">Gathering feedback from early users.</p>
                 </div>
               </div>
               <div className="relative order-5 md:order-6 md:pl-8">
-                <div className="absolute left-0 md:left-0 top-2 md:top-6 w-8 h-8 rounded-full bg-yellow-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
-                  <Clock className="h-5 w-5 text-black" />
+                <div className="absolute left-0 md:left-0 top-2 md:top-6 w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
+                  <CheckCircle2 className="h-5 w-5 text-black" />
                 </div>
               </div>
 
               {/* Item 4: Custom BTC Transactions */}
               <div className="relative order-7 md:pr-8">
-                <div className="absolute left-0 md:left-10/10 top-2 md:top-6 w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
+                <div className="absolute left-0 md:left-10/10 top-2 md:top-6 w-8 h-8 rounded-full bg-yellow-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
                   <Clock className="h-5 w-5 text-black" />
                 </div>
               </div>
               <div className="order-8 md:pl-8">
                 <div className="bg-black/60 border border-emerald-900/50 p-6 rounded-lg hover:border-emerald-500 transition-all duration-300">
-                  <Badge className="mb-2 bg-emerald-900/50 text-emerald-400">Phase 1</Badge>
+                  <Badge className="mb-2 bg-yellow-500 text-black">In Progress</Badge>
                   <h4 className="text-xl font-bold mb-2">Transact</h4>
                   <p className="text-gray-400">
                     Seamlessly execute Bitcoin transactions  with the agent.

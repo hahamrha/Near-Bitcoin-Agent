@@ -14,7 +14,7 @@ import { setupBitteWallet } from "@near-wallet-selector/bitte-wallet";
 const THIRTY_TGAS = "30000000000000";
 const NO_DEPOSIT = "0";
 
-export class Wallet {
+export class NearWallet {
   /**
    * @constructor
    * @param {Object} options - the options for the wallet
@@ -32,9 +32,9 @@ export class Wallet {
   /**
    * To be called when the website loads
    * @param {Function} accountChangeHook - a function that is called when the user signs in or out#
-   * @returns {Promise<string>} - the accountId of the signed-in user
+   * @returns {Promise<Object>} - an object containing the accountId and wallet instance
    */
-  startUp = async (accountChangeHook) => {
+  startUp = async (accountChangeHook, signedInWalletChangeHook) => {
     this.selector = setupWalletSelector({
       network: {
         networkId: this.networkId,
@@ -50,6 +50,7 @@ export class Wallet {
 
     const walletSelector = await this.selector;
     const isSignedIn = walletSelector.isSignedIn();
+    const signedInWallet = await walletSelector.wallet();
     const accountId = isSignedIn
       ? walletSelector.store.getState().accounts[0].accountId
       : "";
@@ -64,9 +65,10 @@ export class Wallet {
           (account) => account.active
         )?.accountId;
         accountChangeHook(signedAccount);
+        signedInWalletChangeHook(signedInWallet);
       });
 
-    return accountId;
+    return { accountId, signedInWallet };
   };
 
   /**

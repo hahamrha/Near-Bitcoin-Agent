@@ -25,6 +25,12 @@ The Bitcoin Bitte Agent was initially developed during the One Trillion Agents H
 "Bitcoin Agent", an agent that uses NEAR chain signatures to interact with Bitcoin L1.
 Now, you can send transactions on the Bitcoin mainnet using just your NEAR account. The agent’s tools are highly composable and can be integrated with other agents to create MPC transactions and broadcast them on the Bitcoin mainnet.
 
+### What's possible with Bitcoin Agent?
+
+➡️ The agent runs in the Bitte runtime, powered by NEAR chain signatures. When you sign and send transactions on the Bitcoin mainnet, there are no bridges and no wrapped tokens involved—the transaction is settled directly on Bitcoin L1.
+
+➡️ You can access the Bitcoin Agent dashboard [here](http://bitcoin-agent.xyz/dashboard) to get your Bitcoin address associated with your NEAR account. The dashboard also displays your agent status, wallet balances, and past transactions.
+
 ## Agent Links
 
 - [Website](https://bitcoin-agent.xyz)

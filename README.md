@@ -2,6 +2,8 @@
 
 An AI agent that uses NEAR chain signatures to interact with Bitcoin L1 | Powered by Bitte.ai
 
+![Banner Image](./public/assets/banner.png)
+
 ## 📖 Table of Contents
 
 - [Overview](#overview)

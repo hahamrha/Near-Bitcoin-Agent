@@ -1,7 +1,8 @@
 import { createContext } from "react";
-import { Wallet } from "@/services/near-wallet";
+import { NearWallet } from "@/services/near-wallet";
 
 export const NearContext = createContext({
-  wallet: Wallet,
+  wallet: NearWallet,
   signedAccountId: "",
+  signedInWallet: undefined,
 });

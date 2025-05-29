@@ -7,7 +7,7 @@ export default function Layout({
 }>) {
   return (
     <body>
-      <BitteWalletContextProvider>{children}</BitteWalletContextProvider>
+      <NearProvider>{children}</NearProvider>
     </body>
   );
 }

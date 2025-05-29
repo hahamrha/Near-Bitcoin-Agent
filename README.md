@@ -16,9 +16,9 @@ An AI agent that uses NEAR chain signatures to interact with Bitcoin L1 | Powere
 
 ## Overview
 
-The Bitcoin Bitte Agent was initially developed during the One Trillion Agents Hackathon to enable Bitcoin testnet transactions using NEAR accounts. It allowed users to retrieve their NEAR account, corresponding BTC Testnet address, and balance, and seamlessly create and send Bitcoin transactions.
+### Origin Story
 
-We are now evolving the agent to support Bitcoin Mainnet, enabling secure creation and broadcast of BTC L1 transactions through NEAR account.
+The Bitcoin Bitte Agent was initially developed during the One Trillion Agents Hackathon to enable Bitcoin testnet transactions using NEAR accounts. It allowed users to retrieve their NEAR account, corresponding BTC Testnet address, and balance, and seamlessly create and send Bitcoin transactions.
 
 ## Agent Links
 

@@ -382,7 +382,7 @@ export default function Dashboard() {
                 }
                 className="w-full bg-emerald-600 hover:bg-emerald-700"
               >
-                Launch Agent Interface
+                Launch Agent Widget
               </Button>
             </CardFooter>
           </Card>

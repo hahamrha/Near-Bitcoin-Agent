@@ -12,12 +12,7 @@ export default function Chat() {
 
   return (
     <div>
-      <BitteWidgetChat
-        agentId="bitcoin-agent.xyz"
-        apiUrl="/api/widget/chat"
-        historyApiUrl="/api/widget/history"
-        wallet={{ near: signedInWallet }}
-      />
+      <BitteWidgetChat />
     </div>
   );
 }

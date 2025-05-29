@@ -5,6 +5,7 @@ import { BitteWidgetChat } from "@bitte-ai/chat";
 import "@bitte-ai/chat/styles.css";
 import { Wallet } from "@near-wallet-selector/core";
 import { useContext } from "react";
+import { BitteAiChat } from "@bitte-ai/chat";
 
 export default function Chat() {
   const { signedInWallet } = useContext(NearContext);
@@ -12,7 +13,7 @@ export default function Chat() {
 
   return (
     <div>
-      <BitteWidgetChat
+      <BitteAiChat
         agentId="bitcoin-agent.xyz"
         historyApiUrl="/api/widget/history"
         apiUrl="api/widget/chat"

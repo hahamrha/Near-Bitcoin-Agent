@@ -56,7 +56,7 @@ const TransactionHistory = ({ btcPrice }: { btcPrice: number }) => {
       accountId: signedAccountId, // Replace with actual value
     };
 
-    const response = await fetch("/api/tools/get-btc-txns", {
+    const response = await fetch("/api/dashboard/get-btc-txns", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

@@ -94,16 +94,14 @@ export async function GET(request: Request) {
       rsvSignatures,
     });
 
-    // gas settings is handled by signet.js
+    // gas settings are handled by signet.js
     // can be manually set if needed
-
     const btcTxnHash = await bitcoin.broadcastTx(signedTransaction);
 
     return NextResponse.json({ txHash: btcTxnHash }, { status: 200 });
   } catch (error) {
-    console.error("Error generating EVM transaction:", error);
     return NextResponse.json(
-      { error: "Failed to generate EVM transaction" },
+      { error: "Failed to send transaction" },
       { status: 500 }
     );
   }

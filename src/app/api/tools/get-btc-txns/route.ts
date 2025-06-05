@@ -20,7 +20,7 @@ const bitcoin = new chainAdapters.btc.Bitcoin({
 
 // setup redis
 const redis = new Redis({
-  url: "https://enabling-rhino-23699.upstash.io",
+  url: process.env.REDIS_URL as string,
   token: process.env.UPSTASH_PASSWORD as string,
 });
 
@@ -78,11 +78,9 @@ export async function GET(request: Request) {
       { status: 200 }
     );
   } catch (error) {
-    console.error("Error in GET handler:", error);
     return NextResponse.json(
       {
-        error: "An unexpected error occurred",
-        details: error instanceof Error ? error.message : String(error),
+        error: "An unexpected error occurred while getting transactions",
       },
       {
         status: 500,
@@ -143,8 +141,10 @@ async function refreshToken() {
     await redis.set("blockstream_token_expiry", Date.now());
     return data.access_token;
   } catch (error) {
-    console.error("Error refreshing token:", error);
-    throw new Error("Failed to refresh token");
+    return NextResponse.json(
+      { error: "Failed to get transaction" },
+      { status: 500 }
+    );
   }
 }
 

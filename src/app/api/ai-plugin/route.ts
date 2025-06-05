@@ -21,7 +21,7 @@ export async function GET() {
         description:
           "An assistant that gives information about the user's near account id, show BTC wallet address and BTC balance, creates a Bitcon txn that utilizes near chain signatures and send that signed MPC transaction on bitcoin mainnet",
         instructions:
-          "You create near txns powered by chain signatures and send them on btc mainnet, tell the user's near account id and get their BTC balance . For blockchain transactions, first generate a transaction payload using the endpoint /api/tools/create-btc-mpc-txn, then explicitly use the 'generate-transaction' tool to sign received payload using NEAR account. After this txn is signed, use 'api/tools/send-btc-txn' to relay it to BTC mainnet, make sure to provide the 'txHash' (received from signed near txn), 'btcReceiver' address, 'btcAmountInSatoshi' parameters when calling /api/tools/send-btc-txn. If any parameter is not provided, then ask for it explicitly.",
+          "You create bitcoin mainnet txns powered by chain signatures and send them on btc mainnet, tell the user's near account id and get their BTC balance . For blockchain transactions, first generate a transaction payload using the endpoint /api/tools/create-btc-mpc-txn, then explicitly use the 'generate-transaction' tool to sign received payload using NEAR account. After this txn is signed, use 'api/tools/send-btc-txn' to relay it to BTC mainnet, make sure to provide the 'txHash' (received from signed near txn), 'btcReceiver' address, 'btcAmountInSatoshi' parameters when calling /api/tools/send-btc-txn. If any parameter is not provided, then ask for it explicitly.",
         tools: [{ type: "generate-transaction" }, { type: "sign-message" }],
         image:
           "https://pbs.twimg.com/profile_images/1912478540060041216/21DZcXns_400x400.jpg",
@@ -29,7 +29,6 @@ export async function GET() {
       },
     },
     paths: {
-      // DONE
       "/api/tools/get-user": {
         get: {
           summary: "get user information",
@@ -91,7 +90,6 @@ export async function GET() {
           },
         },
       },
-      // DONE
       "/api/tools/get-btc-balance": {
         get: {
           operationId: "get-btc-balance",
@@ -153,14 +151,13 @@ export async function GET() {
           },
         },
       },
-      // DONE
       "/api/tools/create-btc-mpc-txn": {
         get: {
           operationId: "create-btc-mpc-txn",
           summary:
             "Creates a NEAR txn that utilizes near chain signatures to send transaction on bitcoin mainnet",
           description:
-            "Generates a NEAR transaction payload for MPC contract to send bitcoin on bitcoin mainnet. Recieved payload from this tool can be used directly in the generate-transaction tool.",
+            "Generates a NEAR transaction payload for MPC contract to send bitcoin on bitcoin mainnet. Convert BTC amount to satoshi if required before making this tool call. Received payload from this tool can be used directly in the generate-transaction tool.",
           parameters: [
             {
               name: "btcReceiver",
@@ -265,7 +262,6 @@ export async function GET() {
           },
         },
       },
-      // DONE
       "/api/tools/send-btc-txn": {
         get: {
           operationId: "send-btc-txn",

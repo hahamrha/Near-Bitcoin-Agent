@@ -23,37 +23,44 @@ type BtcBalance = {
 };
 
 export async function GET(request: Request) {
-  const mbMetadataHeader = (await headers()).get("mb-metadata");
-  const mbMetadata: { accountId: string } =
-    mbMetadataHeader && JSON.parse(mbMetadataHeader);
+  try {
+    const mbMetadataHeader = (await headers()).get("mb-metadata");
+    const mbMetadata: { accountId: string } =
+      mbMetadataHeader && JSON.parse(mbMetadataHeader);
 
-  const { accountId } = mbMetadata || {};
+    const { accountId } = mbMetadata || {};
 
-  const { address } = await bitcoin.deriveAddressAndPublicKey(
-    accountId as string,
-    "bitcoin-1"
-  );
+    if (!accountId) {
+      return NextResponse.json(
+        {
+          error: "Unable to find user data in the request",
+        },
+        {
+          status: 500,
+        }
+      );
+    }
 
-  const btcAddress = address;
+    const { address } = await bitcoin.deriveAddressAndPublicKey(
+      accountId as string,
+      "bitcoin-1"
+    );
 
-  const btcBalance: BtcBalance = await bitcoin.getBalance(btcAddress);
+    const btcAddress = address;
 
-  if (!accountId) {
+    const btcBalance: BtcBalance = await bitcoin.getBalance(btcAddress);
+
+    // serialize bigint to string
+    const serializedBalance = BigInt(btcBalance.balance).toString();
+
     return NextResponse.json(
-      {
-        error: "Unable to find user data in the request",
-      },
-      {
-        status: 500,
-      }
+      { btcBalance: serializedBalance, btcAddress: btcAddress },
+      { status: 200 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Failed to get balance" },
+      { status: 500 }
     );
   }
-
-  // serialize bigint to string
-  const serializedBalance = BigInt(btcBalance.balance).toString();
-
-  return NextResponse.json(
-    { btcBalance: serializedBalance, btcAddress: btcAddress },
-    { status: 200 }
-  );
 }

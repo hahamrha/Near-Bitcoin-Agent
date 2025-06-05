@@ -18,32 +18,38 @@ const bitcoin = new chainAdapters.btc.Bitcoin({
 });
 
 export async function GET(request: Request) {
-  const mbMetadataHeader = (await headers()).get("mb-metadata");
-  const mbMetadata: { accountId: string } =
-    mbMetadataHeader && JSON.parse(mbMetadataHeader);
+  try {
+    const mbMetadataHeader = (await headers()).get("mb-metadata");
+    const mbMetadata: { accountId: string } =
+      mbMetadataHeader && JSON.parse(mbMetadataHeader);
 
-  const { accountId } = mbMetadata || {};
+    const { accountId } = mbMetadata || {};
 
-  const { address } = await bitcoin.deriveAddressAndPublicKey(
-    accountId as string,
-    "bitcoin-1"
-  );
+    if (!accountId) {
+      return NextResponse.json(
+        {
+          error: "Unable to find user data in the request",
+        },
+        {
+          status: 500,
+        }
+      );
+    }
 
-  const btcAddress = address;
+    const { address } = await bitcoin.deriveAddressAndPublicKey(
+      accountId as string,
+      "bitcoin-1"
+    );
 
-  if (!accountId) {
+    const btcAddress = address;
     return NextResponse.json(
-      {
-        error: "Unable to find user data in the request",
-      },
-      {
-        status: 500,
-      }
+      { nearAccountId: accountId, btcAddress: btcAddress },
+      { status: 200 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Failed to get user details" },
+      { status: 500 }
     );
   }
-
-  return NextResponse.json(
-    { nearAccountId: accountId, btcAddress: btcAddress },
-    { status: 200 }
-  );
 }

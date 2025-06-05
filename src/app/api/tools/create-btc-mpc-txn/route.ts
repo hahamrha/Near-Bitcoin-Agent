@@ -76,9 +76,8 @@ export async function GET(request: Request) {
 
     return NextResponse.json(mpcTransactions);
   } catch (error) {
-    console.error("Error generating NEAR transaction payload:", error);
     return NextResponse.json(
-      { error: "Failed to generate NEAR transaction payload" },
+      { error: "Failed to generate NEAR MPC transaction payload" },
       { status: 500 }
     );
   }

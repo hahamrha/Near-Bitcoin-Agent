@@ -27,7 +27,7 @@ import {
 import Image from "next/image";
 import { NearContext } from "@/context/context";
 import { connect, utils } from "near-api-js";
-import TransactionHistory from "@/components/dashboard/TransactionHistory";
+// import TransactionHistory from "@/components/dashboard/TransactionHistory";
 import { QRCodeCanvas } from "qrcode.react";
 import {
   Dialog,
@@ -388,7 +388,7 @@ export default function Dashboard() {
           </Card>
         </div>
 
-        <TransactionHistory btcPrice={bitcoinPrice} />
+        {/* <TransactionHistory btcPrice={bitcoinPrice} /> */}
       </main>
 
       {/* Footer */}

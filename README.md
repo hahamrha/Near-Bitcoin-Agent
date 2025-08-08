@@ -50,6 +50,8 @@ Now, you can send transactions on the Bitcoin mainnet using just your NEAR accou
 
   - `send-btc-txn` : Broadcast a signed transaction
 
+  - `get-near-intents-deposit` : Retrieve available NEAR deposit intents for depositing assets from any wallet and swapping them into BTC via NEAR Intentss
+
 - Each tool is registered in the AI plugin manifest at : `/api/ai-plugin`
 
 ## High Level Architecture

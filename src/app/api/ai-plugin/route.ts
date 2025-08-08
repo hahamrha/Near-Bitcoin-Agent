@@ -355,6 +355,85 @@ export async function GET() {
           },
         },
       },
+      "/api/tools/get-near-intents-deposit": {
+        get: {
+          operationId: "get-near-intents-deposit",
+          summary: "Get NEAR deposit intents",
+          description:
+            "Fetches NEAR deposit intents for the user, enabling deposit of assets from any wallet and swapping them into BTC via NEAR Intents.",
+          responses: {
+            "200": {
+              description: "Successful response",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      depositIntents: {
+                        type: "array",
+                        items: {
+                          type: "object",
+                          properties: {
+                            intentId: {
+                              type: "string",
+                              description: "Unique ID of the deposit intent",
+                            },
+                            asset: {
+                              type: "string",
+                              description: "Asset being deposited",
+                            },
+                            amount: {
+                              type: "string",
+                              description: "Amount of asset being deposited",
+                            },
+                            status: {
+                              type: "string",
+                              description:
+                                "Current status of the deposit intent",
+                            },
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            "400": {
+              description: "Bad request",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      error: {
+                        type: "string",
+                        description: "Error message",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            "500": {
+              description: "Server error",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      error: {
+                        type: "string",
+                        description: "Error message",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     },
   };
 

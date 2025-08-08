@@ -34,18 +34,326 @@ export async function GET() {
       },
     },
     paths: {
-      // ... rest of your paths unchanged
       "/api/tools/get-user": {
-        /* ... */
+        get: {
+          summary: "get user information",
+          description: "Respond with user account ID and BTC address",
+          operationId: "get-user",
+          responses: {
+            "200": {
+              description: "Successful response",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      nearAccountId: {
+                        type: "string",
+                        description: "The user's Near account ID",
+                      },
+                      btcAddress: {
+                        type: "string",
+                        description: "The user's BTC address",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            "400": {
+              description: "Bad request",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      error: {
+                        type: "string",
+                        description: "Error message",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            "500": {
+              description: "Error response",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      error: {
+                        type: "string",
+                        description: "Error message",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
       },
       "/api/tools/get-btc-balance": {
-        /* ... */
+        get: {
+          operationId: "get-btc-balance",
+          summary: "Get BTC balance",
+          description: "Respond with BTC address and balance",
+          responses: {
+            "200": {
+              description: "Successful response",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      btcBalance: {
+                        type: "string",
+                        description: "The current BTC balance of the user",
+                      },
+                      btcAddress: {
+                        type: "string",
+                        description: "The user's BTC address",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            "400": {
+              description: "Bad request",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      error: {
+                        type: "string",
+                        description: "Error message",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            "500": {
+              description: "Error response",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      error: {
+                        type: "string",
+                        description: "Error message",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
       },
       "/api/tools/create-btc-mpc-txn": {
-        /* ... */
+        get: {
+          operationId: "create-btc-mpc-txn",
+          summary:
+            "Creates a NEAR txn that utilizes near chain signatures to send transaction on bitcoin mainnet",
+          description:
+            "Generates a NEAR transaction payload for MPC contract to send bitcoin on bitcoin mainnet. Convert BTC amount to satoshi if required before making this tool call. Received payload from this tool can be used directly in the generate-transaction tool.",
+          parameters: [
+            {
+              name: "btcReceiver",
+              in: "query",
+              required: true,
+              schema: {
+                type: "string",
+              },
+              description: "The Bitcon mainnet wallet address of receiver",
+            },
+            {
+              name: "btcAmountInSatoshi",
+              in: "query",
+              required: true,
+              schema: {
+                type: "string",
+              },
+              description: "The amount BTC in satoshi to transfer",
+            },
+          ],
+          responses: {
+            "200": {
+              description: "Successful response",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      transactionPayload: {
+                        type: "object",
+                        properties: {
+                          signerId: {
+                            type: "string",
+                            description: "The signer's NEAR account ID",
+                          },
+                          receiverId: {
+                            type: "string",
+                            description: "The receiver's NEAR account ID",
+                          },
+                          actions: {
+                            type: "array",
+                            items: {
+                              type: "object",
+                              properties: {
+                                type: {
+                                  type: "string",
+                                  description:
+                                    "The type of action (e.g., 'Transfer')",
+                                },
+                                params: {
+                                  type: "object",
+                                  properties: {
+                                    deposit: {
+                                      type: "string",
+                                      description:
+                                        "The amount to transfer in yoctoNEAR",
+                                    },
+                                  },
+                                },
+                              },
+                            },
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            "400": {
+              description: "Bad request",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      error: {
+                        type: "string",
+                        description: "Error message",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            "500": {
+              description: "Error response",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      error: {
+                        type: "string",
+                        description: "Error message",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
       },
       "/api/tools/send-btc-txn": {
-        /* ... */
+        get: {
+          operationId: "send-btc-txn",
+          summary: "Send the signed payload to BTC mainnet",
+          description:
+            "Send signed transaction to BTC mainnet. The signature is received from the txHash of the signed NEAR transaction. Other parameters are the BTC receiver address, BTC amount in satoshi.",
+          parameters: [
+            {
+              name: "btcReceiver",
+              in: "query",
+              required: true,
+              schema: {
+                type: "string",
+              },
+              description: "The BTC address of the receiver",
+            },
+            {
+              name: "btcAmountInSatoshi",
+              in: "query",
+              required: true,
+              schema: {
+                type: "string",
+              },
+              description: "The amount of BTC to transfer in satoshi",
+            },
+            {
+              name: "txHash",
+              in: "query",
+              required: true,
+              schema: {
+                type: "string",
+              },
+              description: "The txHash of the signed txn from near",
+            },
+          ],
+          responses: {
+            "200": {
+              description: "Successful response",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      txHash: {
+                        type: "string",
+                        description:
+                          "The txHash of the txn relayed to BTC mainnet",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            "400": {
+              description: "Bad request",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      error: {
+                        type: "string",
+                        description: "Error message",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+            "500": {
+              description: "Server error",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      error: {
+                        type: "string",
+                        description: "Error message",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
       },
     },
   };

@@ -11,9 +11,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@bitte-ai/agent-sdk": "^0.1.9",
-    "@bitte-ai/chat": "^0.8.2",
-    "@bitte-ai/react": "^0.8.2",
+    "@bitte-ai/agent-sdk": "latest",
+    "@bitte-ai/chat": "latest",
+    "@bitte-ai/react": "latest",
     "@near-wallet-selector/bitte-wallet": "^8.9.13",
     "@near-wallet-selector/core": "^8.9.13",
     "@near-wallet-selector/here-wallet": "^8.9.13",

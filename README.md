@@ -54,11 +54,9 @@ Now, you can send transactions on the Bitcoin mainnet using just your NEAR accou
 
   - `send-btc-txn` : Broadcast a signed transaction to Bitcoin mainnet
 
-  - `get-near-intents-deposit` : Retrieve NEAR intents deposit address for an asset for a connected user.
+  - `check-supported-token` : Checks if asset is supported for swap to BTC through NEAR intents on NEAR blockchain.
 
-  - `swap-to-bitcoin` : Swap any deposited asset to bitcoin using NEAR intents.
-
-  - `withdraw-bitcoin` : Withdraw Bitcoin to an external wallet or your MPC wallet.
+  - `swap-to-bitcoin` : Swap any deposited asset to bitcoin using NEAR intents and withdraw to your MPC bitcoin wallet.
 
 - Each tool is registered in the AI plugin manifest at : `/api/ai-plugin`
 

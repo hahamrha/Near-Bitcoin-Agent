@@ -355,12 +355,13 @@ export async function GET() {
           },
         },
       },
-      "/api/tools/get-near-intents-deposit": {
+      // TO DO
+      "/api/tools/check-supported-token": {
         get: {
-          operationId: "get-near-intents-deposit",
-          summary: "Get NEAR deposit intents",
+          operationId: "check-supported-token",
+          summary: "Check supported token for swap to BTC on NEAR",
           description:
-            "Fetches NEAR deposit intents for the user, enabling deposit of assets from any wallet and swapping them into BTC via NEAR Intents.",
+            "Checks if asset is supported for swap to BTC through NEAR intents on NEAR blockchain.",
           responses: {
             "200": {
               description: "Successful response",
@@ -435,12 +436,12 @@ export async function GET() {
         },
       },
       // TO DO
-      "/api/tools/check-supported-token": {
+      "/api/tools/swap-to-bitcoin": {
         get: {
-          operationId: "check-supported-token",
-          summary: "Check supported token for swap to BTC on NEAR",
+          operationId: "swap-to-bitcoin",
+          summary: "Swap assets to Bitcoin",
           description:
-            "Checks if asset is supported for swap to BTC through NEAR intents on NEAR blockchain.",
+            "Swaps any deposited asset to bitcoin using NEAR intents and withdraw to your MPC bitcoin wallet..",
           responses: {
             "200": {
               description: "Successful response",

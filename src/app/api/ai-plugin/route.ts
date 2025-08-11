@@ -27,7 +27,11 @@ export async function GET() {
           After this txn is signed, use 'api/tools/send-btc-txn' to relay it to BTC mainnet, make sure to provide the 'txHash' (received from signed near txn), 'btcReceiver' address, 'btcAmountInSatoshi' parameters when calling /api/tools/send-btc-txn. 
           If any parameter is not provided, then ask for it explicitly.
           You can also help users deposit assets from any wallet and swap them into BTC, enabled by NEAR Intents. This supports chain-agnostic asset input, seamless settlement via NEAR Intents, and eliminates the need for bridging.`,
-        tools: [{ type: "generate-transaction" }, { type: "sign-message" }],
+        tools: [
+          { type: "generate-transaction" },
+          { type: "sign-message" },
+          { type: "intents" },
+        ],
         image:
           "https://pbs.twimg.com/profile_images/1912478540060041216/21DZcXns_400x400.jpg",
         categories: ["Bitcoin", "DeFi"],

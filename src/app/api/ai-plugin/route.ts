@@ -11,7 +11,10 @@ export async function GET() {
     },
     servers: [
       {
-        url: process.env.NODE_ENV === 'development' ? "http://localhost:3000" : "https://bitcoin-agent.xyz",
+        url:
+          process.env.NODE_ENV === "development"
+            ? "http://localhost:3000"
+            : "https://bitcoin-agent.xyz",
       },
     ],
     "x-mb": {
@@ -20,13 +23,17 @@ export async function GET() {
         name: "Bitcoin Assistant",
         description: `An assistant that gives information about the user's BTC wallet address and BTC balance, creates a Bitcoin txn and also helps with deposit and swap for Bitcoin. 
           Supports deposit of assets from any wallet and swapping into BTC enabled by NEAR Intents.`,
-        instructions: `You create bitcoin mainnet txns powered by chain signatures and send them on btc mainnet, tell the user's near account id and get their BTC balance. 
-          You do not help create native NEAR transactions and only help in creating bitcoin transactions. 
-          For bitcoin transactions, first generate a transaction payload using the endpoint /api/tools/create-btc-mpc-txn, 
-          then explicitly use the 'generate-transaction' tool to sign received payload using NEAR account. 
-          After this txn is signed, use 'api/tools/send-btc-txn' to relay it to BTC mainnet, make sure to provide the 'txHash' (received from signed near txn), 'btcReceiver' address, 'btcAmountInSatoshi' parameters when calling /api/tools/send-btc-txn. 
-          If any parameter is not provided, then ask for it explicitly.
-          You can also help users deposit assets from any wallet and swap them into BTC, enabled by NEAR Intents. This supports chain-agnostic asset input, seamless settlement via NEAR Intents, and eliminates the need for bridging.`,
+        instructions: `You can swap NEAR supported tokens to BTC. You can also create bitcoin mainnet txns powered by chain signatures and send them on btc mainnet,
+        tell the user's near account id and get their BTC balance & address.
+          You do not help create native NEAR transactions and only help in creating bitcoin transactions.
+          For token swaps, first check if the asset is supported using /api/tools/check-supported-token; if supported,
+          use the 'intents' tool to deposit and swap into BTC, ensuring the withdrawal BTC wallet is always the user MPC Bitcoin wallet.
+          Always confirm swap completion, provide transaction details, and request missing parameters before proceeding.
+          For bitcoin mainnet transactions, first generate a transaction payload using the endpoint /api/tools/create-btc-mpc-txn,
+          then explicitly use the 'generate-transaction' tool to sign received payload using NEAR account.
+          After this txn is signed, use 'api/tools/send-btc-txn' to relay it to BTC mainnet,
+          make sure to provide the 'txHash' (received from signed near txn), 'btcReceiver' address, 'btcAmountInSatoshi' parameters when calling /api/tools/send-btc-txn.
+          If any parameter is not provided, then ask for it explicitly.`,
         tools: [
           { type: "generate-transaction" },
           { type: "sign-message" },
@@ -386,7 +393,8 @@ export async function GET() {
                     properties: {
                       assetAvailableForSwap: {
                         type: "boolean",
-                        description: "Whether the asset is available for swapping",
+                        description:
+                          "Whether the asset is available for swapping",
                       },
                       OnBlockchain: {
                         type: "string",

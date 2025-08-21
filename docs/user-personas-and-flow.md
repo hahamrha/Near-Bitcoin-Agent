@@ -161,3 +161,48 @@ This document provides (a) concise user personas and (b) system/user flow diagra
 - **BTC Network (L1):** Settlement layer for BTC transfers.
 
 ---
+
+## 5) Flow Diagrams
+
+### A) BTC Send (NEAR Account Holder)
+
+```mermaid
+flowchart TD
+A[User connects NEAR wallet] --> B[Submit BTC send intent: amount + BTC address]
+B --> C[Agent prepares unsigned BTC TX]
+C --> D[NEAR Chain Signatures MPC signs TX]
+D --> E[Broadcast TX to Bitcoin L1]
+E --> F[Return TX hash + NEAR receipt to user]
+```
+
+### B) Buy/Sell BTC via Intents
+
+```mermaid
+flowchart TD
+A[User places intent: Buy BTC with USDC] --> B[Intents layer finds solver/liquidity path]
+B --> C[Agent locks USDC from user on NEAR]
+C --> D[Agent executes BTC trade via MPC + broadcast]
+D --> E[User receives BTC on L1 address]
+E --> F[User confirms settlement]
+```
+
+### C) Swap BTC → NEAR Assets
+
+```mermaid
+flowchart TD
+A[User places intent: Swap BTC to NEAR asset] --> B[Intents solver finds best route]
+B --> C[Agent locks BTC via MPC signature + broadcast]
+C --> D[NEAR asset credited to user wallet]
+D --> E[User confirms receipt on NEAR + BTC explorers]
+```
+
+### D) AI Agent Invocation
+
+```mermaid
+flowchart TD
+  A[AI Agent] --> B[Request BTC action: send / trade / swap]
+  B --> C[Bitcoin Agent]
+  C --> D[NEAR Intents + Chain Signatures]
+  D --> E[Bitcoin Network]
+  E --> F[Execution Confirmed]
+```

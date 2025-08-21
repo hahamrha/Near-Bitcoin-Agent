@@ -144,3 +144,20 @@ This document provides (a) concise user personas and (b) system/user flow diagra
 - End-to-end latency.
 
 ---
+
+## 3) User Needs
+
+- **As a NEAR user**, I want to send BTC directly from my account without wrapping so I stay in custody and fully onchain.
+- **As a trader**, I want to buy/sell/swap BTC with NEAR assets using intents so I get best execution without bridges.
+- **As a developer**, I want to call Bitcoin Agent from NEAR AI infra so my agent can use BTC in its workflows.
+
+---
+
+## 4) Entities & Contracts
+
+- **Bitcoin Agent Manifest:** Orchestrates intents, signs with MPC (Chain Signatures), exposes `/api/ai-plugin`.
+- **NEAR Intents Layer:** Solver network executing buy/sell/swap orders.
+- **MPC Signers (NEAR Chain Signatures):** Secure multi-party signature generation for Bitcoin L1.
+- **BTC Network (L1):** Settlement layer for BTC transfers.
+
+---

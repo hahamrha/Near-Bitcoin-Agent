@@ -230,3 +230,49 @@ flowchart TD
 **Liquidity shortage (trades/swaps)**: Partial fill or reject.
 
 **AI integration failures**: Return structured error JSON.
+
+## 6) States & UX Model
+
+**Idle**: Agent inactive.
+
+**Intent Pending**: User submitted (send/trade/swap).
+
+**MPC Signing**: Transaction under signature ceremony.
+
+**Broadcasted**: TX sent to Bitcoin mempool.
+
+**Confirmed**: Finalized on Bitcoin.
+
+**Failed**: Error in signing, liquidity, or mempool rejection.
+
+## 7) Edge Cases
+
+**BTC mempool backlog**: Delay settlement UI, retry broadcast.
+
+**Insufficient NEAR gas/fee balance**: Reject request upfront.
+
+**Liquidity shortage (trades/swaps)**: Partial fill or reject.
+
+**AI integration failures**: Return structured error JSON.
+
+## 8) KPIs
+
+**User (BTC Sender)**: Median time send → confirmed.
+
+**Trader**: Slippage vs intent; % trades filled.
+
+**Swapper**: Swap success rate; settlement latency.
+
+**AI Developer**: Successful API calls vs errors.
+
+**System**: MPC uptime; mempool broadcast success rate.
+
+## 9) Deliverables Checklist
+
+✅ Personas (User, Trader, Swapper, AI Developer).
+
+✅ Flows (BTC send, buy/sell, swap, AI integration).
+
+✅ State model & edge cases.
+
+✅ KPIs mapped to each persona.

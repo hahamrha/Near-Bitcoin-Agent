@@ -206,3 +206,27 @@ flowchart TD
   D --> E[Bitcoin Network]
   E --> F[Execution Confirmed]
 ```
+
+## 6) States & UX Model
+
+**Idle**: Agent inactive.
+
+**Intent Pending**: User submitted (send/trade/swap).
+
+**MPC Signing**: Transaction under signature ceremony.
+
+**Broadcasted**: TX sent to Bitcoin mempool.
+
+**Confirmed**: Finalized on Bitcoin.
+
+**Failed**: Error in signing, liquidity, or mempool rejection.
+
+## 7) Edge Cases
+
+**BTC mempool backlog**: Delay settlement UI, retry broadcast.
+
+**Insufficient NEAR gas/fee balance**: Reject request upfront.
+
+**Liquidity shortage (trades/swaps)**: Partial fill or reject.
+
+**AI integration failures**: Return structured error JSON.

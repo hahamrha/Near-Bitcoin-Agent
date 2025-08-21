@@ -76,3 +76,12 @@ Unlike bridges, custodial services, or wrapped tokens, Bitcoin Agent offers a **
   - Developer-ready APIs (`/api/ai-plugin`) for seamless integration.
 
 ---
+
+## Competitive Edge Summary
+
+- **Trust-minimized:** No bridges, custodians, or wrapped tokens.
+- **Composability:** Natively works with NEAR DeFi and AI ecosystem.
+- **Developer Friendly:** Intent-driven APIs and simple plugin manifest.
+- **Future-Proof:** Expansion towards **Axons Network** → multi-chain MPC, unified liquidity, and instant swaps powered by NEAR Intents.
+
+---

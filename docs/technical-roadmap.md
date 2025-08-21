@@ -43,7 +43,7 @@ Transform Bitcoin Agent into a **full-featured trading agent** capable of buy, s
 
 ### Objective
 
-Evolve Bitcoin Agent into the **first participant of Axons Network** — a multi-network MCP infrastructure on NEAR, supporting **multi-chain wallets with unified liquidity** and **instant swaps**. Axons Network will serve as the **infrastructure backbone** that allows agents across chains to interoperate seamlessly.
+Evolve Bitcoin Agent into the **first participant of Axons Network** , a multi-network MCP infrastructure on NEAR, supporting **multi-chain wallets with unified liquidity** and **instant swaps**. Axons Network will serve as the **infrastructure backbone** that allows agents across chains to interoperate seamlessly.
 
 ### Milestones & Deliverables
 
@@ -76,4 +76,4 @@ Evolve Bitcoin Agent into the **first participant of Axons Network** — a multi
 ---
 
 ✅ By the end of **Q2**, Bitcoin Agent will evolve into a **trade-ready, AI-integrated execution agent** for BTC on NEAR.  
-✅ By the end of **Q3**, Bitcoin Agent will pioneer **Axons Network**, enabling multi-chain wallets, unified liquidity, and instant cross-chain swaps — establishing the foundation for a **network of multi-chain agents on NEAR**.
+✅ By the end of **Q3**, Bitcoin Agent will pioneer **Axons Network**, enabling multi-chain wallets, unified liquidity, and instant cross-chain swaps, establishing the foundation for a **network of multi-chain agents on NEAR**.

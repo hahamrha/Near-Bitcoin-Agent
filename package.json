@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@bitte-ai/agent-sdk": "latest",
-    "@bitte-ai/chat": "latest",
+    "@bitte-ai/chat": "^0.19.7",
     "@bitte-ai/react": "latest",
     "@near-wallet-selector/bitte-wallet": "^8.9.13",
     "@near-wallet-selector/core": "^8.9.13",

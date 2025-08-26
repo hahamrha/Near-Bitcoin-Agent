@@ -39,17 +39,17 @@ Transform Bitcoin Agent into a **full-featured trading agent** capable of buy, s
 
 ---
 
-## Q3 – Axons Network: MCP Infrastructure & Multichain Wallets ⚡
+## Q3 – Axons : MCP Infrastructure & Multichain Wallets ⚡
 
 ### Objective
 
-Evolve Bitcoin Agent into the **first participant of Axons Network** , a multi-network MCP infrastructure on NEAR, supporting **multi-chain wallets with unified liquidity** and **instant swaps**. Axons Network will serve as the **infrastructure backbone** that allows agents across chains to interoperate seamlessly.
+Evolve Bitcoin Agent into the **first participant of Axons** , a multi-network MCP infrastructure on NEAR, supporting **multi-chain wallets with unified liquidity** and **instant swaps**. Axons Network will serve as the **infrastructure backbone** that allows agents across chains to interoperate seamlessly.
 
 ### Milestones & Deliverables
 
 1. **Axons MCP Servers for Agents on NEAR**
 
-   - Build **Axons Network MCP servers** that standardize how agents operate on NEAR.
+   - Build **Axons MCP servers** that standardize how agents operate on NEAR.
    - Each MCP server will handle requests, signature flows, and execution for its corresponding chain/agent.
    - Deliverables:
      - Axons MCP server template for agents (starting with Bitcoin Agent).
@@ -76,4 +76,4 @@ Evolve Bitcoin Agent into the **first participant of Axons Network** , a multi-n
 ---
 
 ✅ By the end of **Q2**, Bitcoin Agent will evolve into a **trade-ready, AI-integrated execution agent** for BTC on NEAR.  
-✅ By the end of **Q3**, Bitcoin Agent will pioneer **Axons Network**, enabling multi-chain wallets, unified liquidity, and instant cross-chain swaps, establishing the foundation for a **network of multi-chain agents on NEAR**.
+✅ By the end of **Q3**, Bitcoin Agent will pioneer **Axons**, enabling multi-chain wallets, unified liquidity, and instant cross-chain swaps, establishing the foundation for a **network of multi-chain agents on NEAR**.

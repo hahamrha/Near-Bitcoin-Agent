@@ -49,8 +49,14 @@
 
 ### Step 5: Multichain Expansion (Planned)
 
-- Following NEAR AI integration, focus shifts toward MCP-based multi-network agents (Axons Network).
+- Following NEAR AI integration, focus shifts toward MCP-based multi-network agents (Axons).
 - Agents will be able to **settle on any chain using NEAR Intents + MCP infrastructure**.
 - This milestone is targeted after v2.0 roadmap items are complete.
 
 ---
+
+## Summary
+
+- **Delivered:** Core BTC transaction tools, mainnet launch, swap functionality with NEAR Intents.
+- **In Progress:** Expanding trading capabilities and preparing AI integration.
+- **Next:** Full NEAR AI integration → Multichain agent support with Axons.

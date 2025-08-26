@@ -24,3 +24,13 @@
 - **v1.0 launch achieved.**
 
 ---
+
+**_NOTE: Below is the Milestone achieved this month_**
+
+### ✅ Step 4: Trading Capabilities via NEAR Intents
+
+- Completed integration of **swap functionality** through the **NEAR Intents 1-click API**.
+- Bitcoin Agent now supports **seamless buy, sell, and swap of BTC** with intent-driven execution.
+- Marks the most recent milestone delivered on the roadmap.
+
+---

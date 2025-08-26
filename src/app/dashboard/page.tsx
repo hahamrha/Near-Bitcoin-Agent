@@ -38,7 +38,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+
 import ChatWidget from "@/components/ChatWidget";
+
 
 
 export default function Dashboard() {
@@ -441,9 +443,31 @@ export default function Dashboard() {
 
 
       </div>
-      <div className="z-10" >
-        <ChatWidget />
+      <div
+        style={{
+          position: "fixed",
+          bottom: "32px",
+          right: "32px",
+          width: "400px",
+          height: "600px",
+          zIndex: 1000,
+          pointerEvents: "none", // allow clicks to pass through by default
+        }}
+      >
+        <iframe
+          src="/widget-iframe"
+          style={{
+            width: "100%",
+            height: "100%",
+            border: "none",
+            borderRadius: "16px",
+            boxShadow: "0 4px 32px rgba(0,0,0,0.3)",
+            pointerEvents: "auto", // allow interaction with the widget
+          }}
+          title="Chat Widget"
+        />
       </div>
+
     </div>
   );
 }

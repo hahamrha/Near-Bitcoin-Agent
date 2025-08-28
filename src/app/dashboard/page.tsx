@@ -440,15 +440,13 @@ export default function Dashboard() {
             </div>
           </div>
         </footer>
-
-
       </div>
       <div
         style={{
           position: "fixed",
           bottom: "32px",
           right: "32px",
-          width: "400px",
+          width: "500px",
           height: "600px",
           zIndex: 1000,
           pointerEvents: "none", // allow clicks to pass through by default
@@ -459,9 +457,7 @@ export default function Dashboard() {
           style={{
             width: "100%",
             height: "100%",
-            border: "none",
             borderRadius: "16px",
-            boxShadow: "0 4px 32px rgba(0,0,0,0.3)",
             pointerEvents: "auto", // allow interaction with the widget
           }}
           title="Chat Widget"

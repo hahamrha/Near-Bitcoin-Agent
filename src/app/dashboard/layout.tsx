@@ -5,9 +5,5 @@ export default function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <body>
-      <NearProvider>{children}</NearProvider>
-    </body>
-  );
+  return (<NearProvider>{children}</NearProvider>);
 }

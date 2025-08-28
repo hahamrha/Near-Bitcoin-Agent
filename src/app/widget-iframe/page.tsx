@@ -30,6 +30,7 @@ export default function WidgetIframePage() {
             questions: [
               'Get my BTC balance?',
             ],
+            actions: ['Get Balance']
           },
           customTriggerButton: (
             <button

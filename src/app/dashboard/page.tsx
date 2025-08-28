@@ -377,7 +377,7 @@ export default function Dashboard() {
                 </div>
               </CardContent>
 
-              <CardFooter className="border-t border-emerald-900/30 pt-4">
+              {/* <CardFooter className="border-t border-emerald-900/30 pt-4">
                 <Button
                   onClick={() =>
                     window.open(
@@ -389,7 +389,7 @@ export default function Dashboard() {
                 >
                   Launch Agent Widget
                 </Button>
-              </CardFooter>
+              </CardFooter> */}
             </Card>
           </div>
 

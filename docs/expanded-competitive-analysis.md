@@ -52,3 +52,21 @@ Positioning:
 - Generalized agent frameworks adding shallow BTC support.
 
 ---
+
+## Differentiation & Positioning
+
+- **Trust-Minimized:** Unlike bridges/wrapped tokens, Bitcoin Agent executes on **real Bitcoin L1**.
+- **Agent-Native:** Built on `bitte-ai/agent-sdk`, fully pluggable into **NEAR AI infra**.
+- **Intent-Driven UX:** Users trigger buy, sell, or swap with 1-click intent execution.
+- **Future-Proof Expansion:** Path to **Axons** (multi-chain MPC servers with unified liquidity + instant swaps).
+
+---
+
+## Key Takeaways
+
+- Competitors offer scale (bridges, L2s) or generality (messaging protocols, AI agents).
+- Bitcoin Agent focuses on **security, simplicity, and composability**:
+  - Native BTC (no wrapping).
+  - Direct NEAR integration (signatures + intents).
+  - Agent-native design (AI-driven execution).
+- This positions Bitcoin Agent as the **first true Bitcoin execution agent** within the NEAR ecosystem and the broader AI-agent landscape.

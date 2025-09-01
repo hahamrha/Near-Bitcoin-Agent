@@ -2,9 +2,14 @@
 
 ## Overview
 
-**Bitcoin Agent** enables **native Bitcoin transactions, trading, and swaps** directly through NEAR accounts, leveraging **NEAR chain signatures and intents**.
+**Bitcoin Agent** is a cross-chain execution layer that enables **native Bitcoin transactions, trading, and swaps** directly via NEAR accounts.  
+By leveraging **NEAR chain signatures** and **intent-based execution**, Bitcoin Agent removes the need for bridges, wrapped tokens, or custodial services.
 
-Unlike bridges, custodial services, or wrapped tokens, Bitcoin Agent offers a **trust-minimized, fully onchain execution layer** between NEAR and Bitcoin L1.
+Positioning:
+
+- **Category:** AI-driven multi-chain agent
+- **Differentiator:** First agent to integrate **native BTC L1 execution** into NEAR’s **Intents + AI ecosystem**
+- **Vision:** Become the backbone of agent-to-Bitcoin interactions within NEAR and beyond.
 
 ---
 

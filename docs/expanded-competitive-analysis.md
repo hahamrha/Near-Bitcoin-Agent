@@ -13,6 +13,17 @@ Positioning:
 
 ---
 
+## Market Landscape
+
+| Archetype                           | Examples                        | Strengths                                 | Weaknesses                                                        | Bitcoin Agent Position                                                               |
+| ----------------------------------- | ------------------------------- | ----------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| **Bridges & Wrapped Assets**        | WBTC, tBTC, RenBTC              | Access to DeFi liquidity                  | Custodial/semi-custodial, bridge hacks, wrapping friction         | No wrapped assets. Direct native BTC execution via NEAR account.                     |
+| **Cross-Chain Messaging Protocols** | Wormhole, LayerZero, Axelar     | Generalized interoperability, multi-chain | Reliance on relayers, security risks, integration overhead        | Intent-driven, lightweight integration. Direct NEAR signatures → fewer moving parts. |
+| **Bitcoin Layer 2s**                | Lightning, Stacks, Rootstock    | Scaling, smart contracts                  | Liquidity fragmentation, separate wallets, low NEAR composability | Seamless send, trade, swap flows for _real BTC_. Fully composable with NEAR DeFi.    |
+| **AI + Web3 Agents**                | Autonolas, Fetch.ai, Agent SDKs | AI execution models, automation           | Limited Bitcoin support, abstraction without infra                | First AI-driven execution layer with **native Bitcoin + NEAR AI** integration.       |
+
+---
+
 ## Competitive Edge Summary
 
 - **Trust-minimized:** No bridges, custodians, or wrapped tokens.

@@ -24,11 +24,31 @@ Positioning:
 
 ---
 
-## Competitive Edge Summary
+## SWOT Analysis
 
-- **Trust-minimized:** No bridges, custodians, or wrapped tokens.
-- **Composability:** Natively works with NEAR DeFi and AI ecosystem.
-- **Developer Friendly:** Intent-driven APIs and simple plugin manifest.
-- **Future-Proof:** Expansion towards **Axons** → multi-chain MPC, unified liquidity, and instant swaps powered by NEAR Intents.
+### Strengths
+
+- Native Bitcoin L1 support, no bridges, wrappers, or custodians.
+- Plug and play with **NEAR Intents** → simple buy/sell/swap flows.
+- First mover in **AI-integrated BTC execution**.
+- Developer ready APIs and manifest → fast adoption.
+
+### Weaknesses
+
+- Early stage infra → limited liquidity and integrations compared to bridges.
+- Reliant on NEAR adoption for scale.
+- Focused only on BTC today (multi-asset via **Axons** is roadmap).
+
+### Opportunities
+
+- Expansion into **Axons** → multi-chain MPC servers with unified liquidity.
+- Position as **AI infra for Bitcoin** within NEAR AI.
+- Capture developer mindshare as the “Bitcoin primitive” in NEAR’s agent ecosystem.
+
+### Threats
+
+- Bridges evolving into more secure, intent-like flows.
+- Competing L2s gaining wider adoption and liquidity.
+- Generalized agent frameworks adding shallow BTC support.
 
 ---

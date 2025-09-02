@@ -8,7 +8,7 @@
 ## 1. Sources of Feedback
 
 - **Internal team usage**: AlphaDevs team members testing Bitcoin Agent flows.
-- **External builders**: Developers in the ecosystem who trialed early functionality.
+- **External builders**: Developers in the ecosystem who tried early functionality.
 - **Chat logs (GDPR-compliant)**: User conversations and behaviors during testing sessions, anonymized for analysis.
 
 ---

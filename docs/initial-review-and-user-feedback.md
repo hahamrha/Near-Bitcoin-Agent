@@ -54,3 +54,23 @@
    - _Improvement needed:_ Expand documentation with sample flows (send BTC, swap BTC, AI agent call), troubleshooting, and SDK examples.
 
 ---
+
+## 3. Opportunities Identified
+
+- Strong demand for **AI integration**, with users wanting Bitcoin Agent callable by NEAR AI agents.
+- Expanded **developer documentation and onboarding flows** are a clear near-term opportunity.
+- Improved **user clarity (wallet warnings, guided onboarding)** will boost adoption and trust.
+
+---
+
+## 4. Next Steps
+
+- ✅ Widget trigger visibility resolved.
+- ✅ Hydration errors resolved.
+- 🔄 This month’s focus:
+  - Implement clear wallet context warnings.
+  - Add onboarding flows and tooltips for NEAR Intents.
+  - Expand developer documentation with end-to-end examples.
+- Continue progress on NEAR AI integration in the next milestone.
+
+---

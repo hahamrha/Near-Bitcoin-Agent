@@ -76,3 +76,23 @@ sequenceDiagram
 ```
 
 ---
+
+## Key Value Flows
+
+BTC Flow: User → Bitcoin Agent → Chain Signatures → Bitcoin L1 → Recipient.
+
+Intent Flow: User/AI → NEAR Intents → Bitcoin Agent → Execution.
+
+Liquidity Flow: NEAR Intents → Liquidity Pools → Swap execution → User.
+
+AI Flow: AI agents → Bitcoin Agent → Trigger BTC action → Results returned.
+
+## Why This Matters
+
+Trust-minimized: No custodians, bridges, or wrapped BTC.
+
+Composability: Native integration with NEAR DeFi + NEAR AI.
+
+Efficiency: One-click intents replace complex cross-chain flows.
+
+Scalability: Foundation for Axons Protocol (multi-chain MPC, unified liquidity, instant swaps).

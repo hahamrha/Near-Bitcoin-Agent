@@ -30,3 +30,22 @@
   - Used as the cryptographic bridge between NEAR and Bitcoin L1.
 
 ---
+
+## 3. Execution & Agent Layer
+
+- **Bitcoin Agent**
+
+  - Core execution agent that handles user intents (send, trade, swap).
+  - Routes liquidity requests through NEAR Intents and returns results with BTC settlement.
+
+- **Bitte AI Agent Runtime**
+
+  - Runtime environment for deploying Bitcoin Agent as an AI-compatible agent.
+  - Enables other AI agents to query and invoke Bitcoin Agent using standard interfaces.
+
+- **Axons Protocol (Planned)**
+  - Multi-chain coordination and liquidity layer.
+  - Extends Bitcoin Agent capabilities beyond NEAR to other ecosystems.
+  - Provides unified liquidity and instant swaps across chains.
+
+---

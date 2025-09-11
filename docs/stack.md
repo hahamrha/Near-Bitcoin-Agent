@@ -49,3 +49,29 @@
   - Provides unified liquidity and instant swaps across chains.
 
 ---
+
+## 4. APIs & Integration
+
+- **Bitte Agent SDK (`bitte-ai/agent-sdk`)**
+
+  - Provides tools for defining, testing, and deploying agents.
+  - Used to expose Bitcoin Agent functionality to developers and AI systems.
+
+- **Plugin Manifest (`/api/ai-plugin`)**
+  - Defines Bitcoin Agent capabilities in a machine-readable format.
+  - Enables discovery and integration by other AI agents in NEAR AI infra.
+
+---
+
+## 5. Application Layer
+
+- **Dashboard & Widget**
+
+  - User interface for sending BTC, executing swaps, and interacting with the agent.
+  - Integrated wallet context to connect NEAR accounts.
+
+- **Developer Documentation**
+  - Lean Canvas, Roadmap, Competitive Analysis, Technical Docs.
+  - Serves as onboarding material for external contributors and ecosystem developers.
+
+---

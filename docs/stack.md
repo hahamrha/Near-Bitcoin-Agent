@@ -1,4 +1,4 @@
-# Bitcoin Agent — Technology Stack
+# Bitcoin Agent : Technology Stack
 
 **Scope:** Core technology stack used to design, build, and run Bitcoin Agent. Complements the Technical Architecture document.
 
@@ -73,5 +73,35 @@
 - **Developer Documentation**
   - Lean Canvas, Roadmap, Competitive Analysis, Technical Docs.
   - Serves as onboarding material for external contributors and ecosystem developers.
+
+---
+
+## 6. Infrastructure & Tooling
+
+- **Languages & Frameworks:**
+
+  - Rust → Smart contracts & NEAR integrations.
+  - TypeScript/Next.js → Dashboard + widget frontend.
+  - Node.js → API services and agent runtime glue code.
+
+- **Infrastructure:**
+
+  - NEAR Testnet/Mainnet for account-level execution.
+  - Bitte Playground for testing agent deployments.
+  - Cloud infra (containerized services) for running MPC nodes and APIs.
+
+- **Security & Audits:**
+  - MPC infrastructure hardened for key safety.
+  - Planned third-party audits for smart contracts and agent infra.
+
+---
+
+## 7. Public Good Alignment
+
+Bitcoin Agent is developed as **public infrastructure** for the NEAR x Bitcoin ecosystem.
+
+- Open-source stack wherever possible.
+- Composability-first design (intents, chain signatures, AI runtime).
+- Future roadmap extends towards **Axons Protocol**, unifying multi-chain execution under the same stack principles.
 
 ---

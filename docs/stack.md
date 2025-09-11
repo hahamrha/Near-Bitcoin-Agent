@@ -17,3 +17,16 @@
   - Accounts on NEAR act as the entry point for Bitcoin Agent usage.
 
 ---
+
+## 2. MPC & Signature Infrastructure
+
+- **MPC Signer (v1.signer)**
+
+  - Secure multiparty computation (MPC) system for signing native Bitcoin transactions.
+  - Ensures non-custodial, trust-minimized key management.
+
+- **Chain Signatures**
+  - NEAR primitive that enables users to control Bitcoin transactions with their NEAR accounts.
+  - Used as the cryptographic bridge between NEAR and Bitcoin L1.
+
+---

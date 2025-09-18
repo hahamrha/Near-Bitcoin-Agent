@@ -32,3 +32,10 @@ This document highlights the key risks for the Bitcoin Agent and how we plan to 
 - **Risk Rating (LxI):** Combine likelihood × impact (e.g., High × High = 5, Medium × High = 4).
 
 ---
+
+## Status Guide
+
+- **Open** – Identified, not yet mitigated
+- **Monitoring** – Being watched with actions in place
+- **Mitigated** – Risk reduced through actions
+- **Resolved** – No longer relevant

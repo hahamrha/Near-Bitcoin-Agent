@@ -14,3 +14,21 @@ This document highlights the key risks for the Bitcoin Agent and how we plan to 
 | R-004   | Bugs in intents tool agent logic causing unintended trades or loops                              | Medium     | High   | Thorough testing, simulations and safe thresholds                                                                            | Monitoring |
 
 ---
+
+## Risk Rating Guide
+
+- **Likelihood:**
+
+  - Low = unlikely to occur
+  - Medium = possible
+  - High = likely to occur
+
+- **Impact:**
+
+  - Low = minor effect on cost/timeline/quality
+  - Medium = noticeable effect but manageable
+  - High = major delay, cost overrun, or failure risk
+
+- **Risk Rating (LxI):** Combine likelihood × impact (e.g., High × High = 5, Medium × High = 4).
+
+---

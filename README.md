@@ -47,6 +47,7 @@ Now, you can send transactions on the Bitcoin mainnet using just your NEAR accou
 - Check wallet balances and transaction history
 - Monitor agent status in real-time
 - Access at [bitcoin-agent.xyz/dashboard](https://bitcoin-agent.xyz/dashboard)
+- Access on [NEAR registry](https://app.near.ai/agents/nanotech-dredd.near/bitcoin-agent/latest)
 
 ### ⚡ Instant Cross-Chain Swaps
 
@@ -91,6 +92,8 @@ Visit `http://localhost:3001` to access the agent interface.
 
 ## Setup
 
+### 1. Bitte Agent
+
 ### Environment Variables
 
 Create a `.env` file with the following variables:
@@ -112,6 +115,18 @@ pnpm build
 
 # Deploy agent
 pnpm build:deploy
+```
+
+### 2. NEAR AI Agent
+
+Basic Embedding : To embed an agent, use the following iframe code replacing the src with the agent you want to embed.
+
+```bash
+<iframe
+  src="https://app.near.ai/agents/nanotech-dredd.near/bitcoin-agent/latest"
+  sandbox="allow-scripts allow-popups allow-same-origin allow-forms"
+  style="border: none; height: 100svh;">
+</iframe>
 ```
 
 ## Usage

@@ -91,6 +91,8 @@ Visit `http://localhost:3001` to access the agent interface.
 
 ## Setup
 
+### 1. Bitte Agent
+
 ### Environment Variables
 
 Create a `.env` file with the following variables:
@@ -112,6 +114,18 @@ pnpm build
 
 # Deploy agent
 pnpm build:deploy
+```
+
+### 2. NEAR AI Agent
+
+Basic Embedding : To embed an agent, use the following iframe code replacing the src with the agent you want to embed.
+
+```bash
+<iframe
+  src="https://github.com/0xAlphaDevs/Near-Bitcoin-Agent?tab=readme-ov-file#links"
+  sandbox="allow-scripts allow-popups allow-same-origin allow-forms"
+  style="border: none; height: 100svh;">
+</iframe>
 ```
 
 ## Usage

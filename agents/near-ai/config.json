@@ -1,0 +1,12 @@
+{
+  "auth": {
+    "account_id": "nanotech-dredd.near",
+    "signature": "IC+Nh+Kdcg47s1793947xZiYkzsOmCTs9bs47huwth+q34RqoDbTwRxLmtrajg5ELY+qN0yL7DcF4kA67GJMCw==",
+    "public_key": "ed25519:31J19bfigtTyuvXr269iLdjacJ3tdwD79LmXZXWvuMKM",
+    "callback_url": "http://localhost:61968/capture",
+    "nonce": "1758331861879",
+    "recipient": "ai.near",
+    "message": "Welcome to NEAR AI",
+    "on_behalf_of": null
+  }
+}

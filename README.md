@@ -47,7 +47,7 @@ Now, you can send transactions on the Bitcoin mainnet using just your NEAR accou
 - Check wallet balances and transaction history
 - Monitor agent status in real-time
 - Access at [bitcoin-agent.xyz/dashboard](https://bitcoin-agent.xyz/dashboard)
-- Access on [NEAR registry](https://github.com/0xAlphaDevs/Near-Bitcoin-Agent?tab=readme-ov-file#links)
+- Access on [NEAR registry](https://app.near.ai/agents/nanotech-dredd.near/bitcoin-agent/latest)
 
 ### ⚡ Instant Cross-Chain Swaps
 

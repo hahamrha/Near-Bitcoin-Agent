@@ -25,7 +25,7 @@
 
 ---
 
-**_NOTE: Below is the Milestone achieved this month_**
+## Month 1 Progress
 
 ### ✅ Step 4: Trading Capabilities via NEAR Intents
 
@@ -34,24 +34,6 @@
 - Marks the most recent milestone delivered on the roadmap.
 
 ---
-
-## Upcoming Focus
-
-### ⏭️ Next Step: NEAR AI Integration
-
-- Work will **resume next month** to integrate Bitcoin Agent into the **NEAR AI infrastructure**.
-- Goal: enable other NEAR AI agents to query and invoke Bitcoin Agent for transactions, trades, and swaps.
-- Deliverable: AI-friendly endpoints and demo flows.
-
----
-
-## Next Major Milestone
-
-### Step 5: Multichain Expansion (Planned)
-
-- Following NEAR AI integration, focus shifts toward MCP-based multi-network agents (Axons).
-- Agents will be able to **settle on any chain using NEAR Intents + MCP infrastructure**.
-- This milestone is targeted after v2.0 roadmap items are complete.
 
 ---
 

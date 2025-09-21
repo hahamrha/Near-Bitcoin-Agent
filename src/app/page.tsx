@@ -256,8 +256,8 @@ export default function Home() {
 
               {/* Item 5: Bitcoin DeFi Integration */}
               <div className="md:text-right flex flex-col items-start md:items-end order-10 md:order-9 md:pr-8">
-                <div className="bg-black/60 border border-yellow-300/50 p-6 rounded-lg w-full hover:border-yellow-500 transition-all duration-300">
-                  <Badge className="mb-2 text-yellow-400">In Progress</Badge>
+                <div className="bg-black/60 border border-emerald-900/50 p-6 rounded-lg w-full hover:border-emerald-500 transition-all duration-300">
+                  <Badge className="mb-2 bg-emerald-500 text-black">Completed</Badge>
                   <h4 className="text-xl font-bold mb-2">Trade</h4>
                   <p className="text-gray-400">
                     Buy, sell, and swap your BTC with Near Intents.
@@ -265,26 +265,47 @@ export default function Home() {
                 </div>
               </div>
               <div className="relative order-9 md:order-10 md:pl-8">
-                <div className="absolute left-0 md:left-0 top-2 md:top-6 w-8 h-8 rounded-full bg-yellow-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
-                  <Clock className="h-5 w-5 text-black" />
+                <div className="absolute left-0 md:left-0 top-2 md:top-6 w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
+                  <CheckCircle2 className="h-5 w-5 text-black" />
                 </div>
               </div>
 
               {/* Item 6: Complete Bitcoin Operations */}
               <div className="relative order-11 md:pr-8">
-                <div className="absolute left-0 md:left-10/10 top-2 md:top-6 w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
+                <div className="absolute left-0 md:left-10/10 top-2 md:top-6 w-8 h-8 rounded-full bg-yellow-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
                   <Clock className="h-5 w-5 text-black" />
                 </div>
               </div>
               <div className="order-12 md:pl-8">
-                <div className="bg-black/60 border border-emerald-900/50 p-6 rounded-lg hover:border-emerald-500 transition-all duration-300">
-                  <Badge className="mb-2 bg-emerald-900/50 text-emerald-400">Phase 3</Badge>
+                <div className="bg-black/60 border border-yellow-300/50 p-6 rounded-lg hover:border-yellow-500 transition-all duration-300">
+                  <Badge className="mb-2 text-yellow-400">In Progress</Badge>
                   <h4 className="text-xl font-bold mb-2">Lend & Borrow</h4>
                   <p className="text-gray-400">
                     Earn. Leverage. Repeat. Banking with your BTC.
                   </p>
                 </div>
               </div>
+
+              {/* Phase 4 - Item 1: Axons Protocol */}
+              <div className="md:text-right flex flex-col items-start md:items-end order-14 md:order-13 md:pr-8">
+                <div className="bg-black/60 border border-emerald-900/50 p-6 rounded-lg w-full hover:border-emerald-500 transition-all duration-300">
+                  <Badge className="mb-2 bg-emerald-900/50 text-emerald-400">Phase 4</Badge>
+                  <h4 className="text-xl font-bold mb-2 flex items-center md:justify-end gap-2">
+                    <span>Axons Protocol</span>
+                  </h4>
+                  <p className="text-gray-400">
+                    MCP Layer for AI agents with intents.
+                  </p>
+                </div>
+              </div>
+              <div className="relative order-13 md:order-14 md:pl-8">
+                <div className="absolute left-0 md:left-0 top-2 md:top-6 w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
+                  <Clock className="h-5 w-5 text-black" />
+                </div>
+              </div>
+
+
+
 
             </div>
           </div>

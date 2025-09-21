@@ -67,11 +67,12 @@ export default function Home() {
 
         <div className="max-w-3xl mx-auto text-center space-y-8 relative z-10 md:pt-16">
           <div className="inline-block">
-            <a href="https://x.com/btc_near/status/1927340551386394847" target="_blank" rel="noreferrer">
-              <Badge className="bg-emerald-900/50 text-emerald-400 hover:bg-emerald-900/70 px-4 py-1.5 text-sm backdrop-blur-sm">
-                v1.0 Release <ArrowUpRight className="inline h-4 w-4 ml-1" />
-              </Badge>
-            </a>
+
+            <Badge className="bg-emerald-900/50 text-emerald-400 hover:bg-emerald-900/70 px-4 py-1.5 text-sm backdrop-blur-sm">
+              v2.0
+              {/* <ArrowUpRight className="inline h-4 w-4 ml-1" /> */}
+            </Badge>
+
           </div>
 
           <div className="space-y-4">

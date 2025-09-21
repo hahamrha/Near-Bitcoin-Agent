@@ -58,6 +58,6 @@
 
 ## Summary
 
-- **Delivered:** Core BTC transaction tools, mainnet launch, swap functionality with NEAR Intents.
-- **In Progress:** Expanding trading capabilities and preparing AI integration.
-- **Next:** Full NEAR AI integration → Multichain agent support with Axons.
+- **Delivered:** BTC transaction tools, mainnet launch, swaps via NEAR Intents, and full NEAR AI integration.
+- **Accessible:** Bitcoin Agent is live on NEAR AI and publicly available.
+- **Next:** Begin **Axons Protocol** development to extend Bitcoin Agent into a multi-chain coordination and liquidity layer.

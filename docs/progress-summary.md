@@ -35,6 +35,15 @@
 
 ---
 
+## Month 2 Progress
+
+### ✅ Step 5: NEAR AI Integration
+
+- Bitcoin Agent has been successfully deployed as a **NEAR AI-compatible agent**.
+- Public link and embedding instructions are included in the `README.md`:  
+  🔗 [Bitcoin Agent on NEAR AI](https://app.near.ai/agents/nanotech-dredd.near/bitcoin-agent/latest)
+- Other NEAR AI agents can now **query and invoke Bitcoin Agent** for BTC transactions, trades, and swaps.
+
 ---
 
 ## Summary

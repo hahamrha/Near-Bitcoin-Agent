@@ -25,7 +25,7 @@
 
 ---
 
-**_NOTE: Below is the Milestone achieved this month_**
+## Month 1 Progress
 
 ### ✅ Step 4: Trading Capabilities via NEAR Intents
 
@@ -35,28 +35,29 @@
 
 ---
 
-## Upcoming Focus
+## Month 2 Progress
 
-### ⏭️ Next Step: NEAR AI Integration
+### ✅ Step 5: NEAR AI Integration
 
-- Work will **resume next month** to integrate Bitcoin Agent into the **NEAR AI infrastructure**.
-- Goal: enable other NEAR AI agents to query and invoke Bitcoin Agent for transactions, trades, and swaps.
-- Deliverable: AI-friendly endpoints and demo flows.
+- Bitcoin Agent has been successfully deployed as a **NEAR AI-compatible agent**.
+- Public link and embedding instructions are included in the `README.md`:  
+  🔗 [Bitcoin Agent on NEAR AI](https://app.near.ai/agents/nanotech-dredd.near/bitcoin-agent/latest)
+- Other NEAR AI agents can now **query and invoke Bitcoin Agent** for BTC transactions, trades, and swaps.
 
 ---
 
-## Next Major Milestone
+## Upcoming Focus
 
-### Step 5: Multichain Expansion (Planned)
+### ⏭️ Next Step: Multichain Expansion (Axons Protocol)
 
-- Following NEAR AI integration, focus shifts toward MCP-based multi-network agents (Axons).
-- Agents will be able to **settle on any chain using NEAR Intents + MCP infrastructure**.
-- This milestone is targeted after v2.0 roadmap items are complete.
+- Next phase will focus on **Axons Protocol** , the MCP based multi-network infrastructure.
+- Axons will enable **multi-chain agents with unified liquidity and instant swaps** powered by NEAR Intents.
+- Target: Begin integration after NEAR AI integration is stabilized and v2.0 items are complete.
 
 ---
 
 ## Summary
 
-- **Delivered:** Core BTC transaction tools, mainnet launch, swap functionality with NEAR Intents.
-- **In Progress:** Expanding trading capabilities and preparing AI integration.
-- **Next:** Full NEAR AI integration → Multichain agent support with Axons.
+- **Delivered:** BTC transaction tools, mainnet launch, swaps via NEAR Intents, and full NEAR AI integration.
+- **Accessible:** Bitcoin Agent is live on NEAR AI and publicly available.
+- **Next:** Begin **Axons Protocol** development to extend Bitcoin Agent into a multi-chain coordination and liquidity layer.

@@ -46,6 +46,16 @@
 
 ---
 
+## Upcoming Focus
+
+### ⏭️ Next Step: Multichain Expansion (Axons Protocol)
+
+- Next phase will focus on **Axons Protocol** , the MCP based multi-network infrastructure.
+- Axons will enable **multi-chain agents with unified liquidity and instant swaps** powered by NEAR Intents.
+- Target: Begin integration after NEAR AI integration is stabilized and v2.0 items are complete.
+
+---
+
 ## Summary
 
 - **Delivered:** Core BTC transaction tools, mainnet launch, swap functionality with NEAR Intents.

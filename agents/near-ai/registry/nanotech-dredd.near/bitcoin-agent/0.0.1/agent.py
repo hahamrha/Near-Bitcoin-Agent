@@ -180,6 +180,31 @@ async def call_send_btc_txn_api(account_id: str, btcReceiver: str, btcAmountInSa
     except Exception:
         return {"error": "Failed to send BTC transaction"}
 
+async def call_check_supported_token_api(account_id: str, assetName: str):
+    try:
+        # Prepare the mb-metadata header
+        mb_metadata = {"accountId": account_id}
+        headers = {
+            "mb-metadata": json.dumps(mb_metadata),
+            "Content-Type": "application/json"
+        }
+
+        # Make the API call
+        async with aiohttp.ClientSession() as session:
+            async with session.get(
+                f"https://www.bitcoin-agent.xyz/api/tools/check-supported-token?assetName={assetName}",
+                headers=headers
+            ) as response:
+                if response.status == 200:
+                    data = await response.json()
+                    return data
+                else:
+                    error_data = await response.json()
+                    return {"error": error_data.get("error", "Failed to check supported token")}
+
+    except Exception:
+        return {"error": "Failed to check supported token"}
+
 
 def run(env: Environment):
     tool_registry = env.get_tool_registry(new=True)

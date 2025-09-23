@@ -13,6 +13,32 @@ mcp_tool_get_user = MCPTool(
     }
 )
 
+async def call_get_user_api(account_id: str):
+    try:
+        # Prepare the mb-metadata header
+        mb_metadata = {"accountId": account_id}
+        headers = {
+            "mb-metadata": json.dumps(mb_metadata),
+            "Content-Type": "application/json"
+        }
+
+        # Make the API call
+        async with aiohttp.ClientSession() as session:
+            async with session.get(
+                "https://www.bitcoin-agent.xyz/api/tools/get-user",
+                headers=headers
+            ) as response:
+                if response.status == 200:
+                    data = await response.json()
+                    return data
+                else:
+                    error_data = await response.json()
+                    return {"error": error_data.get("error", "Failed to get user details")}
+
+    except Exception:
+        return {"error": "Failed to get user details"}
+
+
 
 def run(env: Environment):
     # Your agent code here

@@ -1,4 +1,7 @@
 from nearai.agents.environment import Environment
+from nearai.agents.models.tool_definition import MCPTool
+import aiohttp
+import json
 
 
 def run(env: Environment):

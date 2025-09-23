@@ -42,6 +42,29 @@ mcp_tool_create_btc_mpc_txn = MCPTool(
     }
 )
 
+mcp_tool_send_btc_txn = MCPTool(
+    name="send_btc_txn",
+    description="Send the signed payload to BTC mainnet",
+    inputSchema={
+        "type": "object",
+        "properties": {
+            "btcReceiver": {
+                "type": "string",
+                "description": "The BTC address of the receiver"
+            },
+            "btcAmountInSatoshi": {
+                "type": "string",
+                "description": "The amount of BTC to transfer in satoshi"
+            },
+            "txHash": {
+                "type": "string",
+                "description": "The txHash of the signed txn from near"
+            }
+        },
+        "required": ["btcReceiver", "btcAmountInSatoshi", "txHash"]
+    }
+)
+
 
 
 async def call_get_user_api(account_id: str):

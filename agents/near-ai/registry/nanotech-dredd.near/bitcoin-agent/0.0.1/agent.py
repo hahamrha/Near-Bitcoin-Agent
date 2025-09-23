@@ -65,6 +65,20 @@ mcp_tool_send_btc_txn = MCPTool(
     }
 )
 
+mcp_tool_check_supported_token = MCPTool(
+    name="check_supported_token",
+    description="Check supported token for swap to BTC on NEAR",
+    inputSchema={
+        "type": "object",
+        "properties": {
+            "assetName": {
+                "type": "string",
+                "description": "The name or symbol of the asset to check"
+            }
+        },
+        "required": ["assetName"]
+    }
+)
 
 async def call_get_user_api(account_id: str):
     try:
@@ -166,6 +180,31 @@ async def call_send_btc_txn_api(account_id: str, btcReceiver: str, btcAmountInSa
     except Exception:
         return {"error": "Failed to send BTC transaction"}
 
+async def call_check_supported_token_api(account_id: str, assetName: str):
+    try:
+        # Prepare the mb-metadata header
+        mb_metadata = {"accountId": account_id}
+        headers = {
+            "mb-metadata": json.dumps(mb_metadata),
+            "Content-Type": "application/json"
+        }
+
+        # Make the API call
+        async with aiohttp.ClientSession() as session:
+            async with session.get(
+                f"https://www.bitcoin-agent.xyz/api/tools/check-supported-token?assetName={assetName}",
+                headers=headers
+            ) as response:
+                if response.status == 200:
+                    data = await response.json()
+                    return data
+                else:
+                    error_data = await response.json()
+                    return {"error": error_data.get("error", "Failed to check supported token")}
+
+    except Exception:
+        return {"error": "Failed to check supported token"}
+
 
 def run(env: Environment):
     tool_registry = env.get_tool_registry(new=True)
@@ -173,6 +212,7 @@ def run(env: Environment):
     tool_registry.register_mcp_tool(mcp_tool_get_btc_balance, call_get_btc_balance_api)
     tool_registry.register_mcp_tool(mcp_tool_create_btc_mpc_txn, call_create_btc_mpc_txn_api)
     tool_registry.register_mcp_tool(mcp_tool_send_btc_txn, call_send_btc_txn_api)
+    tool_registry.register_mcp_tool(mcp_tool_check_supported_token, call_check_supported_token_api)
 
     prompt = {"role": "system", "content": "An assistant that gives information about the user's BTC wallet address and BTC balance, creates a Bitcoin txn and also helps with deposit and swap for Bitcoin"}
     result = env.completions_and_run_tools([prompt] + env.list_messages(), tools=tool_registry.get_all_tool_definitions())

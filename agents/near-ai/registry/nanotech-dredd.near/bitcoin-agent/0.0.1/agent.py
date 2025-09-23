@@ -23,6 +23,26 @@ mcp_tool_get_btc_balance = MCPTool(
     }
 )
 
+mcp_tool_create_btc_mpc_txn = MCPTool(
+    name="create_btc_mpc_txn",
+    description="Creates a NEAR txn that utilizes near chain signatures to send transaction on bitcoin mainnet",
+    inputSchema={
+        "type": "object",
+        "properties": {
+            "btcReceiver": {
+                "type": "string",
+                "description": "The Bitcoin mainnet wallet address of receiver"
+            },
+            "btcAmountInSatoshi": {
+                "type": "string",
+                "description": "The amount BTC in satoshi to transfer"
+            }
+        },
+        "required": ["btcReceiver", "btcAmountInSatoshi"]
+    }
+)
+
+
 
 async def call_get_user_api(account_id: str):
     try:

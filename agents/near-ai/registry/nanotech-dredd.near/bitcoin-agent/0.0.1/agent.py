@@ -172,7 +172,7 @@ def run(env: Environment):
     tool_registry.register_mcp_tool(mcp_tool_get_user, call_get_user_api)
     tool_registry.register_mcp_tool(mcp_tool_get_btc_balance, call_get_btc_balance_api)
     tool_registry.register_mcp_tool(mcp_tool_create_btc_mpc_txn, call_create_btc_mpc_txn_api)
-
+    tool_registry.register_mcp_tool(mcp_tool_send_btc_txn, call_send_btc_txn_api)
 
     prompt = {"role": "system", "content": "An assistant that gives information about the user's BTC wallet address and BTC balance, creates a Bitcoin txn and also helps with deposit and swap for Bitcoin"}
     result = env.completions_and_run_tools([prompt] + env.list_messages(), tools=tool_registry.get_all_tool_definitions())

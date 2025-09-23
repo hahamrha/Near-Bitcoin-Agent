@@ -65,6 +65,20 @@ mcp_tool_send_btc_txn = MCPTool(
     }
 )
 
+mcp_tool_check_supported_token = MCPTool(
+    name="check_supported_token",
+    description="Check supported token for swap to BTC on NEAR",
+    inputSchema={
+        "type": "object",
+        "properties": {
+            "assetName": {
+                "type": "string",
+                "description": "The name or symbol of the asset to check"
+            }
+        },
+        "required": ["assetName"]
+    }
+)
 
 async def call_get_user_api(account_id: str):
     try:

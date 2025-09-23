@@ -13,6 +13,17 @@ mcp_tool_get_user = MCPTool(
     }
 )
 
+mcp_tool_get_btc_balance = MCPTool(
+    name="get_btc_balance",
+    description="Get BTC balance and address for the user",
+    inputSchema={
+        "type": "object",
+        "properties": {},
+        "required": []
+    }
+)
+
+
 async def call_get_user_api(account_id: str):
     try:
         # Prepare the mb-metadata header

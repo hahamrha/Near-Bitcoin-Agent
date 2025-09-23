@@ -23,6 +23,26 @@ mcp_tool_get_btc_balance = MCPTool(
     }
 )
 
+mcp_tool_create_btc_mpc_txn = MCPTool(
+    name="create_btc_mpc_txn",
+    description="Creates a NEAR txn that utilizes near chain signatures to send transaction on bitcoin mainnet",
+    inputSchema={
+        "type": "object",
+        "properties": {
+            "btcReceiver": {
+                "type": "string",
+                "description": "The Bitcoin mainnet wallet address of receiver"
+            },
+            "btcAmountInSatoshi": {
+                "type": "string",
+                "description": "The amount BTC in satoshi to transfer"
+            }
+        },
+        "required": ["btcReceiver", "btcAmountInSatoshi"]
+    }
+)
+
+
 
 async def call_get_user_api(account_id: str):
     try:
@@ -74,11 +94,38 @@ async def call_get_btc_balance_api(account_id: str):
     except Exception:
         return {"error": "Failed to get BTC balance"}
 
+async def call_create_btc_mpc_txn_api(account_id: str, btcReceiver: str, btcAmountInSatoshi: str):
+    try:
+        # Prepare the mb-metadata header
+        mb_metadata = {"accountId": account_id}
+        headers = {
+            "mb-metadata": json.dumps(mb_metadata),
+            "Content-Type": "application/json"
+        }
+
+        # Make the API call
+        async with aiohttp.ClientSession() as session:
+            async with session.get(
+                f"https://www.bitcoin-agent.xyz/api/tools/create-btc-mpc-txn?btcReceiver={btcReceiver}&btcAmountInSatoshi={btcAmountInSatoshi}",
+                headers=headers
+            ) as response:
+                if response.status == 200:
+                    data = await response.json()
+                    return data
+                else:
+                    error_data = await response.json()
+                    return {"error": error_data.get("error", "Failed to create BTC MPC transaction")}
+
+    except Exception:
+        return {"error": "Failed to create BTC MPC transaction"}
+
 
 def run(env: Environment):
     tool_registry = env.get_tool_registry(new=True)
     tool_registry.register_mcp_tool(mcp_tool_get_user, call_get_user_api)
     tool_registry.register_mcp_tool(mcp_tool_get_btc_balance, call_get_btc_balance_api)
+    tool_registry.register_mcp_tool(mcp_tool_create_btc_mpc_txn, call_create_btc_mpc_txn_api)
+
 
     prompt = {"role": "system", "content": "An assistant that gives information about the user's BTC wallet address and BTC balance, creates a Bitcoin txn and also helps with deposit and swap for Bitcoin"}
     result = env.completions_and_run_tools([prompt] + env.list_messages(), tools=tool_registry.get_all_tool_definitions())

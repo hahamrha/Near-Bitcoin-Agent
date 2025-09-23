@@ -41,9 +41,10 @@ async def call_get_user_api(account_id: str):
 
 
 def run(env: Environment):
-    # Your agent code here
+    tool_registry = env.get_tool_registry(new=True)
+    tool_registry.register_mcp_tool(mcp_tool_get_user, call_get_user_api)
     prompt = {"role": "system", "content": "An assistant that gives information about the user's BTC wallet address and BTC balance, creates a Bitcoin txn and also helps with deposit and swap for Bitcoin"}
-    result = env.completion([prompt] + env.list_messages())
+    result = env.completions_and_run_tools([prompt] + env.list_messages(), tools=tool_registry.get_all_tool_definitions())
     env.add_reply(result)
 
 run(env)

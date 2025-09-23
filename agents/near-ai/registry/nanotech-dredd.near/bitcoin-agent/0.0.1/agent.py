@@ -94,6 +94,31 @@ async def call_get_btc_balance_api(account_id: str):
     except Exception:
         return {"error": "Failed to get BTC balance"}
 
+async def call_create_btc_mpc_txn_api(account_id: str, btcReceiver: str, btcAmountInSatoshi: str):
+    try:
+        # Prepare the mb-metadata header
+        mb_metadata = {"accountId": account_id}
+        headers = {
+            "mb-metadata": json.dumps(mb_metadata),
+            "Content-Type": "application/json"
+        }
+
+        # Make the API call
+        async with aiohttp.ClientSession() as session:
+            async with session.get(
+                f"https://www.bitcoin-agent.xyz/api/tools/create-btc-mpc-txn?btcReceiver={btcReceiver}&btcAmountInSatoshi={btcAmountInSatoshi}",
+                headers=headers
+            ) as response:
+                if response.status == 200:
+                    data = await response.json()
+                    return data
+                else:
+                    error_data = await response.json()
+                    return {"error": error_data.get("error", "Failed to create BTC MPC transaction")}
+
+    except Exception:
+        return {"error": "Failed to create BTC MPC transaction"}
+
 
 def run(env: Environment):
     tool_registry = env.get_tool_registry(new=True)

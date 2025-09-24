@@ -15,10 +15,10 @@ export default function HomePage() {
               <div className="absolute -inset-1 bg-gradient-to-r from-teal-400 to-cyan-400 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-300"></div>
             </div>
             <div className="space-y-3">
-              <h1 className="text-5xl md:text-6xl font-bold text-balance bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
-                Next for Bitcoin Agent
+              <h1 className="text-5xl md:text-5xl text-balance bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
+                What's next for Bitcoin Agent ???
               </h1>
-              <h2 className="text-3xl font-medium text-teal-600 tracking-wide">"Axons Network"</h2>
+              <h2 className="text-6xl font-bold text-teal-600 tracking-wide">"Axons Network"</h2>
             </div>
           </div>
         </div>

@@ -67,12 +67,15 @@ export default function Home() {
 
         <div className="max-w-3xl mx-auto text-center space-y-8 relative z-10 md:pt-16">
           <div className="inline-block">
-
-            <Badge className="bg-emerald-900/50 text-emerald-400 hover:bg-emerald-900/70 px-4 py-1.5 text-sm backdrop-blur-sm">
-              v2.0
-              {/* <ArrowUpRight className="inline h-4 w-4 ml-1" /> */}
-            </Badge>
-
+            <div
+              onClick={() => window.location.href = ''}
+              className="inline-block cursor-pointer p-6 rounded-lg border border-emerald-900/50 bg-black/60 hover:border-emerald-500 hover:bg-emerald-900/20 transition-all duration-300"
+            >
+              <Badge className="bg-emerald-900/50 text-emerald-400 hover:bg-emerald-900/70 px-4 py-1.5 text-sm backdrop-blur-sm">
+                What's next for Bitcoin Agent?
+                <ArrowUpRight className="inline h-4 w-4 ml-1" />
+              </Badge>
+            </div>
           </div>
 
           <div className="space-y-4">

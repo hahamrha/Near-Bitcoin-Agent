@@ -81,6 +81,12 @@ const Next = () => {
           </div>
         </div>
       </div>
+
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/3 left-1/4 w-px h-32 bg-gradient-to-b from-transparent via-teal-200 to-transparent opacity-30"></div>
+        <div className="absolute top-1/2 right-1/3 w-24 h-px bg-gradient-to-r from-transparent via-cyan-200 to-transparent opacity-30"></div>
+        <div className="absolute bottom-1/3 left-1/3 w-px h-24 bg-gradient-to-b from-transparent via-teal-200 to-transparent opacity-30"></div>
+      </div>
     </main>
   )
 }

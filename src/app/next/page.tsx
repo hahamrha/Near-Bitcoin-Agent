@@ -72,10 +72,7 @@ export default function HomePage() {
                 </div>
                 <h3 className="text-xl font-bold mb-4 text-gray-900">Built on NEAR</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Built on{" "}
-                  <span className="font-semibold text-teal-600 hover:text-teal-700 transition-colors">
-                    @NEARProtocol
-                  </span>
+                  Built on NEARProtocol
                 </p>
                 <div className="absolute top-4 right-4 w-2 h-2 bg-teal-400 rounded-full animate-pulse"></div>
               </div>
@@ -84,11 +81,7 @@ export default function HomePage() {
 
           <div className="relative max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h3 className="text-3xl font-bold text-gray-900 mb-4">Network Architecture</h3>
-              <p className="text-gray-600 text-lg">
-                MCP servers for every agent on NEAR → Multichain wallets with unified liquidity for instant swaps →
-                Built on <span className="font-semibold text-teal-600">@NEARProtocol</span>
-              </p>
+              <h3 className="text-6xl font-bold text-gray-900 mb-4">Network Architecture</h3>
             </div>
 
             {/* Bubble Map Container */}

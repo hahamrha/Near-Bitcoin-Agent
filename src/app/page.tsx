@@ -70,7 +70,7 @@ export default function Home() {
 
             <Badge className="bg-emerald-900/50 text-emerald-400 hover:bg-emerald-900/70 px-4 py-1.5 text-sm backdrop-blur-sm">
               What's next for Bitcoin Agent?
-              {/* <ArrowUpRight className="inline h-4 w-4 ml-1" /> */}
+              <ArrowUpRight className="inline h-4 w-4 ml-1" />
             </Badge>
 
           </div>

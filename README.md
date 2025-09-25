@@ -166,7 +166,7 @@ The Bitcoin Agent provides several powerful tools built using the [Bitte.ai Agen
 
 All tools are registered in the AI plugin manifest at `/api/ai-plugin`.
 
-## 📚 Docs
+## Docs
 
 The `/docs` folder contains detailed documentation to support the Bitcoin Agent project.
 It includes:

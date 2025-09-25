@@ -178,6 +178,8 @@ It includes:
 - Initial Reviews & Feedback
 - Progress Summaries
 
+You can explore the full set of documents here: [📂 View Docs Folder](/docs)
+
 ## Links
 
 - 🌍 **Website**: [bitcoin-agent.xyz](https://bitcoin-agent.xyz)

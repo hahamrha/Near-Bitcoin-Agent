@@ -1,12 +1,12 @@
 # Lean Canvas for Bitcoin Agent
 
-An agent that uses NEAR chain signatures to interact with Bitcoin L1.
+An agent that uses **NEAR chain signatures** and **intents** to interact with **Bitcoin L1**, enabling native transactions, swaps, and integrations with the broader NEAR ecosystem.
 
 ## 1. Problem
 
 Top 3 problems we're solving:
 
-- Sending Bitcoin directly from Web3 wallets is difficult — no seamless UX between Bitcoin L1 and smart contract platforms.
+- Sending Bitcoin directly from Web3 wallets is difficult, no seamless UX between Bitcoin L1 and smart contract platforms.
 - Existing solutions rely on bridges or wrapped BTC, which introduce custodial risk and complexity.
 - No simple agent-based experience that connects AI/intent-driven flows with native Bitcoin transactions.
 
@@ -15,6 +15,7 @@ Existing alternatives:
 - Centralized exchanges (CEXs) enabling BTC withdrawals.
 - Wrapped Bitcoin (WBTC, tBTC) on Ethereum or other chains.
 - Custodial wallets with limited programmability.
+- Emerging Bitcoin Layer 2s (Lightning, Stacks), but fragmented and not composable with NEAR.
 
 ## 2. Customer Segments
 
@@ -30,7 +31,7 @@ Early adopters:
 
 ## 3. Unique Value Proposition
 
-> **“Bitcoin Agent lets anyone send native Bitcoin directly with their NEAR account — no bridges, no wrapped tokens, just seamless cross-chain access.”**
+> **“Bitcoin Agent enables anyone to send, trade, and swap native Bitcoin directly from their NEAR account — no bridges, no wrapped tokens, just seamless cross-chain access.”**
 
 ### High-level concept:
 
@@ -63,16 +64,17 @@ Content & Thought Leadership: Share blog posts, demos, and Twitter/X threads on 
 
 ## 7. Cost Structure
 
-Fixed costs:
+**Fixed costs:**
 
-- Core development.
+- Core development & maintenance.
 - MPC server infrastructure.
-- Security audits (Bitcoin + NEAR + MPC flows).
+- Security audits (Bitcoin + NEAR + MPC).
 
-Variable costs:
+**Variable costs:**
 
 - Marketing/community incentives.
-- Gas fees & scaling costs for NEAR and Bitcoin transactions.
+- NEAR gas fees & BTC network fees.
+- Scaling infrastructure for Axons network.
 
 ## 8. Key Metrics
 

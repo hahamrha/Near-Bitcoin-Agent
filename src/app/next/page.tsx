@@ -291,6 +291,15 @@ export default function HomePage() {
           <div className="absolute bottom-1/3 left-1/3 w-px h-24 bg-gradient-to-b from-transparent via-teal-200 to-transparent opacity-30"></div>
         </div>
       </div>
+      <footer className="bg-white border-t border-gray-200/50">
+        <div className="container mx-auto px-4 py-8">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+            <div className="flex items-center gap-6">
+
+            </div>
+          </div>
+        </div>
+      </footer>
     </main>
   )
 }

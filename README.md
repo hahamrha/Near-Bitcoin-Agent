@@ -17,6 +17,7 @@
 - [🔧 Setup](#setup)
 - [📊 Usage](#usage)
 - [🛠️ Agent Tools](#agent-tools)
+- [📚 Docs](#docs)
 - [🌐 Links](#links)
 - [🤝 Contributing](#contributing)
 - [📄 License](#license)

@@ -271,7 +271,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Item 6: Complete Bitcoin Operations */}
+              {/* Item 6: Axons Protocol */}
               <div className="relative order-11 md:pr-8">
                 <div className="absolute left-0 md:left-10/10 top-2 md:top-6 w-8 h-8 rounded-full bg-yellow-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
                   <Clock className="h-5 w-5 text-black" />
@@ -280,28 +280,10 @@ export default function Home() {
               <div className="order-12 md:pl-8">
                 <div className="bg-black/60 border border-yellow-300/50 p-6 rounded-lg hover:border-yellow-500 transition-all duration-300">
                   <Badge className="mb-2 text-yellow-400">In Progress</Badge>
-                  <h4 className="text-xl font-bold mb-2">Lend & Borrow</h4>
-                  <p className="text-gray-400">
-                    Earn. Leverage. Repeat. Banking with your BTC.
-                  </p>
-                </div>
-              </div>
-
-              {/* Phase 4 - Item 1: Axons Protocol */}
-              <div className="md:text-right flex flex-col items-start md:items-end order-14 md:order-13 md:pr-8">
-                <div className="bg-black/60 border border-emerald-900/50 p-6 rounded-lg w-full hover:border-emerald-500 transition-all duration-300">
-                  <Badge className="mb-2 bg-emerald-900/50 text-emerald-400">Phase 4</Badge>
-                  <h4 className="text-xl font-bold mb-2 flex items-center md:justify-end gap-2">
-                    <span>Axons Protocol</span>
-                  </h4>
+                  <h4 className="text-xl font-bold mb-2">Axons Protocol</h4>
                   <p className="text-gray-400">
                     MCP Layer for AI agents with intents.
                   </p>
-                </div>
-              </div>
-              <div className="relative order-13 md:order-14 md:pl-8">
-                <div className="absolute left-0 md:left-0 top-2 md:top-6 w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center transform md:-translate-x-1/2 z-20">
-                  <Clock className="h-5 w-5 text-black" />
                 </div>
               </div>
 

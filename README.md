@@ -17,6 +17,7 @@
 - [🔧 Setup](#setup)
 - [📊 Usage](#usage)
 - [🛠️ Agent Tools](#agent-tools)
+- [📚 Docs](#docs)
 - [🌐 Links](#links)
 - [🤝 Contributing](#contributing)
 - [📄 License](#license)
@@ -164,6 +165,20 @@ The Bitcoin Agent provides several powerful tools built using the [Bitte.ai Agen
 | `intents`               | Execute cross-chain swap     | Swap assets to BTC via NEAR Intents        |
 
 All tools are registered in the AI plugin manifest at `/api/ai-plugin`.
+
+## 📚 Docs
+
+The `/docs` folder contains detailed documentation to support the Bitcoin Agent project.
+It includes:
+
+- Lean Canvas & Competitive Analysis
+- Technical Roadmap & Architecture
+- Risk Register
+- Tech Stack
+- Initial Reviews & Feedback
+- Progress Summaries
+
+You can explore the full set of documents here: [📂 View Docs Folder](/docs)
 
 ## Links
 

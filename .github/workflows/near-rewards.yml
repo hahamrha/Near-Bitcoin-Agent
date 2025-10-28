@@ -26,4 +26,4 @@ jobs:
           GITHUB_REPO: ${{ github.repository }}
         run: |
           npm install -g near-protocol-rewards@latest
-          near-protocol-rewards calculate
+          near-protocol-rewards calculatefg
